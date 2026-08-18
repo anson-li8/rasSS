@@ -1,4 +1,26 @@
-url: ~
+url: https://anson-li8.github.io/rasSS/
 template:
   bootstrap: 5
 
+navbar:
+  structure:
+    left:  [home, reference, replication]
+  components:
+    home:
+      icon: fas fa-home
+      aria-label: Home
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    replication:
+      text: Replication
+      menu:
+        - text: Problem Statement
+          href: replication/00_problem_statement.html
+        - text: Pilot Study (300-SNP)
+          href: replication/01_simulation.html
+        - text: Validation (300-SNP)
+          href: replication/02_simulation.html
+        - text: Paper Replication (1000-SNP)
+          href: replication/03_simulation.html
