@@ -1,3 +1,9 @@
+#' Suppress stdout and messages
+#'
+#' Evaluates an expression while suppressing both stdout and message output.
+#'
+#' @param expr Expression to evaluate.
+#' @return The value of `expr`.
 #' @export
 quiet <- function(expr) {
   nc <- file(nullfile(), open = "wt")

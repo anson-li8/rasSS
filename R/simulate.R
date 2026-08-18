@@ -1,3 +1,8 @@
+#' Simulate genotypes from an LD matrix
+#'
+#' @param n Number of individuals.
+#' @param R LD correlation matrix.
+#' @return Integer genotype matrix with values 0, 1, or 2.
 #' @export
 sim_genotypes <- function(n, R) {
   X <- mvtnorm::rmvnorm(n, sigma = R)
@@ -5,6 +10,11 @@ sim_genotypes <- function(n, R) {
   pmin(pmax(X, 0), 2)
 }
 
+#' Greedy LD pruning
+#'
+#' @param R LD correlation matrix.
+#' @param thresh r-squared pruning threshold.
+#' @return Logical vector indicating retained SNPs.
 #' @export
 prune_ld <- function(R, thresh) {
   keep <- rep(TRUE, nrow(R))
@@ -17,6 +27,11 @@ prune_ld <- function(R, thresh) {
   keep
 }
 
+#' Marginal statistics for continuous trait
+#'
+#' @param X Genotype matrix.
+#' @param y Phenotype vector.
+#' @return List with `beta` and `z`.
 #' @export
 get_marginal_stats <- function(X, y) {
   yc <- y - mean(y)
@@ -32,6 +47,11 @@ get_marginal_stats <- function(X, y) {
   list(beta = beta, z = z)
 }
 
+#' Rao score marginal statistics for binary trait
+#'
+#' @param X Genotype matrix.
+#' @param y Binary phenotype vector.
+#' @return List with `beta` and `z`.
 #' @export
 get_marginal_stats_bin <- function(X, y) {
   p0 <- mean(y)
@@ -43,6 +63,13 @@ get_marginal_stats_bin <- function(X, y) {
   list(beta = U / pmax(V, 1e-12), z = z)
 }
 
+#' Simulate phenotype
+#'
+#' @param X Genotype matrix.
+#' @param beta True effect-size vector.
+#' @param trait Either `"continuous"` or `"binary"`.
+#' @param seed Random seed.
+#' @return Phenotype vector.
 #' @export
 make_pheno <- function(X, beta, trait, seed) {
   set.seed(seed)
