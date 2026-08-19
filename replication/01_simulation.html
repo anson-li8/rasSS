@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 <title>Pilot Study (300-SNP toy)</title>
-
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet">
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
        h3 {font-size: 24px;}
@@ -29,25 +17,16 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script><link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script><script src="site_libs/navigation-1.1/tabsets.js"></script><link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet">
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script><link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
-<!-- Add a small amount of space between sections. -->
-<style type="text/css">
+<!-- Add a small amount of space between sections. --><style type="text/css">
 div.section {
   padding-top: 12px;
 }
 </style>
-
-
-
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -56,7 +35,6 @@ div.section {
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
@@ -66,17 +44,7 @@ if (window.hljs) {
     window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
-</script>
-
-
-
-
-
-
-
-
-
-<style type = "text/css">
+</script><style type="text/css">
 .main-container {
   max-width: 940px;
   margin-left: auto;
@@ -104,8 +72,6 @@ pre code {
   padding: 0;
 }
 </style>
-
-
 <style type="text/css">
 .dropdown-submenu {
   position: relative;
@@ -145,7 +111,6 @@ pre code {
   border-radius: 6px 0 6px 6px;
 }
 </style>
-
 <script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
@@ -179,11 +144,7 @@ $(document).ready(function () {
   style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
   document.head.appendChild(style);
 });
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
+</script><!-- tabsets --><style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
@@ -229,12 +190,7 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<!-- code folding -->
-
-
-
-<style type="text/css">
+<!-- code folding --><style type="text/css">
 
 #TOC {
   margin: 25px 0px 20px 0px;
@@ -295,11 +251,7 @@ div.tocify {
 
 
 </style>
-
-
-
 </head>
-
 <body>
 
 
@@ -318,53 +270,7 @@ div.tocify {
 
 
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">ras-ss</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="00_problem_statement.html">Problem Statement</a>
-</li>
-<li>
-  <a href="01_simulation.html">Pilot Study</a>
-</li>
-<li>
-  <a href="02_simulation.html">Validation</a>
-</li>
-<li>
-  <a href="03_simulation.html">Paper Replication</a>
-</li>
-<li>
-  <a href="about.html">About</a>
-</li>
-<li>
-  <a href="license.html">License</a>
-</li>
-<li>
-  <a href="https://github.com/anson-li8/ras-ss">
-    <span class="fab fa-github"></span>
-     
-    Source code
-  </a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!--/.navbar -->
 
 <div id="header">
 
@@ -376,687 +282,10 @@ div.tocify {
 
 
 <p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span>
-</button>
-</p>
-<div id="workflowr-report" class="collapse">
-<ul class="nav nav-tabs">
-<li class="active">
-<a data-toggle="tab" href="#summary">Summary</a>
-</li>
-<li>
-<a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
-</li>
-<li>
-<a data-toggle="tab" href="#versions">Past versions</a>
-</li>
-</ul>
-<div class="tab-content">
-<div id="summary" class="tab-pane fade in active">
-<p>
-<strong>Last updated:</strong> 2026-08-13
-</p>
-<p>
-<strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
-</p>
-<p>
-<strong>Knit directory:</strong> <code>ras-ss/</code> <span
-class="glyphicon glyphicon-question-sign" aria-hidden="true"
-title="This is the local directory in which the code in this file was executed.">
-</span>
-</p>
-<p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
-analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.2). The <em>Checks</em> tab describes the reproducibility checks
-that were applied when the results were created. The <em>Past
-versions</em> tab lists the development history.
-</p>
-<hr>
-</div>
-<div id="checks" class="tab-pane fade">
-<div id="workflowr-checks" class="panel-group">
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
-</p>
-</div>
-<div id="strongRMarkdownfilestronguptodate"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
-</p>
-</div>
-<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the
-global environment can affect the analysis in your R Markdown file in
-unknown ways. For reproduciblity it’s best to always run the code in an
-empty environment.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20260710code">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Seed:</strong>
-<code>set.seed(20260710)</code> </a>
-</p>
-</div>
-<div id="strongSeedstrongcodesetseed20260710code"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>The command <code>set.seed(20260710)</code> was run prior to running
-the code in the R Markdown file. Setting a seed ensures that any results
-that rely on randomness, e.g. subsampling or permutations, are
-reproducible.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Session information:</strong>
-recorded </a>
-</p>
-</div>
-<div id="strongSessioninformationstrongrecorded"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package
-versions is critical for reproducibility.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
-</p>
-</div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
-<div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-choose-window
-</li>
-<li>
-config
-</li>
-<li>
-core-functions
-</li>
-<li>
-detect
-</li>
-<li>
-full-null
-</li>
-<li>
-full-power
-</li>
-<li>
-illustration
-</li>
-<li>
-ld-reference
-</li>
-<li>
-results-table
-</li>
-<li>
-setup
-</li>
-<li>
-sweep-plot
-</li>
-<li>
-sweep
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory
-<code>01_simulation_cache</code> and re-run the analysis. To have
-workflowr automatically delete the cache directory prior to building the
-file, set <code>delete_cache = TRUE</code> when running
-<code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
-</p>
-</div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr
-project makes it easier to run your code on other machines.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomansonli8ansonli8rassstree90cbf4f52702e6fd847fa0f03d6e3b05b5497232targetblank90cbf4fa">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/tree/90cbf4f52702e6fd847fa0f03d6e3b05b5497232" target="_blank">90cbf4f</a>
-</a>
-</p>
-</div>
-<div
-id="strongRepositoryversionstrongahrefhttpsgithubcomansonli8ansonli8rassstree90cbf4f52702e6fd847fa0f03d6e3b05b5497232targetblank90cbf4fa"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Great! You are using Git for version control. Tracking code development
-and connecting the code version to the results is critical for
-reproducibility.
-</p>
-<p>
-The results in this page were generated with repository version
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/tree/90cbf4f52702e6fd847fa0f03d6e3b05b5497232" target="_blank">90cbf4f</a>.
-See the <em>Past versions</em> tab to see a history of the changes made
-to the R Markdown and HTML files.
-</p>
-<p>
-Note that you need to be careful to ensure that all relevant files for
-the analysis have been committed to Git prior to generating the results
-(you can use <code>wflow_publish</code> or
-<code>wflow_git_commit</code>). workflowr only checks the R Markdown
-file, but you know if there are other scripts or data files that it
-depends on. Below is the status of the Git repository when the results
-were generated:
-</p>
-<pre><code>
-Ignored files:
-    Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/01_simulation_cache/
-    Ignored:    analysis/02_simulation_cache/
-    Ignored:    analysis/03_simulation_cache/
 
-Unstaged changes:
-    Modified:   analysis/_site.yml
+</p>
 
-</code></pre>
-<p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not
-included in this status report because it is ok for generated content to
-have uncommitted changes.
-</p>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</div>
-<div id="versions" class="tab-pane fade">
-<p>
-These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/01_simulation.Rmd</code>) and
-HTML (<code>docs/01_simulation.html</code>) files. If you’ve configured
-a remote Git repository (see <code>?wflow_git_remote</code>), click on
-the hyperlinks in the table below to view the files as they were in that
-past version.
-</p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/920287b24adce54509b39c992f6447207414ac14/docs/01_simulation.html" target="_blank">920287b</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/3df293f06f560b980d99003726b20b8a9116c4c7/analysis/01_simulation.Rmd" target="_blank">3df293f</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-commit changes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/3df293f06f560b980d99003726b20b8a9116c4c7/docs/01_simulation.html" target="_blank">3df293f</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-commit changes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/06eab4c08ecf51a6cb8626cd443c366597eefba2/docs/01_simulation.html" target="_blank">06eab4c</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-29
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/f69a56277adadf6721c63da17dbdd2e96eb0da3f/analysis/01_simulation.Rmd" target="_blank">f69a562</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-29
-</td>
-<td>
-Add notes about knitr caching causing times that don’t represent full
-runtimes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/67aab7b63ce8174cd292ecb9bfa36f6ddfc889e1/docs/01_simulation.html" target="_blank">67aab7b</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-29
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/51545a04b6112bee61953da2c255e25fca834823/analysis/01_simulation.Rmd" target="_blank">51545a0</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-29
-</td>
-<td>
-Fix formatting issues and figures not appearing in 01_simulation
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/175f014c457240b13133c691bcdf1a831cf3750c/docs/01_simulation.html" target="_blank">175f014</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/bc3aa54befb1b779c1ac196fc4a41f22acb7d404/analysis/01_simulation.Rmd" target="_blank">bc3aa54</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-27
-</td>
-<td>
-wflow_publish("analysis/01_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/01b38151bc9f327ec50529df6f7d0850be34585b/docs/01_simulation.html" target="_blank">01b3815</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-27
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/911a882e7a9053f43162f1923d7cab0bc7f1b221/analysis/01_simulation.Rmd" target="_blank">911a882</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-26
-</td>
-<td>
-rebuild site
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/911a882e7a9053f43162f1923d7cab0bc7f1b221/docs/01_simulation.html" target="_blank">911a882</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-26
-</td>
-<td>
-rebuild site
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/82201cd23d77a829bf00c94b703faba94e991e38/docs/01_simulation.html" target="_blank">82201cd</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-23
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/dc8e1bb2179e0a6576ff229943cb9655e4f21943/analysis/01_simulation.Rmd" target="_blank">dc8e1bb</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-23
-</td>
-<td>
-cleanup output and improve simulation clarity
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/dc8e1bb2179e0a6576ff229943cb9655e4f21943/docs/01_simulation.html" target="_blank">dc8e1bb</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-23
-</td>
-<td>
-cleanup output and improve simulation clarity
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/56e4190bc64930b3df629ad402131f77d1026c1d/docs/01_simulation.html" target="_blank">56e4190</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/8312aeefe40f82acb1b89c9dc5ef8fff892aba92/analysis/01_simulation.Rmd" target="_blank">8312aee</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-wflow_publish("01_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/21eec7ec22a0c41765f61062e0779669e58e7bcf/docs/01_simulation.html" target="_blank">21eec7e</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/d0d1d706f78d96986ff3679ad5590dc02579bd75/analysis/01_simulation.Rmd" target="_blank">d0d1d70</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-wflow_publish("01_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/cc74dfcc0857e5d33c3b9c9ebb432a2a1b19f26e/analysis/01_simulation.Rmd" target="_blank">cc74dfc</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-7/21/2026, recent changes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/cc74dfcc0857e5d33c3b9c9ebb432a2a1b19f26e/docs/01_simulation.html" target="_blank">cc74dfc</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-21
-</td>
-<td>
-7/21/2026, recent changes
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/df77b46f3c5a414bb7836a3b498147a7fb4e46f3/analysis/01_simulation.Rmd" target="_blank">df77b46</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-17
-</td>
-<td>
-basic simulation attempt
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/df77b46f3c5a414bb7836a3b498147a7fb4e46f3/docs/01_simulation.html" target="_blank">df77b46</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-07-17
-</td>
-<td>
-basic simulation attempt
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-</div>
-</div>
-</div>
-<p><em>Pilot/tuning run. The main paper-style study is <a
-href="03_simulation.html">Paper Replication</a>.</em></p>
+<p><em>Pilot/tuning run. The main paper-style study is <a href="03_simulation.html">Paper Replication</a>.</em></p>
 <pre class="r"><code>n_snps    &lt;- 300
 n_disc    &lt;- 1000 # discovery cohort, method A (small for speed)
 n_targ    &lt;- 1000 # target cohort (small for speed)
@@ -1082,7 +311,7 @@ R_true &lt;- outer(1:n_snps, 1:n_snps, function(i, j) rho^abs(i - j))
 # generate n fake patients based on the LD data
 sim_genotypes &lt;- function(n, R) {
   X &lt;- rmvnorm(n, sigma = R)
-  X &lt;- round(X) # DNA isn&#39;t continuous
+  X &lt;- round(X) # DNA isn't continuous
   pmin(pmax(X, 0), 2) # 0, 1, 2 mutated alleles
 }
 # run the random simulation
@@ -1101,13 +330,13 @@ prune_ld &lt;- function(R, thresh) {
   keep
 }
 prune_filter &lt;- prune_ld(R_emp, prune_r2)
-cat(&quot;Surviving SNPs after LD pruning:&quot;, sum(prune_filter), &quot;of&quot;, n_snps, &quot;\n&quot;)</code></pre>
+cat("Surviving SNPs after LD pruning:", sum(prune_filter), "of", n_snps, "\n")</code></pre>
 <pre><code>Surviving SNPs after LD pruning: 100 of 300 </code></pre>
 <pre class="r"><code># runs linear regression for every SNP to measure correlation with phenotype y
 get_marginal_stats &lt;- function(X, y) {
   # Vectorized OLS for massive speedup
   yc &lt;- y - mean(y)
-  Xc &lt;- sweep(X, 2, colMeans(X), &quot;-&quot;)
+  Xc &lt;- sweep(X, 2, colMeans(X), "-")
   sxx &lt;- colSums(Xc^2)
   sxy &lt;- as.numeric(crossprod(Xc, yc))
   beta &lt;- sxy / sxx
@@ -1118,7 +347,7 @@ get_marginal_stats &lt;- function(X, y) {
   z[!is.finite(z)] &lt;- 0
   list(beta = beta, z = z)
 }
-# T_burden = w&#39;Z / sqrt(w&#39;Rw), from problem statement
+# T_burden = w'Z / sqrt(w'Rw), from problem statement
 t_burden &lt;- function(w, Z, R) {
   denom &lt;- sqrt(as.numeric(t(w) %*% R %*% w))
   if (!is.finite(denom) || denom &lt;= 0) return(0)
@@ -1173,9 +402,9 @@ detect_peaks &lt;- function(scan, window_size, scw = 8) {
   tryCatch({
     # first pass: changepoint detection
     # use sink() to hide cat() verbose
-    null_con &lt;- file(nullfile(), open = &quot;wt&quot;)
-    sink(null_con, type = &quot;output&quot;)
-    sink(null_con, type = &quot;message&quot;)
+    null_con &lt;- file(nullfile(), open = "wt")
+    sink(null_con, type = "output")
+    sink(null_con, type = "message")
     cp &lt;- ras_detect(
       x = scan$x, y = scan$y,
       window_size                    = window_size,
@@ -1191,18 +420,17 @@ detect_peaks &lt;- function(scan, window_size, scw = 8) {
       p.value.threshold = davies_thresh
     ))
     # stop redirecting output
-    sink(type = &quot;message&quot;)
-    sink(type = &quot;output&quot;)
+    sink(type = "message")
+    sink(type = "output")
     close(null_con)
     list(val = val, candidates = cp$all.changepoints, error = FALSE)
   }, error = function(e) {
     # ensure sink is turned off even if an error occurs
-    try({ sink(type = &quot;message&quot;); sink(type = &quot;output&quot;); close(null_con) }, silent = TRUE)
+    try({ sink(type = "message"); sink(type = "output"); close(null_con) }, silent = TRUE)
     list(val = list(tau_hats = numeric(0)), candidates = NULL, error = TRUE)
   })
 }</code></pre>
-<div id="window-size-sweep-for-cpd-type-i-error-power"
-class="section level2">
+<div id="window-size-sweep-for-cpd-type-i-error-power" class="section level2">
 <h2>Window-size sweep for CPD: Type I error &amp; power</h2>
 <pre class="r"><code>n_sweep &lt;- 100
 ws_candidates &lt;- c(6, 8, 10, 12, 15, 20)
@@ -1224,8 +452,8 @@ for (k in seq_along(ws_candidates)) {
       edge = any(tau &gt;= 185 &amp; tau &lt;= 195) &amp;&amp; !any(tau &gt;= 130 &amp; tau &lt;= 170))
   }))
   sweep_df$type1[k] &lt;- mean(unlist(null_res))
-  sweep_df$power[k] &lt;- mean(sapply(power_res, function(x) x[&quot;center&quot;]))
-  sweep_df$edge[k]  &lt;- mean(sapply(power_res, function(x) x[&quot;edge&quot;]))
+  sweep_df$power[k] &lt;- mean(sapply(power_res, function(x) x["center"]))
+  sweep_df$edge[k]  &lt;- mean(sapply(power_res, function(x) x["edge"]))
 }
 print(sweep_df)</code></pre>
 <pre><code>  window_size type1 power edge
@@ -1237,7 +465,7 @@ print(sweep_df)</code></pre>
 6          20  0.07  0.92    0</code></pre>
 <pre class="r"><code># choose the window size with the maximum detection power and lowest Type I Error rate
 best_ws &lt;- ws_candidates[which.max(sweep_df$power - sweep_df$type1)]
-cat(&quot;Chosen window_size:&quot;, best_ws, &quot;(scw = 8)\n&quot;)</code></pre>
+cat("Chosen window_size:", best_ws, "(scw = 8)\n")</code></pre>
 <pre><code>Chosen window_size: 12 (scw = 8)</code></pre>
 <pre class="r"><code>print(sweep_df[sweep_df$window_size == best_ws, ])</code></pre>
 <pre><code>  window_size type1 power edge
@@ -1250,7 +478,7 @@ null_hits &lt;- unlist(suppressWarnings(future_lapply(seq_len(n_null), function(
   scan &lt;- one_rep(null_beta, seed = 100000 + s)$scan
   length(detect_peaks(scan, best_ws, scw = 8)$val$tau_hats) &gt; 0
 })))
-cat(sprintf(&quot;\nEmpirical Type I error over %d reps: %.3f\n&quot;, n_null, mean(null_hits)))</code></pre>
+cat(sprintf("\nEmpirical Type I error over %d reps: %.3f\n", n_null, mean(null_hits)))</code></pre>
 <pre><code>
 Empirical Type I error over 500 reps: 0.038</code></pre>
 <pre class="r"><code># Statistical power test by running signal_beta (patients w/ phenotype at SNPs 150-152)
@@ -1261,31 +489,29 @@ power_res &lt;- suppressWarnings(future_lapply(seq_len(n_power), function(s) {
   c(center = any(tau &gt;= 130 &amp; tau &lt;= 170),
     edge = any(tau &gt;= 185 &amp; tau &lt;= 195) &amp;&amp; !any(tau &gt;= 130 &amp; tau &lt;= 170))
 }))
-hit_center &lt;- sapply(power_res, function(x) x[&quot;center&quot;])
-hit_edge   &lt;- sapply(power_res, function(x) x[&quot;edge&quot;])
-cat(sprintf(&quot;\nEmpirical power (centered detections) over %d reps: %.3f\n&quot;, n_power, mean(hit_center)))</code></pre>
+hit_center &lt;- sapply(power_res, function(x) x["center"])
+hit_edge   &lt;- sapply(power_res, function(x) x["edge"])
+cat(sprintf("\nEmpirical power (centered detections) over %d reps: %.3f\n", n_power, mean(hit_center)))</code></pre>
 <pre><code>
 Empirical power (centered detections) over 200 reps: 0.935</code></pre>
-<pre class="r"><code>cat(sprintf(&quot;Edge-only detections (trailing edge, not center): %.3f\n&quot;, mean(hit_edge)))</code></pre>
+<pre class="r"><code>cat(sprintf("Edge-only detections (trailing edge, not center): %.3f\n", mean(hit_edge)))</code></pre>
 <pre><code>Edge-only detections (trailing edge, not center): 0.000</code></pre>
 </div>
 <div id="results-tablefigures" class="section level2">
 <h2>Results table/figures</h2>
 <pre class="r"><code>results &lt;- data.frame(
-  Metric = c(&quot;Type I error&quot;, &quot;Power&quot;),
+  Metric = c("Type I error", "Power"),
   Value  = c(mean(null_hits), mean(hit_center)),
   Reps   = c(n_null, n_power)
 )
-knitr::kable(results, digits = 3, caption = &quot;Empirical simulation results&quot;)</code></pre>
+knitr::kable(results, digits = 3, caption = "Empirical simulation results")</code></pre>
 <table>
 <caption>Empirical simulation results</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">Metric</th>
 <th align="right">Value</th>
 <th align="right">Reps</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Type I error</td>
@@ -1299,24 +525,21 @@ knitr::kable(results, digits = 3, caption = &quot;Empirical simulation results&q
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>plot(sweep_df$window_size, sweep_df$type1, type = &quot;b&quot;, col = &quot;red&quot;,
-     ylim = c(0, 1), xlab = &quot;window_size&quot;, ylab = &quot;Rate&quot;,
-     main = &quot;Type I error vs. power across window_size (scw = 8)&quot;, pch = 16)
-lines(sweep_df$window_size, sweep_df$power, type = &quot;b&quot;, col = &quot;blue&quot;, pch = 16)
-abline(h = 0.05, lty = 3, col = &quot;gray50&quot;)
-legend(&quot;left&quot;, legend = c(&quot;Type I error&quot;, &quot;Power&quot;, &quot;nominal 0.05&quot;),
-       col = c(&quot;red&quot;, &quot;blue&quot;, &quot;gray50&quot;), lty = c(1, 1, 3), pch = c(16, 16, NA))</code></pre>
-<p><img src="figure/01_simulation.Rmd/sweep-plot-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>plot(sweep_df$window_size, sweep_df$type1, type = "b", col = "red",
+     ylim = c(0, 1), xlab = "window_size", ylab = "Rate",
+     main = "Type I error vs. power across window_size (scw = 8)", pch = 16)
+lines(sweep_df$window_size, sweep_df$power, type = "b", col = "blue", pch = 16)
+abline(h = 0.05, lty = 3, col = "gray50")
+legend("left", legend = c("Type I error", "Power", "nominal 0.05"),
+       col = c("red", "blue", "gray50"), lty = c(1, 1, 3), pch = c(16, 16, NA))</code></pre>
+<p><img src="figure/01_simulation.Rmd/sweep-plot-1.png" alt="" width="672" style="display: block; margin: auto;"></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-sweep-plot-1">
-Past versions of sweep-plot-1.png
-</button>
+
 </p>
 <div id="fig-sweep-plot-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1326,8 +549,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1422,32 +644,29 @@ rep_out &lt;- one_rep(signal_beta, seed = 300000)
 ss_profile &lt;- rep_out$scan
 indiv_y &lt;- indiv_scan(ss_profile, rep_out$X_t, rep_out$y_t, rep_out$b_disc)
 final &lt;- detect_peaks(ss_profile, best_ws, scw = 8)
-plot(ss_profile$x, ss_profile$y, type = &quot;l&quot;, col = &quot;blue&quot;, lwd = 2,
-     xlab = &quot;SNP Index&quot;, ylab = &quot;-log10(p)&quot;,
-     main = &quot;Summary-Stat RAS vs. Individual-Level Baseline&quot;)
-lines(ss_profile$x, indiv_y, col = &quot;darkgray&quot;, lty = 2, lwd = 2)
-abline(v = causal_snps, col = &quot;red&quot;, lty = 2, lwd = 2)
+plot(ss_profile$x, ss_profile$y, type = "l", col = "blue", lwd = 2,
+     xlab = "SNP Index", ylab = "-log10(p)",
+     main = "Summary-Stat RAS vs. Individual-Level Baseline")
+lines(ss_profile$x, indiv_y, col = "darkgray", lty = 2, lwd = 2)
+abline(v = causal_snps, col = "red", lty = 2, lwd = 2)
 if (length(final$val$tau_hats) &gt; 0) {
-  abline(v = final$val$tau_hats, col = &quot;darkgreen&quot;, lwd = 2)
-  legend(&quot;topright&quot;,
-         legend = c(&quot;True causal region&quot;, &quot;Validated changepoint&quot;, &quot;Summary-stat&quot;, &quot;Individual-level&quot;),
-         col = c(&quot;red&quot;, &quot;darkgreen&quot;, &quot;blue&quot;, &quot;darkgray&quot;), lty = c(2, 1, 1, 2), lwd = 2)
+  abline(v = final$val$tau_hats, col = "darkgreen", lwd = 2)
+  legend("topright",
+         legend = c("True causal region", "Validated changepoint", "Summary-stat", "Individual-level"),
+         col = c("red", "darkgreen", "blue", "darkgray"), lty = c(2, 1, 1, 2), lwd = 2)
 } else {
-  legend(&quot;topright&quot;,
-         legend = c(&quot;True causal region&quot;, &quot;Summary-stat&quot;, &quot;Individual-level&quot;),
-         col = c(&quot;red&quot;, &quot;blue&quot;, &quot;darkgray&quot;), lty = c(2, 1, 2), lwd = 2)
+  legend("topright",
+         legend = c("True causal region", "Summary-stat", "Individual-level"),
+         col = c("red", "blue", "darkgray"), lty = c(2, 1, 2), lwd = 2)
 }</code></pre>
-<p><img src="figure/01_simulation.Rmd/illustration-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/01_simulation.Rmd/illustration-1.png" alt="" width="672" style="display: block; margin: auto;"></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-illustration-1">
-Past versions of illustration-1.png
-</button>
+
 </p>
 <div id="fig-illustration-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1457,8 +676,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1531,16 +749,12 @@ Anson Li
 </div>
 </div>
 <pre class="r"><code>end_time &lt;- Sys.time()
-runtime_seconds &lt;- as.numeric(difftime(end_time, start_time, units = &quot;secs&quot;))
-cat(paste0(&quot;**Total Knitting Time:** &quot;, round(runtime_seconds, 2), &quot; seconds&quot;))</code></pre>
+runtime_seconds &lt;- as.numeric(difftime(end_time, start_time, units = "secs"))
+cat(paste0("**Total Knitting Time:** ", round(runtime_seconds, 2), " seconds"))</code></pre>
 <pre><code>**Total Knitting Time:** 3.45 seconds</code></pre>
 <pre class="r"><code># NOTE: time with knitr caching</code></pre>
-<br>
-<p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-Session information
-</button>
+<br><p>
+
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -1587,8 +801,8 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-</div>
-</div>
+
+
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -1601,17 +815,7 @@ footer is added to webpages before the MathJax javascript. -->
   MathJax.Hub.Config({
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
-</script>
-
-
-
-
-</div>
-</div>
-
-</div>
-
-<script>
+</script><script>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
@@ -1622,11 +826,7 @@ $(document).ready(function () {
 });
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
+</script><!-- tabsets --><script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
@@ -1636,11 +836,7 @@ $(document).ready(function () {
     $(this).parent().toggleClass('nav-tabs-open');
   });
 });
-</script>
-
-<!-- code folding -->
-
-<script>
+</script><!-- code folding --><script>
 $(document).ready(function ()  {
 
     // temporarily add toc-ignore selector to headers for the consistency with Pandoc
@@ -1668,10 +864,7 @@ $(document).ready(function ()  {
     // tocify
     var toc = $("#TOC").tocify(options).data("toc-tocify");
 });
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -1679,6 +872,5 @@ $(document).ready(function ()  {
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
-
 </body>
 </html>
