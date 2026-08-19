@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<meta charset="utf-8" />
-<meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
 <title>Paper Replication (1000-SNP)</title>
-
-<script src="site_libs/header-attrs-2.31/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
+<script src="site_libs/header-attrs-2.31/header-attrs.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet">
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script><script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script><script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script><style>h1 {font-size: 34px;}
        h1.title {font-size: 38px;}
        h2 {font-size: 30px;}
        h3 {font-size: 24px;}
@@ -29,25 +17,16 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
-
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script><link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script><script src="site_libs/navigation-1.1/tabsets.js"></script><link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet">
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script><link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
-<!-- Add a small amount of space between sections. -->
-<style type="text/css">
+<!-- Add a small amount of space between sections. --><style type="text/css">
 div.section {
   padding-top: 12px;
 }
 </style>
-
-
-
 <style type="text/css">
   code{white-space: pre-wrap;}
   span.smallcaps{font-variant: small-caps;}
@@ -56,7 +35,6 @@ div.section {
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
-
 <style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
@@ -66,17 +44,7 @@ if (window.hljs) {
     window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
-</script>
-
-
-
-
-
-
-
-
-
-<style type = "text/css">
+</script><style type="text/css">
 .main-container {
   max-width: 940px;
   margin-left: auto;
@@ -104,8 +72,6 @@ pre code {
   padding: 0;
 }
 </style>
-
-
 <style type="text/css">
 .dropdown-submenu {
   position: relative;
@@ -145,7 +111,6 @@ pre code {
   border-radius: 6px 0 6px 6px;
 }
 </style>
-
 <script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
@@ -179,11 +144,7 @@ $(document).ready(function () {
   style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
   document.head.appendChild(style);
 });
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
+</script><!-- tabsets --><style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
@@ -229,12 +190,7 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<!-- code folding -->
-
-
-
-<style type="text/css">
+<!-- code folding --><style type="text/css">
 
 #TOC {
   margin: 25px 0px 20px 0px;
@@ -295,11 +251,7 @@ div.tocify {
 
 
 </style>
-
-
-
 </head>
-
 <body>
 
 
@@ -318,53 +270,7 @@ div.tocify {
 
 
 
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">ras-ss</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="00_problem_statement.html">Problem Statement</a>
-</li>
-<li>
-  <a href="01_simulation.html">Pilot Study</a>
-</li>
-<li>
-  <a href="02_simulation.html">Validation</a>
-</li>
-<li>
-  <a href="03_simulation.html">Paper Replication</a>
-</li>
-<li>
-  <a href="about.html">About</a>
-</li>
-<li>
-  <a href="license.html">License</a>
-</li>
-<li>
-  <a href="https://github.com/anson-li8/ras-ss">
-    <span class="fab fa-github"></span>
-     
-    Source code
-  </a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
+<!--/.navbar -->
 
 <div id="header">
 
@@ -376,755 +282,24 @@ div.tocify {
 
 
 <p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span>
-</button>
-</p>
-<div id="workflowr-report" class="collapse">
-<ul class="nav nav-tabs">
-<li class="active">
-<a data-toggle="tab" href="#summary">Summary</a>
-</li>
-<li>
-<a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
-</li>
-<li>
-<a data-toggle="tab" href="#versions">Past versions</a>
-</li>
-</ul>
-<div class="tab-content">
-<div id="summary" class="tab-pane fade in active">
-<p>
-<strong>Last updated:</strong> 2026-08-16
-</p>
-<p>
-<strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
-</p>
-<p>
-<strong>Knit directory:</strong> <code>ras-ss/</code> <span
-class="glyphicon glyphicon-question-sign" aria-hidden="true"
-title="This is the local directory in which the code in this file was executed.">
-</span>
-</p>
-<p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
-analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.2). The <em>Checks</em> tab describes the reproducibility checks
-that were applied when the results were created. The <em>Past
-versions</em> tab lists the development history.
-</p>
-<hr>
-</div>
-<div id="checks" class="tab-pane fade">
-<div id="workflowr-checks" class="panel-group">
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
-</p>
-</div>
-<div id="strongRMarkdownfilestronguptodate"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
-</p>
-</div>
-<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the
-global environment can affect the analysis in your R Markdown file in
-unknown ways. For reproduciblity it’s best to always run the code in an
-empty environment.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20260710code">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Seed:</strong>
-<code>set.seed(20260710)</code> </a>
-</p>
-</div>
-<div id="strongSeedstrongcodesetseed20260710code"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>The command <code>set.seed(20260710)</code> was run prior to running
-the code in the R Markdown file. Setting a seed ensures that any results
-that rely on randomness, e.g. subsampling or permutations, are
-reproducible.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Session information:</strong>
-recorded </a>
-</p>
-</div>
-<div id="strongSessioninformationstrongrecorded"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package
-versions is critical for reproducibility.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
-</p>
-</div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
-<div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-bench-scan
-</li>
-<li>
-bench
-</li>
-<li>
-full_grid
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory
-<code>03_simulation_cache</code> and re-run the analysis. To have
-workflowr automatically delete the cache directory prior to building the
-file, set <code>delete_cache = TRUE</code> when running
-<code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
-</p>
-</div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr
-project makes it easier to run your code on other machines.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomansonli8ansonli8rassstreef32bad670d5aa78f692499255bf394450ab1463btargetblankf32bad6a">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/tree/f32bad670d5aa78f692499255bf394450ab1463b" target="_blank">f32bad6</a>
-</a>
-</p>
-</div>
-<div
-id="strongRepositoryversionstrongahrefhttpsgithubcomansonli8ansonli8rassstreef32bad670d5aa78f692499255bf394450ab1463btargetblankf32bad6a"
-class="panel-collapse collapse">
-<div class="panel-body">
-<p>
-Great! You are using Git for version control. Tracking code development
-and connecting the code version to the results is critical for
-reproducibility.
-</p>
-<p>
-The results in this page were generated with repository version
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/tree/f32bad670d5aa78f692499255bf394450ab1463b" target="_blank">f32bad6</a>.
-See the <em>Past versions</em> tab to see a history of the changes made
-to the R Markdown and HTML files.
-</p>
-<p>
-Note that you need to be careful to ensure that all relevant files for
-the analysis have been committed to Git prior to generating the results
-(you can use <code>wflow_publish</code> or
-<code>wflow_git_commit</code>). workflowr only checks the R Markdown
-file, but you know if there are other scripts or data files that it
-depends on. Below is the status of the Git repository when the results
-were generated:
-</p>
-<pre><code>
-Ignored files:
-    Ignored:    .Rhistory
-    Ignored:    .Rproj.user/
-    Ignored:    analysis/01_simulation_cache/
-    Ignored:    analysis/02_simulation_cache/
-    Ignored:    analysis/03_simulation_cache/
 
-</code></pre>
-<p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not
-included in this status report because it is ok for generated content to
-have uncommitted changes.
 </p>
-</div>
-</div>
-</div>
-</div>
-<hr>
-</div>
-<div id="versions" class="tab-pane fade">
-<p>
-These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/03_simulation.Rmd</code>) and
-HTML (<code>docs/03_simulation.html</code>) files. If you’ve configured
-a remote Git repository (see <code>?wflow_git_remote</code>), click on
-the hyperlinks in the table below to view the files as they were in that
-past version.
-</p>
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-File
-</th>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-<th>
-Message
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/7f0235abf5f8f7da5296326836a3531be7ad7c3e/docs/03_simulation.html" target="_blank">7f0235a</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-16
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/c5a05cb0ceeca30e85cbae2e116e61aa9d2200d9/analysis/03_simulation.Rmd" target="_blank">c5a05cb</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-16
-</td>
-<td>
-workflowr::wflow_publish("analysis/03_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/d0fe6b6433eba19b1553f055b3589971902b5e60/docs/03_simulation.html" target="_blank">d0fe6b6</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-rebuild
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/315ee63cd7f257980e2a0d7562b85c37b8a3983a/analysis/03_simulation.Rmd" target="_blank">315ee63</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-clarify runtime improvement by algorithm
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/75623405bf4527f2200ae3d833b26cf3eab63686/docs/03_simulation.html" target="_blank">7562340</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/da5526ceabb1bdc349307a6743e2428244f3dabe/analysis/03_simulation.Rmd" target="_blank">da5526c</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-workflowr::wflow_publish("analysis/03_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/3454522900efc7ecc2aa341aac0702240403d1df/analysis/03_simulation.Rmd" target="_blank">3454522</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-stale comments/captions on 03_simulation
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/e9c959f0e8e15c18eec17b590985815a5fd8e5bc/docs/03_simulation.html" target="_blank">e9c959f</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/469d9a7f866f64b248bbe5aff0b06fed454f97fa/analysis/03_simulation.Rmd" target="_blank">469d9a7</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-workflowr::wflow_publish("analysis/03_simulation.Rmd")
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/b6757e5c3b4b073ee3ec0d8fcdf324b7850a83eb/docs/03_simulation.html" target="_blank">b6757e5</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/2541db03f9fa11a967ba685190627975e8a4e259/analysis/03_simulation.Rmd" target="_blank">2541db0</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-14
-</td>
-<td>
-pre-larger run
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/943a3415c20099e7732f190062a7053a0408437a/docs/03_simulation.html" target="_blank">943a341</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-fix source code icon not showing
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/920287b24adce54509b39c992f6447207414ac14/docs/03_simulation.html" target="_blank">920287b</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/3df293f06f560b980d99003726b20b8a9116c4c7/analysis/03_simulation.Rmd" target="_blank">3df293f</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-commit changes
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/3df293f06f560b980d99003726b20b8a9116c4c7/docs/03_simulation.html" target="_blank">3df293f</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-commit changes
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/8b54f1e4df3ff92be9f425dcf7daef220399cd5a/analysis/03_simulation.Rmd" target="_blank">8b54f1e</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-added both paper-style figures and organized page
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/8b54f1e4df3ff92be9f425dcf7daef220399cd5a/docs/03_simulation.html" target="_blank">8b54f1e</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-added both paper-style figures and organized page
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/2ee85958f07a3c19a88c43c019d6ee5e7a7c4f29/analysis/03_simulation.Rmd" target="_blank">2ee8595</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-improve plot labels
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/49bbba79798b58cccf5e359e44991b588aacc218/docs/03_simulation.html" target="_blank">49bbba7</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/66961d684f9f455ca1d37b7558c7773ebd3286ef/analysis/03_simulation.Rmd" target="_blank">66961d6</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-hide verbose
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/b5340305814e9cf8cf97c37b4c556f00b72fb3da/docs/03_simulation.html" target="_blank">b534030</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-successful run
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/f29d24c32a556a1a4e109973b254f81b41dbb8ba/analysis/03_simulation.Rmd" target="_blank">f29d24c</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-clarified rest of simulation code
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/7da34996c6a3c9d82b2c4c8a70fea55784643928/analysis/03_simulation.Rmd" target="_blank">7da3499</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-improve clarity for first few chunks
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/7da34996c6a3c9d82b2c4c8a70fea55784643928/docs/03_simulation.html" target="_blank">7da3499</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-13
-</td>
-<td>
-improve clarity for first few chunks
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/6d83792f967585a6b3da43d0a43126d2503ef939/analysis/03_simulation.Rmd" target="_blank">6d83792</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-12
-</td>
-<td>
-check following the all M regions metric original paper used
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/6d83792f967585a6b3da43d0a43126d2503ef939/docs/03_simulation.html" target="_blank">6d83792</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-12
-</td>
-<td>
-check following the all M regions metric original paper used
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/a7769420beb51d1c0245b3f5682bed089a733b7a/analysis/03_simulation.Rmd" target="_blank">a776942</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-12
-</td>
-<td>
-first working commit of simulation 3 for paper settings matching
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://github.com-ansonli8/anson-li8/ras-ss/blob/a7769420beb51d1c0245b3f5682bed089a733b7a/docs/03_simulation.html" target="_blank">a776942</a>
-</td>
-<td>
-Anson Li
-</td>
-<td>
-2026-08-12
-</td>
-<td>
-first working commit of simulation 3 for paper settings matching
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr>
-</div>
-</div>
-</div>
+
 <p><em>The main simulation study, replicating the design of Jiang &amp;
 Zhang (2025) on a simulated 1,000-SNP chromosome. Pilot and validation
-on the 300-SNP toy: <a href="01_simulation.html">Pilot Study</a>, <a
-href="02_simulation.html">Validation</a>.</em></p>
+on the 300-SNP toy: <a href="01_simulation.html">Pilot Study</a>, <a href="02_simulation.html">Validation</a>.</em></p>
 <p>Note: Jiang &amp; Zhang’s Simulation Study simulated phenotypes on
 <em>real</em> ABCD chr21 genotypes. Until those can be accessed, this
 page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <div id="setup-and-config" class="section level1">
 <h1>Setup and Config</h1>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
-options(future.rng.onMisuse = &quot;ignore&quot;)
+options(future.rng.onMisuse = "ignore")
 library(mvtnorm); library(RAS); library(future.apply)</code></pre>
 <pre><code>Loading required package: future</code></pre>
 <pre class="r"><code>plan(multisession)
-source(&quot;code/ras_ss.R&quot;) # shared scan/detect helper functions</code></pre>
-<pre class="r"><code># simulated chromosome with &quot;LD block structure&quot;
+source("code/ras_ss.R") # shared scan/detect helper functions</code></pre>
+<pre class="r"><code># simulated chromosome with "LD block structure"
 # 10 independent LD blocks of 100 SNPs, AR(1) rho=0.8 inside each block
 n_snps &lt;- 1000; n_blocks &lt;- 10; block_len &lt;- n_snps / n_blocks; rho &lt;- 0.8
 n_disc &lt;- 1000; n_targ &lt;- 1000 # discovery + target cohort sizes (method A)
@@ -1136,8 +311,8 @@ T_region &lt;- 100 # width of a true association region
 tolerance &lt;- 100 # a detected peak within 100 SNPs of a true region is considered a hit
 min_signal &lt;- 2.5 # paper default, for CPD algorithm
 
-q_rates &lt;- c(0.3, 0.5, 1.0) # fraction of the region&#39;s SNPs that are causal
-traits  &lt;- c(&quot;continuous&quot;, &quot;dichotomous&quot;)
+q_rates &lt;- c(0.3, 0.5, 1.0) # fraction of the region's SNPs that are causal
+traits  &lt;- c("continuous", "dichotomous")
 M_vals  &lt;- c(1, 3) # how many true regions on the chromosome
 region_starts &lt;- list(`1` = 400, `3` = c(100, 400, 700))
 
@@ -1174,24 +349,24 @@ make_beta &lt;- function(M, q, mag, seed) {
 }
 
 # continuous: X beta + noise
-# dichotomous: call someone a &quot;case&quot; if L exceeds cutoff
+# dichotomous: call someone a "case" if L exceeds cutoff
 make_pheno &lt;- function(X, beta, trait, seed) { 
   set.seed(seed)
   L &lt;- as.numeric(X %*% beta) + rnorm(nrow(X), 0, 3)
-  if (trait==&quot;continuous&quot;) L else as.numeric(L &gt; qnorm(0.8)) 
+  if (trait=="continuous") L else as.numeric(L &gt; qnorm(0.8)) 
 }
 
 # Rao score test for a binary trait (linear-regression Z is inappropriate for 0/1 y)
 get_marginal_stats_bin &lt;- function(X, y) { 
   p0 &lt;- mean(y)
-  Xc &lt;- sweep(X, 2, colMeans(X), &quot;-&quot;)
+  Xc &lt;- sweep(X, 2, colMeans(X), "-")
   U &lt;- as.numeric(crossprod(Xc, y-p0))
   V &lt;- p0*(1-p0)*colSums(Xc^2)
   list(beta = U/pmax(V,1e-12), 
        z = {z &lt;- U/sqrt(pmax(V,1e-12)); z[!is.finite(z)] &lt;- 0; z}) 
 }
 
-# paper&#39;s scoring metric: count_fp = calls that fall outside every true region,
+# paper's scoring metric: count_fp = calls that fall outside every true region,
 # count_fn = true regions that got no call
 dist_reg &lt;- function(t, s) pmax(s - t, t - (s + T_region - 1), 0)
 
@@ -1205,11 +380,11 @@ count_fn &lt;- function(tau, starts) {
   if(!length(tau)) return(length(starts))
   sum(sapply(starts, function(s) min(sapply(tau, function(t) dist_reg(t,s)))) &gt; tolerance) 
 }</code></pre>
-<pre class="r"><code># wrapping original package&#39;s two detection functions
+<pre class="r"><code># wrapping original package's two detection functions
 run_detect &lt;- function(scan, ws=30, scw=15, sl=1e-3, sr=1e-3, dav=1e-3) {
   tryCatch({ 
-    nc &lt;- file(nullfile(), open=&quot;wt&quot;)
-    sink(nc, type=&quot;output&quot;); sink(nc, type=&quot;message&quot;)
+    nc &lt;- file(nullfile(), open="wt")
+    sink(nc, type="output"); sink(nc, type="message")
     
     cp &lt;- ras_detect(x=seq_along(scan$x), y=scan$y, window_size=ws, slope_check_window_size=scw,
                      slope.p.values.threshold.left=sl, slope.p.values.threshold.right=sr)
@@ -1218,10 +393,10 @@ run_detect &lt;- function(scan, ws=30, scw=15, sl=1e-3, sr=1e-3, dav=1e-3) {
       this.skip=skip1, second_window_size=20, min_signal=min_signal, p.value.threshold=dav
     ))
     
-    sink(type=&quot;message&quot;); sink(type=&quot;output&quot;); close(nc)
+    sink(type="message"); sink(type="output"); close(nc)
     list(tau=unique(val$tau_hats), error=FALSE) # SNP positions of called peaks
   }, error=function(e){ 
-    try({sink(type=&quot;message&quot;);sink(type=&quot;output&quot;);close(nc)}, silent=TRUE)
+    try({sink(type="message");sink(type="output");close(nc)}, silent=TRUE)
     list(tau=numeric(0), error=TRUE) # non-interrupting error handling
   }) 
 }
@@ -1234,7 +409,7 @@ sim_cohorts &lt;- function(beta, trait, seed) {
   X_t &lt;- sim_genotypes(n_targ, R_true)
   y_d &lt;- make_pheno(X_d, beta, trait, seed+1)
   y_t &lt;- make_pheno(X_t, beta, trait, seed+2)
-  ms &lt;- if (trait==&quot;continuous&quot;) get_marginal_stats else get_marginal_stats_bin
+  ms &lt;- if (trait=="continuous") get_marginal_stats else get_marginal_stats_bin
   list(X_d=X_d, X_t=X_t, y_d=y_d, y_t=y_t, disc=ms(X_d,y_d), targ=ms(X_t,y_t))
 }
 
@@ -1247,11 +422,11 @@ run_rep &lt;- function(beta, trait, seed) {
 # grid of slope/davies pairs, 50 null reps each
 thresh_grid &lt;- expand.grid(sl = c(1e-3, 1e-4, 1e-5, 1e-6, 1e-7), dav = c(1e-4, 1e-5, 1e-6, 1e-7))
 cal_res &lt;- matrix(NA, nrow(thresh_grid), 3)
-colnames(cal_res) &lt;- c(&quot;sl&quot;, &quot;dav&quot;, &quot;type1&quot;)
+colnames(cal_res) &lt;- c("sl", "dav", "type1")
 
 for (i in 1:nrow(thresh_grid)) {
   hits &lt;- unlist(future_lapply(1:50, function(s) {
-    r &lt;- run_rep(rep(0, n_snps), &quot;continuous&quot;, 400+s)
+    r &lt;- run_rep(rep(0, n_snps), "continuous", 400+s)
     d &lt;- run_detect(r$scan, sl=thresh_grid$sl[i], sr=thresh_grid$sl[i], dav=thresh_grid$dav[i])
     length(d$tau) &gt; 0
   }, future.seed = TRUE))
@@ -1265,16 +440,16 @@ print(cal_res)</code></pre>
 <h1>Simulation</h1>
 <pre class="r"><code>n_null &lt;- 500; n_pow &lt;- 100
 sl &lt;- slope_thresh; dv &lt;- davies_thresh # calibrated detection thresholds
-# save after each scenario so a pause doesn&#39;t lose the whole run.
+# save after each scenario so a pause doesn't lose the whole run.
 # v2 stores raw FN counts, the type-I file is the older one, unchanged
-ckpt &lt;- &quot;03_partial_v2.rds&quot;
-t1f  &lt;- &quot;03_partial.rds_type1&quot;
+ckpt &lt;- "03_partial_v2.rds"
+t1f  &lt;- "03_partial.rds_type1"
 
 # type I per trait
 type1_done &lt;- if (file.exists(t1f)) readRDS(t1f) else list()
 for (tr in traits) {
-  if (!is.null(type1_done[[tr]])) { cat(&quot;skip null&quot;, tr, &quot;\n&quot;); next } # if its already in checkpoint, skip
-  cat(&quot;null&quot;, tr, &quot;\n&quot;)
+  if (!is.null(type1_done[[tr]])) { cat("skip null", tr, "\n"); next } # if its already in checkpoint, skip
+  cat("null", tr, "\n")
   hits &lt;- do.call(rbind, future_lapply(seq_len(n_null), function(s) {
     r &lt;- run_rep(rep(0, n_snps), tr, 5000 + s)
     # run across all three method, ss=summary stats, in=paired individual, pu=pure 5 rep run
@@ -1293,10 +468,10 @@ type1 &lt;- do.call(rbind, type1_done)
 # power a couple of ways later without rerunning
 done &lt;- if (file.exists(ckpt)) readRDS(ckpt) else list()
 for (tr in traits) for (M in M_vals) for (q in q_rates) {
-  key &lt;- sprintf(&quot;%s_M%d_q%.1f&quot;, tr, M, q)
-  if (key %in% names(done)) { cat(&quot;skip&quot;, key, &quot;\n&quot;); next }
+  key &lt;- sprintf("%s_M%d_q%.1f", tr, M, q)
+  if (key %in% names(done)) { cat("skip", key, "\n"); next }
   # if checkpointed already, skip
-  cat(&quot;power&quot;, key, &quot;\n&quot;)
+  cat("power", key, "\n")
   starts &lt;- region_starts[[as.character(M)]]
   pw &lt;- do.call(rbind, future_lapply(seq_len(n_pow), function(s) {
     b &lt;- make_beta(M, q, c_eff[[tr]], s) # these are signal reps, region detection is expected
@@ -1326,11 +501,11 @@ agg &lt;- aggregate(cbind(ss_power, in_power, pu_power, ss_fpr, in_fpr, pu_fpr) 
 <h1>Benchmark</h1>
 <pre class="r"><code># per-rep runtime, single core. cohort simulation once and excluded from ras-ss/indiv so the comparison isolates the scan step
 nb &lt;- 30
-bench &lt;- function(f) mean(sapply(1:nb, function(s) system.time(f(s))[&quot;elapsed&quot;])) # run f(s) nb times, averaging elapsed time
+bench &lt;- function(f) mean(sapply(1:nb, function(s) system.time(f(s))["elapsed"])) # run f(s) nb times, averaging elapsed time
 bb &lt;- make_beta(3, 0.5, c_eff$continuous, 7) # one fixed true-effect vector
 
-cohorts &lt;- lapply(1:nb, function(s) sim_cohorts(bb, &quot;continuous&quot;, 900000+s)) # pre-simulated all 30 discovery/target cohorts once
-grid_x &lt;- seq(1, n_snps, by = skip1) # pivotal SNP positions, needed to wrap indiv_scan&#39;s output into scan-like object for run_detect
+cohorts &lt;- lapply(1:nb, function(s) sim_cohorts(bb, "continuous", 900000+s)) # pre-simulated all 30 discovery/target cohorts once
+grid_x &lt;- seq(1, n_snps, by = skip1) # pivotal SNP positions, needed to wrap indiv_scan's output into scan-like object for run_detect
 
 # three measurements with same pre-simulated cohorts, so it is fair comparison
 t_ss &lt;- bench(function(s) { co &lt;- cohorts[[s]]
@@ -1341,17 +516,15 @@ t_in &lt;- bench(function(s) { co &lt;- cohorts[[s]]
   quiet(run_detect(list(x=grid_x, y=prof), sl=slope_thresh, sr=slope_thresh, dav=davies_thresh)) })
 t_pu &lt;- bench(function(s) { pp &lt;- quiet(native_run_via_ras(bb, 920000+s))
   quiet(run_detect(pp, sl=slope_thresh, sr=slope_thresh, dav=davies_thresh)) })</code></pre>
-<pre class="r"><code>knitr::kable(data.frame(method=c(&quot;ras-ss&quot;,&quot;indiv&quot;,&quot;pure ras()&quot;), s_per_rep=round(c(t_ss,t_in,t_pu),1)),
-             caption=&quot;Total runtime seconds per rep, single core (includes CPD step, so see following for more clear difference)&quot;)</code></pre>
+<pre class="r"><code>knitr::kable(data.frame(method=c("ras-ss","indiv","pure ras()"), s_per_rep=round(c(t_ss,t_in,t_pu),1)),
+             caption="Total runtime seconds per rep, single core (includes CPD step, so see following for more clear difference)")</code></pre>
 <table>
 <caption>Total runtime seconds per rep, single core (includes CPD step,
 so see following for more clear difference)</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">method</th>
 <th align="right">s_per_rep</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">ras-ss</td>
@@ -1374,18 +547,16 @@ t_ss_scan &lt;- bench(function(s) { co &lt;- cohorts[[s]]
 t_in_scan &lt;- bench(function(s) { co &lt;- cohorts[[s]]
   indiv_scan(list(x=grid_x), co$X_t, co$y_t, co$disc$beta) })
 
-knitr::kable(data.frame(step=c(&quot;ras-ss&quot;, &quot;individual-level version&quot;),
+knitr::kable(data.frame(step=c("ras-ss", "individual-level version"),
                         s_per_rep=round(c(t_ss_scan, t_in_scan), 3)),
-             caption=&quot;Algorithmic speedup, profile-generation time only (excludes the shared CPD step)&quot;)</code></pre>
+             caption="Algorithmic speedup, profile-generation time only (excludes the shared CPD step)")</code></pre>
 <table>
 <caption>Algorithmic speedup, profile-generation time only (excludes the
 shared CPD step)</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">step</th>
 <th align="right">s_per_rep</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">ras-ss</td>
@@ -1410,26 +581,25 @@ pch_q &lt;- c(16,17,18)
 par(mfrow=c(2,2), mar=c(4,4,2,1))
 for (tr in traits) for (M in M_vals) {
   sub &lt;- res[res$trait==tr &amp; res$M==M,]
-  plot(NA, xlim=c(0.5,2.5), ylim=c(0,2), xaxt=&quot;n&quot;, xlab=&quot;&quot;, ylab=&quot;relative power (vs ras-ss)&quot;,
-       main=sprintf(&quot;%s, M=%d&quot;, tr, M))
+  plot(NA, xlim=c(0.5,2.5), ylim=c(0,2), xaxt="n", xlab="", ylab="relative power (vs ras-ss)",
+       main=sprintf("%s, M=%d", tr, M))
   abline(h=1, lty=2)
-  axis(1, at=1:2, labels=c(&quot;indiv&quot;,&quot;pure ras() (num_rep=5)&quot;))
+  axis(1, at=1:2, labels=c("indiv","pure ras() (num_rep=5)"))
   for (k in seq_along(q_rates)) {
     s &lt;- sub[sub$q==q_rates[k],]
     den &lt;- mean(as.numeric(s$ss_pow))
     rels &lt;- c(mean(as.numeric(s$in_pow)), mean(as.numeric(s$pu_pow))) / den
     b &lt;- sapply(list(s$in_pow, s$pu_pow), ci95) / den
     xj &lt;- c(1,2) + (k-2)*0.18
-    points(xj, rels, pch=pch_q[k], col=&quot;red&quot;)
-    segments(xj, b[1,], xj, b[2,], col=&quot;red&quot;)
+    points(xj, rels, pch=pch_q[k], col="red")
+    segments(xj, b[1,], xj, b[2,], col="red")
   }
-  pow_ss &lt;- sapply(seq_along(q_rates), function(k) mean(as.numeric(sub[sub$q==q_rates[k],&quot;ss_pow&quot;])))
-  legend(&quot;topleft&quot;, legend=sprintf(&quot;q=%.1f, power(ras-ss)=%.2f&quot;, q_rates, pow_ss),
-         pch=pch_q, col=&quot;red&quot;, bty=&quot;n&quot;, cex=0.8)
+  pow_ss &lt;- sapply(seq_along(q_rates), function(k) mean(as.numeric(sub[sub$q==q_rates[k],"ss_pow"])))
+  legend("topleft", legend=sprintf("q=%.1f, power(ras-ss)=%.2f", q_rates, pow_ss),
+         pch=pch_q, col="red", bty="n", cex=0.8)
 }</code></pre>
 <div class="figure" style="text-align: center">
-<img src="figure/03_simulation.Rmd/fig_rel_power-1.png" alt="Fig 2. Power of the individual-level runs relative to ras-ss (dashed line = same as ras-ss). Point shapes are the three causal rates; bars are each method's 95% CI divided by ras-ss's power. Per-region power is plotted because 'all M regions' is ~0 on these synthetic peaks, so a ratio on it is undefined. Points on the line = ras-ss agrees with the individual-level method." width="672" />
-<p class="caption">
+<img src="figure/03_simulation.Rmd/fig_rel_power-1.png" alt="Fig 2. Power of the individual-level runs relative to ras-ss (dashed line = same as ras-ss). Point shapes are the three causal rates; bars are each method's 95% CI divided by ras-ss's power. Per-region power is plotted because 'all M regions' is ~0 on these synthetic peaks, so a ratio on it is undefined. Points on the line = ras-ss agrees with the individual-level method." width="672"><p class="caption">
 Fig 2. Power of the individual-level runs relative to ras-ss (dashed
 line = same as ras-ss). Point shapes are the three causal rates; bars
 are each method’s 95% CI divided by ras-ss’s power. Per-region power is
@@ -1439,15 +609,12 @@ individual-level method.
 </p>
 </div>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-fig_rel_power-1">
-Past versions of fig_rel_power-1.png
-</button>
+
 </p>
 <div id="fig-fig_rel_power-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1457,8 +624,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1494,16 +660,15 @@ for (tr in traits) for (M in M_vals) {
   se &lt;- se[se$trait==tr &amp; se$M==M,]
   ys  &lt;- rbind(as.numeric(a$ss_fpr), as.numeric(a$in_fpr), as.numeric(a$pu_fpr))
   ses &lt;- rbind(as.numeric(se$ss_fpr), as.numeric(se$in_fpr), as.numeric(se$pu_fpr))
-  bp &lt;- barplot(ys, beside=TRUE, col=c(&quot;red&quot;,&quot;grey70&quot;,&quot;purple&quot;),
+  bp &lt;- barplot(ys, beside=TRUE, col=c("red","grey70","purple"),
                 ylim=c(0, max(0.06, ys + 1.96*ses)), names.arg=a$q,
-                xlab=&quot;causal rate (q)&quot;, ylab=&quot;FPR-A&quot;, main=sprintf(&quot;%s, M=%d&quot;, tr, M))
+                xlab="causal rate (q)", ylab="FPR-A", main=sprintf("%s, M=%d", tr, M))
   for (i in 1:3) for (j in 1:3)
     segments(bp[i,j], max(0, ys[i,j]-1.96*ses[i,j]), bp[i,j], ys[i,j]+1.96*ses[i,j])
-  legend(&quot;topleft&quot;, legend=c(&quot;ras-ss&quot;,&quot;indiv&quot;,&quot;pure ras() (num_rep=5)&quot;), fill=c(&quot;red&quot;,&quot;grey70&quot;,&quot;purple&quot;), bty=&quot;n&quot;)
+  legend("topleft", legend=c("ras-ss","indiv","pure ras() (num_rep=5)"), fill=c("red","grey70","purple"), bty="n")
 }</code></pre>
 <div class="figure" style="text-align: center">
-<img src="figure/03_simulation.Rmd/fig_fpr-1.png" alt="Fig 3. False regions called per rep (FPR-A) while true signal is present. All three methods sit around 0, meaning every call they make lands on a true region. The false-call rate under the null is the type I error in Table 1 below." width="672" />
-<p class="caption">
+<img src="figure/03_simulation.Rmd/fig_fpr-1.png" alt="Fig 3. False regions called per rep (FPR-A) while true signal is present. All three methods sit around 0, meaning every call they make lands on a true region. The false-call rate under the null is the type I error in Table 1 below." width="672"><p class="caption">
 Fig 3. False regions called per rep (FPR-A) while true signal is
 present. All three methods sit around 0, meaning every call they make
 lands on a true region. The false-call rate under the null is the type I
@@ -1511,15 +676,12 @@ error in Table 1 below.
 </p>
 </div>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-fig_fpr-1">
-Past versions of fig_fpr-1.png
-</button>
+
 </p>
 <div id="fig-fig_fpr-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1529,8 +691,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1562,21 +723,19 @@ Anson Li
 <div id="more-visualizations" class="section level1">
 <h1>More visualizations</h1>
 <pre class="r"><code># type I with exact binomial CIs
-fmt_ci &lt;- function(rate, n) { b &lt;- binom.test(round(rate*n), n)$conf.int; sprintf(&quot;%.2f (%.2f-%.2f)&quot;, rate, b[1], b[2]) }
+fmt_ci &lt;- function(rate, n) { b &lt;- binom.test(round(rate*n), n)$conf.int; sprintf("%.2f (%.2f-%.2f)", rate, b[1], b[2]) }
 t1_tab &lt;- type1
 for (i in seq_len(nrow(type1))) for (j in seq_len(ncol(type1))) t1_tab[i,j] &lt;- fmt_ci(type1[i,j], n_null)
-knitr::kable(t1_tab, caption=sprintf(&quot;Type I error at calibrated thresholds (exact 95%% CI), %d null reps per trait&quot;, n_null))</code></pre>
+knitr::kable(t1_tab, caption=sprintf("Type I error at calibrated thresholds (exact 95%% CI), %d null reps per trait", n_null))</code></pre>
 <table>
 <caption>Type I error at calibrated thresholds (exact 95% CI), 500 null
 reps per trait</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left"></th>
 <th align="left">ss</th>
 <th align="left">indiv</th>
 <th align="left">pure</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">continuous</td>
@@ -1604,22 +763,19 @@ agg &lt;- aggregate(cbind(ss_pow, in_pow, pu_pow, ss_power, in_power, pu_power,
 par(mfrow=c(2,2), mar=c(4,4,2,1))
 for (tr in traits) for (M in M_vals) {
   a &lt;- agg[agg$trait==tr &amp; agg$M==M,]
-  plot(a$q, a$ss_pow, type=&quot;b&quot;, col=&quot;blue&quot;, ylim=c(0,1), xlab=&quot;causal rate q&quot;,
-       ylab=&quot;power (fraction of M regions)&quot;, main=sprintf(&quot;%s, M=%d&quot;, tr, M))
-  lines(a$q, a$in_pow, type=&quot;b&quot;, col=&quot;red&quot;); lines(a$q, a$pu_pow, type=&quot;b&quot;, col=&quot;purple&quot;)
+  plot(a$q, a$ss_pow, type="b", col="blue", ylim=c(0,1), xlab="causal rate q",
+       ylab="power (fraction of M regions)", main=sprintf("%s, M=%d", tr, M))
+  lines(a$q, a$in_pow, type="b", col="red"); lines(a$q, a$pu_pow, type="b", col="purple")
 }
-legend(&quot;bottomright&quot;, legend=c(&quot;ras-ss&quot;,&quot;indiv&quot;,&quot;pure ras() (num_rep=5)&quot;), col=c(&quot;blue&quot;,&quot;red&quot;,&quot;purple&quot;), lty=1, bty=&quot;n&quot;)</code></pre>
-<p><img src="figure/03_simulation.Rmd/results-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+legend("bottomright", legend=c("ras-ss","indiv","pure ras() (num_rep=5)"), col=c("blue","red","purple"), lty=1, bty="n")</code></pre>
+<p><img src="figure/03_simulation.Rmd/results-1.png" alt="" width="672" style="display: block; margin: auto;"></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-results-1">
-Past versions of results-1.png
-</button>
+
 </p>
 <div id="fig-results-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1629,8 +785,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1693,23 +848,20 @@ Anson Li
 </div>
 <pre class="r"><code># ras-ss vs the individual-level run on the same data. if on the dashed line, they agree
 par(mfrow=c(1,2), mar=c(4,4,2,1))
-plot(agg$in_pow, agg$ss_pow, xlim=c(0,1), ylim=c(0,1), pch=16, col=&quot;blue&quot;,
-     xlab=&quot;individual-level power&quot;, ylab=&quot;ras-ss power&quot;, main=&quot;ras-ss vs individual-level&quot;)
+plot(agg$in_pow, agg$ss_pow, xlim=c(0,1), ylim=c(0,1), pch=16, col="blue",
+     xlab="individual-level power", ylab="ras-ss power", main="ras-ss vs individual-level")
 abline(0,1, lty=2)
-plot(agg$pu_pow, agg$ss_pow, xlim=c(0,1), ylim=c(0,1), pch=16, col=&quot;purple&quot;,
-     xlab=&quot;pure ras() (num_rep=5) power&quot;, ylab=&quot;ras-ss power&quot;, main=&quot;ras-ss vs pure RAS run&quot;)
+plot(agg$pu_pow, agg$ss_pow, xlim=c(0,1), ylim=c(0,1), pch=16, col="purple",
+     xlab="pure ras() (num_rep=5) power", ylab="ras-ss power", main="ras-ss vs pure RAS run")
 abline(0,1, lty=2)</code></pre>
-<p><img src="figure/03_simulation.Rmd/results-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/03_simulation.Rmd/results-2.png" alt="" width="672" style="display: block; margin: auto;"></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-results-2">
-Past versions of results-2.png
-</button>
+
 </p>
 <div id="fig-results-2" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
-<thead>
-<tr>
+<thead><tr>
 <th>
 Version
 </th>
@@ -1719,8 +871,7 @@ Author
 <th>
 Date
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
 <td>
@@ -1783,22 +934,20 @@ Anson Li
 </div>
 <pre class="r"><code># FPR-A, average number of false regions called per rep
 fpr_tab &lt;- aggregate(cbind(ss_fpr, in_fpr, pu_fpr) ~ trait + M + q, data=res, mean)
-names(fpr_tab)[4:6] &lt;- c(&quot;ras-ss&quot;,&quot;indiv&quot;,&quot;pure ras() (num_rep=5)&quot;)
+names(fpr_tab)[4:6] &lt;- c("ras-ss","indiv","pure ras() (num_rep=5)")
 fpr_tab[,4:6] &lt;- round(fpr_tab[,4:6], 2)
-knitr::kable(fpr_tab, caption=&quot;FPR-A: average false regions per rep (0 = nothing spurious)&quot;)</code></pre>
+knitr::kable(fpr_tab, caption="FPR-A: average false regions per rep (0 = nothing spurious)")</code></pre>
 <table>
 <caption>FPR-A: average false regions per rep (0 = nothing
 spurious)</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">trait</th>
 <th align="right">M</th>
 <th align="right">q</th>
 <th align="right">ras-ss</th>
 <th align="right">indiv</th>
 <th align="right">pure ras() (num_rep=5)</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">continuous</td>
@@ -1898,24 +1047,22 @@ spurious)</caption>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code># the paper&#39;s power definition: detected EVERY true region
-tab &lt;- agg[, c(&quot;trait&quot;,&quot;M&quot;,&quot;q&quot;,&quot;ss_power&quot;,&quot;in_power&quot;,&quot;pu_power&quot;)]
-names(tab)[4:6] &lt;- c(&quot;ras-ss&quot;,&quot;indiv&quot;,&quot;pure ras() (num_rep=5)&quot;)
+<pre class="r"><code># the paper's power definition: detected EVERY true region
+tab &lt;- agg[, c("trait","M","q","ss_power","in_power","pu_power")]
+names(tab)[4:6] &lt;- c("ras-ss","indiv","pure ras() (num_rep=5)")
 tab[,4:6] &lt;- round(tab[,4:6], 2)
-knitr::kable(tab, caption=&quot;Power = detected ALL M true regions; low for M=3 because the CPD usually catches only 1-2 of the 3 peaks&quot;)</code></pre>
+knitr::kable(tab, caption="Power = detected ALL M true regions; low for M=3 because the CPD usually catches only 1-2 of the 3 peaks")</code></pre>
 <table>
 <caption>Power = detected ALL M true regions; low for M=3 because the
 CPD usually catches only 1-2 of the 3 peaks</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th align="left">trait</th>
 <th align="right">M</th>
 <th align="right">q</th>
 <th align="right">ras-ss</th>
 <th align="right">indiv</th>
 <th align="right">pure ras() (num_rep=5)</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">continuous</td>
@@ -2015,12 +1162,8 @@ CPD usually catches only 1-2 of the 3 peaks</caption>
 </tr>
 </tbody>
 </table>
-<br>
-<p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-Session information
-</button>
+<br><p>
+
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
@@ -2067,8 +1210,8 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 </div>
-</div>
-</div>
+
+
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -2081,17 +1224,7 @@ footer is added to webpages before the MathJax javascript. -->
   MathJax.Hub.Config({
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
-</script>
-
-
-
-
-</div>
-</div>
-
-</div>
-
-<script>
+</script><script>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
@@ -2102,11 +1235,7 @@ $(document).ready(function () {
 });
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
+</script><!-- tabsets --><script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
@@ -2116,11 +1245,7 @@ $(document).ready(function () {
     $(this).parent().toggleClass('nav-tabs-open');
   });
 });
-</script>
-
-<!-- code folding -->
-
-<script>
+</script><!-- code folding --><script>
 $(document).ready(function ()  {
 
     // temporarily add toc-ignore selector to headers for the consistency with Pandoc
@@ -2148,10 +1273,7 @@ $(document).ready(function ()  {
     // tocify
     var toc = $("#TOC").tocify(options).data("toc-tocify");
 });
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</script><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -2159,6 +1281,5 @@ $(document).ready(function ()  {
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
-
 </body>
 </html>
