@@ -3,6 +3,8 @@
 *Pilot/tuning run. The main paper-style study is [Paper
 Replication](https://anson-li8.github.io/rasSS/articles/paper-replication.md).*
 
+Show code
+
 ``` r
 
 n_snps    <- 300
@@ -25,6 +27,8 @@ davies_thresh  <- 1e-3
 # reproducibility
 base_seed      <- 35
 ```
+
+Show code
 
 ``` r
 
@@ -57,6 +61,8 @@ cat("Surviving SNPs after LD pruning:", sum(prune_filter), "of", n_snps, "\n")
 ```
 
     ## Surviving SNPs after LD pruning: 100 of 300
+
+Show code
 
 ``` r
 
@@ -124,6 +130,8 @@ signal_beta <- rep(0, n_snps)
 signal_beta[causal_snps] <- effect_size
 ```
 
+Show code
+
 ``` r
 
 # scw=5 (package default) only gave ~17-20% first-pass acceptance on true signal
@@ -166,6 +174,8 @@ detect_peaks <- function(scan, window_size, scw = 8) {
 
 ## Window-size sweep for CPD: Type I error & power
 
+Show code
+
 ``` r
 
 n_sweep <- 100
@@ -202,6 +212,8 @@ print(sweep_df)
     ## 5          15  0.03  0.93    0
     ## 6          20  0.07  0.92    0
 
+Show code
+
 ``` r
 
 # choose the window size with the maximum detection power and lowest Type I Error rate
@@ -210,6 +222,8 @@ cat("Chosen window_size:", best_ws, "(scw = 8)\n")
 ```
 
     ## Chosen window_size: 12 (scw = 8)
+
+Show code
 
 ``` r
 
@@ -220,6 +234,8 @@ print(sweep_df[sweep_df$window_size == best_ws, ])
     ## 4          12  0.05  0.97    0
 
 ## Full run at the chosen window size
+
+Show code
 
 ``` r
 
@@ -233,6 +249,8 @@ cat(sprintf("\nEmpirical Type I error over %d reps: %.3f\n", n_null, mean(null_h
 
     ## 
     ## Empirical Type I error over 500 reps: 0.038
+
+Show code
 
 ``` r
 
@@ -252,6 +270,8 @@ cat(sprintf("\nEmpirical power (centered detections) over %d reps: %.3f\n", n_po
     ## 
     ## Empirical power (centered detections) over 200 reps: 0.935
 
+Show code
+
 ``` r
 
 cat(sprintf("Edge-only detections (trailing edge, not center): %.3f\n", mean(hit_edge)))
@@ -260,6 +280,8 @@ cat(sprintf("Edge-only detections (trailing edge, not center): %.3f\n", mean(hit
     ## Edge-only detections (trailing edge, not center): 0.000
 
 ## Results table/figures
+
+Show code
 
 ``` r
 
@@ -278,6 +300,8 @@ knitr::kable(results, digits = 3, caption = "Empirical simulation results")
 
 Empirical simulation results {.table}
 
+Show code
+
 ``` r
 
 plot(sweep_df$window_size, sweep_df$type1, type = "b", col = "red",
@@ -292,6 +316,8 @@ legend("left", legend = c("Type I error", "Power", "nominal 0.05"),
 ![plot of chunk sweep-plot](figure/sweep-plot-1.png)
 
 plot of chunk sweep-plot
+
+Show code
 
 ``` r
 
@@ -339,6 +365,8 @@ if (length(final$val$tau_hats) > 0) {
 
 plot of chunk illustration
 
+Show code
+
 ``` r
 
 end_time <- Sys.time()
@@ -347,6 +375,8 @@ cat(paste0("**Total Knitting Time:** ", round(runtime_seconds, 2), " seconds"))
 ```
 
     ## **Total Knitting Time:** 1564.93 seconds
+
+Show code
 
 ``` r
 

@@ -69,7 +69,9 @@
     
     
 <p><em>Pilot/tuning run. The main paper-style study is <a href="paper-replication.html">Paper Replication</a>.</em></p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n_snps</span>    <span class="op">&lt;-</span> <span class="fl">300</span></span>
 <span><span class="va">n_disc</span>    <span class="op">&lt;-</span> <span class="fl">1000</span> <span class="co"># discovery cohort, method A (small for speed)</span></span>
 <span><span class="va">n_targ</span>    <span class="op">&lt;-</span> <span class="fl">1000</span> <span class="co"># target cohort (small for speed)</span></span>
@@ -89,7 +91,9 @@
 <span><span class="va">davies_thresh</span>  <span class="op">&lt;-</span> <span class="fl">1e-3</span></span>
 <span><span class="co"># reproducibility</span></span>
 <span><span class="va">base_seed</span>      <span class="op">&lt;-</span> <span class="fl">35</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Autoregressive AR(1) matrix with rho = 0.8</span></span>
 <span><span class="co"># simulates the LD matrix</span></span>
 <span><span class="va">R_true</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/outer.html" class="external-link">outer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n_snps</span>, <span class="fl">1</span><span class="op">:</span><span class="va">n_snps</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">j</span><span class="op">)</span> <span class="va">rho</span><span class="op">^</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">i</span> <span class="op">-</span> <span class="va">j</span><span class="op">)</span><span class="op">)</span></span>
@@ -116,8 +120,10 @@
 <span><span class="op">}</span></span>
 <span><span class="va">prune_filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/prune_ld.html">prune_ld</a></span><span class="op">(</span><span class="va">R_emp</span>, <span class="va">prune_r2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Surviving SNPs after LD pruning:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">prune_filter</span><span class="op">)</span>, <span class="st">"of"</span>, <span class="va">n_snps</span>, <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Surviving SNPs after LD pruning: 100 of 300</span></span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+</details><pre><code><span><span class="co">## Surviving SNPs after LD pruning: 100 of 300</span></span></code></pre>
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># runs linear regression for every SNP to measure correlation with phenotype y</span></span>
 <span><span class="va">get_marginal_stats</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">X</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Vectorized OLS for massive speedup</span></span>
@@ -180,7 +186,9 @@
 <span><span class="va">null_beta</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n_snps</span><span class="op">)</span></span>
 <span><span class="va">signal_beta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">n_snps</span><span class="op">)</span></span>
 <span><span class="va">signal_beta</span><span class="op">[</span><span class="va">causal_snps</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">effect_size</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># scw=5 (package default) only gave ~17-20% first-pass acceptance on true signal</span></span>
 <span><span class="co"># because slope re-check window sits inside the flat top of the plateau</span></span>
 <span><span class="co"># scw=8 fixes this, acceptance goes to ~100%</span></span>
@@ -217,10 +225,12 @@
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>tau_hats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span>, candidates <span class="op">=</span> <span class="cn">NULL</span>, error <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="section level2">
+</details><div class="section level2">
 <h2 id="window-size-sweep-for-cpd-type-i-error-power">Window-size sweep for CPD: Type I error &amp; power<a class="anchor" aria-label="anchor" href="#window-size-sweep-for-cpd-type-i-error-power"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n_sweep</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">ws_candidates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span></span>
 <span><span class="va">sweep_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>window_size <span class="op">=</span> <span class="va">ws_candidates</span>,</span>
@@ -245,36 +255,44 @@
 <span>  <span class="va">sweep_df</span><span class="op">$</span><span class="va">edge</span><span class="op">[</span><span class="va">k</span><span class="op">]</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">power_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="st">"edge"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sweep_df</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   window_size type1 power edge</span></span>
+</details><pre><code><span><span class="co">##   window_size type1 power edge</span></span>
 <span><span class="co">## 1           6  0.02  0.08    0</span></span>
 <span><span class="co">## 2           8  0.05  0.22    0</span></span>
 <span><span class="co">## 3          10  0.04  0.69    0</span></span>
 <span><span class="co">## 4          12  0.05  0.97    0</span></span>
 <span><span class="co">## 5          15  0.03  0.93    0</span></span>
 <span><span class="co">## 6          20  0.07  0.92    0</span></span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># choose the window size with the maximum detection power and lowest Type I Error rate</span></span>
 <span><span class="va">best_ws</span> <span class="op">&lt;-</span> <span class="va">ws_candidates</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.max</a></span><span class="op">(</span><span class="va">sweep_df</span><span class="op">$</span><span class="va">power</span> <span class="op">-</span> <span class="va">sweep_df</span><span class="op">$</span><span class="va">type1</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Chosen window_size:"</span>, <span class="va">best_ws</span>, <span class="st">"(scw = 8)\n"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Chosen window_size: 12 (scw = 8)</span></span></code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+</details><pre><code><span><span class="co">## Chosen window_size: 12 (scw = 8)</span></span></code></pre>
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">sweep_df</span><span class="op">[</span><span class="va">sweep_df</span><span class="op">$</span><span class="va">window_size</span> <span class="op">==</span> <span class="va">best_ws</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   window_size type1 power edge</span></span>
+</details><pre><code><span><span class="co">##   window_size type1 power edge</span></span>
 <span><span class="co">## 4          12  0.05  0.97    0</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="full-run-at-the-chosen-window-size">Full run at the chosen window size<a class="anchor" aria-label="anchor" href="#full-run-at-the-chosen-window-size"></a>
 </h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n_null</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
 <span><span class="va">null_hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu">future_lapply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n_null</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">scan</span> <span class="op">&lt;-</span> <span class="fu">one_rep</span><span class="op">(</span><span class="va">null_beta</span>, seed <span class="op">=</span> <span class="fl">100000</span> <span class="op">+</span> <span class="va">s</span><span class="op">)</span><span class="op">$</span><span class="va">scan</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu">detect_peaks</span><span class="op">(</span><span class="va">scan</span>, <span class="va">best_ws</span>, scw <span class="op">=</span> <span class="fl">8</span><span class="op">)</span><span class="op">$</span><span class="va">val</span><span class="op">$</span><span class="va">tau_hats</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span></span>
 <span><span class="op">}</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"\nEmpirical Type I error over %d reps: %.3f\n"</span>, <span class="va">n_null</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">null_hits</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
+</details><pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Empirical Type I error over 500 reps: 0.038</span></span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Statistical power test by running signal_beta (patients w/ phenotype at SNPs 150-152)</span></span>
 <span><span class="va">n_power</span> <span class="op">&lt;-</span> <span class="fl">200</span></span>
 <span><span class="va">power_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu">future_lapply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">n_power</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
@@ -286,23 +304,27 @@
 <span><span class="va">hit_center</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">power_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="st">"center"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">hit_edge</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">power_res</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="st">"edge"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"\nEmpirical power (centered detections) over %d reps: %.3f\n"</span>, <span class="va">n_power</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hit_center</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
+</details><pre><code><span><span class="co">## </span></span>
 <span><span class="co">## Empirical power (centered detections) over 200 reps: 0.935</span></span></code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Edge-only detections (trailing edge, not center): %.3f\n"</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hit_edge</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Edge-only detections (trailing edge, not center): 0.000</span></span></code></pre>
+</details><pre><code><span><span class="co">## Edge-only detections (trailing edge, not center): 0.000</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="results-tablefigures">Results table/figures<a class="anchor" aria-label="anchor" href="#results-tablefigures"></a>
 </h2>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  Metric <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Type I error"</span>, <span class="st">"Power"</span><span class="op">)</span>,</span>
 <span>  Value  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">null_hits</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hit_center</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  Reps   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n_null</span>, <span class="va">n_power</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">results</span>, digits <span class="op">=</span> <span class="fl">3</span>, caption <span class="op">=</span> <span class="st">"Empirical simulation results"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>Empirical simulation results</caption>
 <thead><tr class="header">
 <th align="left">Metric</th>
@@ -322,7 +344,9 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sweep_df</span><span class="op">$</span><span class="va">window_size</span>, <span class="va">sweep_df</span><span class="op">$</span><span class="va">type1</span>, type <span class="op">=</span> <span class="st">"b"</span>, col <span class="op">=</span> <span class="st">"red"</span>,</span>
 <span>     ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"window_size"</span>, ylab <span class="op">=</span> <span class="st">"Rate"</span>,</span>
 <span>     main <span class="op">=</span> <span class="st">"Type I error vs. power across window_size (scw = 8)"</span>, pch <span class="op">=</span> <span class="fl">16</span><span class="op">)</span></span>
@@ -330,10 +354,12 @@
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fl">0.05</span>, lty <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"gray50"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"left"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Type I error"</span>, <span class="st">"Power"</span>, <span class="st">"nominal 0.05"</span><span class="op">)</span>,</span>
 <span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"gray50"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">16</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/sweep-plot-1.png" alt="plot of chunk sweep-plot"><div class="figcaption">plot of chunk sweep-plot</div>
 </div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># individual-level RAS for comparison (original method)</span></span>
 <span><span class="va">indiv_scan</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">scan</span>, <span class="va">X_t</span>, <span class="va">y_t</span>, <span class="va">b_disc</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">sub_windows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">min_window_size</span>, <span class="va">max_window_size</span>, by <span class="op">=</span> <span class="va">skip2</span><span class="op">)</span><span class="op">)</span></span>
@@ -372,16 +398,21 @@
 <span>         legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"True causal region"</span>, <span class="st">"Summary-stat"</span>, <span class="st">"Individual-level"</span><span class="op">)</span>,</span>
 <span>         col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"darkgray"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/illustration-1.png" alt="plot of chunk illustration"><div class="figcaption">plot of chunk illustration</div>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">end_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">runtime_seconds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="va">end_time</span>, <span class="va">start_time</span>, units <span class="op">=</span> <span class="st">"secs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"**Total Knitting Time:** "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">runtime_seconds</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">" seconds"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## **Total Knitting Time:** 1564.93 seconds</span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+</details><pre><code><span><span class="co">## **Total Knitting Time:** 1564.93 seconds</span></span></code></pre>
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># NOTE: time with knitr caching</span></span></code></pre></div>
+</details>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -12,6 +12,8 @@ synthetic 1,000-SNP chromosome with a similar design.
 
 ## Setup and Config
 
+Show code
+
 ``` r
 
 knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
@@ -23,6 +25,8 @@ library(future.apply)
 plan(multisession)
 source("code/ras_ss.R")
 ```
+
+Show code
 
 ``` r
 
@@ -109,6 +113,8 @@ count_fn <- function(tau, starts) {
 }
 ```
 
+Show code
+
 ``` r
 
 # wrapping original package's two detection functions
@@ -151,6 +157,8 @@ run_rep <- function(beta, trait, seed) {
 }
 ```
 
+Show code
+
 ``` r
 
 # same idea as the paper. pick the thresholds that put null type I near 0.05.
@@ -173,6 +181,8 @@ print(cal_res)
 ```
 
 ## Simulation
+
+Show code
 
 ``` r
 
@@ -238,6 +248,8 @@ agg <- aggregate(cbind(ss_power, in_power, pu_power, ss_fpr, in_fpr, pu_fpr) ~ t
 
 ## Benchmark
 
+Show code
+
 ``` r
 
 # per-rep runtime, single core. cohort simulation once and excluded from ras-ss/indiv so the comparison isolates the scan step
@@ -259,6 +271,8 @@ t_pu <- bench(function(s) { pp <- quiet(native_run_via_ras(bb, 920000+s))
   quiet(run_detect(pp, sl=slope_thresh, sr=slope_thresh, dav=davies_thresh)) })
 ```
 
+Show code
+
 ``` r
 
 knitr::kable(data.frame(method=c("ras-ss","indiv","pure ras()"), s_per_rep=round(c(t_ss,t_in,t_pu),1)),
@@ -273,6 +287,8 @@ knitr::kable(data.frame(method=c("ras-ss","indiv","pure ras()"), s_per_rep=round
 
 Total runtime seconds per rep, single core (includes CPD step, so see
 following for more clear difference) {.table}
+
+Show code
 
 ``` r
 
@@ -297,6 +313,8 @@ Algorithmic speedup, profile-generation time only (excludes the shared
 CPD step) {.table}
 
 ## Paper-style visualizations
+
+Show code
 
 ``` r
 
@@ -343,6 +361,8 @@ plotted because ‘all M regions’ is ~0 on these synthetic peaks, so a
 ratio on it is undefined. Points on the line = ras-ss agrees with the
 individual-level method.
 
+Show code
+
 ``` r
 
 par(mfrow=c(2,2), mar=c(4,4,2,1))
@@ -374,6 +394,8 @@ error in Table 1 below.
 
 ## More visualizations
 
+Show code
+
 ``` r
 
 # type I with exact binomial CIs
@@ -390,6 +412,8 @@ knitr::kable(t1_tab, caption=sprintf("Type I error at calibrated thresholds (exa
 
 Type I error at calibrated thresholds (exact 95% CI), 500 null reps per
 trait {.table}
+
+Show code
 
 ``` r
 
@@ -416,6 +440,8 @@ legend("bottomright", legend=c("ras-ss","indiv","pure ras() (num_rep=5)"), col=c
 
 plot of chunk results
 
+Show code
+
 ``` r
 
 # ras-ss vs the individual-level run on the same data. if on the dashed line, they agree
@@ -431,6 +457,8 @@ abline(0,1, lty=2)
 ![plot of chunk results](figure/results-2.png)
 
 plot of chunk results
+
+Show code
 
 ``` r
 
@@ -457,6 +485,8 @@ knitr::kable(fpr_tab, caption="FPR-A: average false regions per rep (0 = nothing
 | dichotomous |   3 | 1.0 |   0.00 |  0.00 |                   0.00 |
 
 FPR-A: average false regions per rep (0 = nothing spurious) {.table}
+
+Show code
 
 ``` r
 

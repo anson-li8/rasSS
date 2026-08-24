@@ -4,6 +4,8 @@
 is [Paper
 Replication](https://anson-li8.github.io/rasSS/articles/paper-replication.md).*
 
+Show code
+
 ``` r
 
 knitr::opts_chunk$set(echo = TRUE)
@@ -16,6 +18,8 @@ plan(multisession)
 source("code/ras_ss.R")
 start_time <- Sys.time()
 ```
+
+Show code
 
 ``` r
 
@@ -47,6 +51,8 @@ signal_beta[causal_snps] <- effect_size
 # did the validated peak land on the causal cluster (for power calculation)
 in_zone <- function(tau) any(tau >= 130 & tau <= 170)
 ```
+
+Show code
 
 ``` r
 
@@ -91,6 +97,8 @@ pure_p_tau <- future_lapply(seq_len(n_power), function(s)
 pure_p <- sapply(pure_p_tau, in_zone)
 ```
 
+Show code
+
 ``` r
 
 # per-rep runtime, single core, same reps for all three (fair algorithmic cost)
@@ -110,6 +118,8 @@ t_pure_b <- bench(function(s) {
   invisible(detect_peaks(native_run_via_ras(signal_beta, 920000 + s), best_ws, scw = 8))
 })
 ```
+
+Show code
 
 ``` r
 
@@ -138,6 +148,8 @@ knitr::kable(data.frame(
 Method comparison – point estimate (exact binomial 95% CI), single-core
 sec/rep {.table}
 
+Show code
+
 ``` r
 
 # ras-ss seeds are unchanged, so this must reproduce 0.038 / 0.935
@@ -147,6 +159,8 @@ cat(sprintf("ras-ss repro check: type1 = %.3f (expect 0.038), power = %.3f (expe
 
     ## ras-ss repro check: type1 = 0.038 (expect 0.038), power = 0.935 (expect 0.935)
 
+Show code
+
 ``` r
 
 # NOTE: time with knitr caching
@@ -155,6 +169,8 @@ cat(sprintf("Total knitting time: %.1f minutes\n",
 ```
 
     ## Total knitting time: 47.0 minutes
+
+Show code
 
 ``` r
 
@@ -185,6 +201,8 @@ legend("topright", fill = c("blue", "red", "purple"), border = NA, bty = "n",
 
 plot of chunk diagnostics
 
+Show code
+
 ``` r
 
 # plot 1: detection outcome per run
@@ -206,6 +224,8 @@ legend("topright", fill = c("grey70", "steelblue", "tomato"), border = NA,
 ![plot of chunk diagnostics](figure/diagnostics-2.png)
 
 plot of chunk diagnostics
+
+Show code
 
 ``` r
 

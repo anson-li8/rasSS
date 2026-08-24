@@ -77,7 +77,9 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <div class="section level2">
 <h2 id="setup-and-config">Setup and Config<a class="anchor" aria-label="anchor" href="#setup-and-config"></a>
 </h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span>, autodep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>future.rng.onMisuse <span class="op">=</span> <span class="st">"ignore"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/anson-li8/rasSS" class="external-link">rasSS</a></span><span class="op">)</span></span>
@@ -86,7 +88,9 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.apply.futureverse.org" class="external-link">future.apply</a></span><span class="op">)</span></span>
 <span><span class="fu">plan</span><span class="op">(</span><span class="va">multisession</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"code/ras_ss.R"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># simulated chromosome with "LD block structure"</span></span>
 <span><span class="co"># 10 independent LD blocks of 100 SNPs, AR(1) rho=0.8 inside each block</span></span>
 <span><span class="va">n_snps</span> <span class="op">&lt;-</span> <span class="fl">1000</span>; <span class="va">n_blocks</span> <span class="op">&lt;-</span> <span class="fl">10</span>; <span class="va">block_len</span> <span class="op">&lt;-</span> <span class="va">n_snps</span> <span class="op">/</span> <span class="va">n_blocks</span>; <span class="va">rho</span> <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
@@ -168,7 +172,9 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span>  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">starts</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">starts</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">tau</span>, <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="fu">dist_reg</span><span class="op">(</span><span class="va">t</span>,<span class="va">s</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">tolerance</span><span class="op">)</span> </span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># wrapping original package's two detection functions</span></span>
 <span><span class="va">run_detect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">scan</span>, <span class="va">ws</span><span class="op">=</span><span class="fl">30</span>, <span class="va">scw</span><span class="op">=</span><span class="fl">15</span>, <span class="va">sl</span><span class="op">=</span><span class="fl">1e-3</span>, <span class="va">sr</span><span class="op">=</span><span class="fl">1e-3</span>, <span class="va">dav</span><span class="op">=</span><span class="fl">1e-3</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="op">{</span> </span>
@@ -207,7 +213,9 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>scan<span class="op">=</span><span class="fu"><a href="../reference/scan_ss.html">scan_ss</a></span><span class="op">(</span><span class="va">co</span><span class="op">$</span><span class="va">disc</span><span class="op">$</span><span class="va">beta</span>, <span class="va">co</span><span class="op">$</span><span class="va">targ</span><span class="op">$</span><span class="va">z</span>, <span class="va">R_emp</span>, <span class="va">prune_filter</span><span class="op">)</span>,</span>
 <span>       X_t<span class="op">=</span><span class="va">co</span><span class="op">$</span><span class="va">X_t</span>, y_t<span class="op">=</span><span class="va">co</span><span class="op">$</span><span class="va">y_t</span>, b_disc<span class="op">=</span><span class="va">co</span><span class="op">$</span><span class="va">disc</span><span class="op">$</span><span class="va">beta</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># same idea as the paper. pick the thresholds that put null type I near 0.05.</span></span>
 <span><span class="co"># grid of slope/davies pairs, 50 null reps each</span></span>
 <span><span class="va">thresh_grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>sl <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1e-3</span>, <span class="fl">1e-4</span>, <span class="fl">1e-5</span>, <span class="fl">1e-6</span>, <span class="fl">1e-7</span><span class="op">)</span>, dav <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1e-4</span>, <span class="fl">1e-5</span>, <span class="fl">1e-6</span>, <span class="fl">1e-7</span><span class="op">)</span><span class="op">)</span></span>
@@ -225,11 +233,14 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">cal_res</span><span class="op">)</span></span></code></pre></div>
+</details>
 </div>
 <div class="section level2">
 <h2 id="simulation">Simulation<a class="anchor" aria-label="anchor" href="#simulation"></a>
 </h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n_null</span> <span class="op">&lt;-</span> <span class="fl">500</span>; <span class="va">n_pow</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
 <span><span class="va">sl</span> <span class="op">&lt;-</span> <span class="va">slope_thresh</span>; <span class="va">dv</span> <span class="op">&lt;-</span> <span class="va">davies_thresh</span> <span class="co"># calibrated detection thresholds</span></span>
 <span><span class="co"># save after each scenario so a pause doesn't lose the whole run.</span></span>
@@ -288,11 +299,14 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span><span class="va">res</span><span class="op">$</span><span class="va">pu_power</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">$</span><span class="va">pu_fn</span> <span class="op">==</span> <span class="fl">0</span></span>
 <span><span class="co"># collapse to one row per scenario, averaging each column</span></span>
 <span><span class="va">agg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">ss_power</span>, <span class="va">in_power</span>, <span class="va">pu_power</span>, <span class="va">ss_fpr</span>, <span class="va">in_fpr</span>, <span class="va">pu_fpr</span><span class="op">)</span> <span class="op">~</span> <span class="va">trait</span> <span class="op">+</span> <span class="va">M</span> <span class="op">+</span> <span class="va">q</span>, data<span class="op">=</span><span class="va">res</span>, <span class="va">mean</span><span class="op">)</span></span></code></pre></div>
+</details>
 </div>
 <div class="section level2">
 <h2 id="benchmark">Benchmark<a class="anchor" aria-label="anchor" href="#benchmark"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># per-rep runtime, single core. cohort simulation once and excluded from ras-ss/indiv so the comparison isolates the scan step</span></span>
 <span><span class="va">nb</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
 <span><span class="va">bench</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">nb</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">f</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"elapsed"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="co"># run f(s) nb times, averaging elapsed time</span></span>
@@ -310,10 +324,12 @@ page uses a synthetic 1,000-SNP chromosome with a similar design.</p>
 <span>  <span class="fu"><a href="../reference/quiet.html">quiet</a></span><span class="op">(</span><span class="fu">run_detect</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">grid_x</span>, y<span class="op">=</span><span class="va">prof</span><span class="op">)</span>, sl<span class="op">=</span><span class="va">slope_thresh</span>, sr<span class="op">=</span><span class="va">slope_thresh</span>, dav<span class="op">=</span><span class="va">davies_thresh</span><span class="op">)</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">t_pu</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span> <span class="va">pp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quiet.html">quiet</a></span><span class="op">(</span><span class="fu">native_run_via_ras</span><span class="op">(</span><span class="va">bb</span>, <span class="fl">920000</span><span class="op">+</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="../reference/quiet.html">quiet</a></span><span class="op">(</span><span class="fu">run_detect</span><span class="op">(</span><span class="va">pp</span>, sl<span class="op">=</span><span class="va">slope_thresh</span>, sr<span class="op">=</span><span class="va">slope_thresh</span>, dav<span class="op">=</span><span class="va">davies_thresh</span><span class="op">)</span><span class="op">)</span> <span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+</details><details><summary>
+Show code
+</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>method<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>,<span class="st">"indiv"</span>,<span class="st">"pure ras()"</span><span class="op">)</span>, s_per_rep<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">t_ss</span>,<span class="va">t_in</span>,<span class="va">t_pu</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>             caption<span class="op">=</span><span class="st">"Total runtime seconds per rep, single core (includes CPD step, so see following for more clear difference)"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>Total runtime seconds per rep, single core (includes CPD step,
 so see following for more clear difference)</caption>
 <thead><tr class="header">
@@ -335,7 +351,9 @@ so see following for more clear difference)</caption>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># isolate algorithmic difference, with profile generation only (no CPD step)</span></span>
 <span><span class="co"># scan_ss = closed-form matrix algebra, and indiv_scan = multiple lm() calls</span></span>
 <span><span class="va">t_ss_scan</span> <span class="op">&lt;-</span> <span class="fu">bench</span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span> <span class="va">co</span> <span class="op">&lt;-</span> <span class="va">cohorts</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span></span>
@@ -346,7 +364,7 @@ so see following for more clear difference)</caption>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>step<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>, <span class="st">"individual-level version"</span><span class="op">)</span>,</span>
 <span>                        s_per_rep<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">t_ss_scan</span>, <span class="va">t_in_scan</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>             caption<span class="op">=</span><span class="st">"Algorithmic speedup, profile-generation time only (excludes the shared CPD step)"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>Algorithmic speedup, profile-generation time only (excludes the
 shared CPD step)</caption>
 <thead><tr class="header">
@@ -368,7 +386,9 @@ shared CPD step)</caption>
 <div class="section level2">
 <h2 id="paper-style-visualizations">Paper-style visualizations<a class="anchor" aria-label="anchor" href="#paper-style-visualizations"></a>
 </h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">res</span><span class="op">$</span><span class="va">ss_pow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">res</span><span class="op">$</span><span class="va">ss_fn</span> <span class="op">/</span> <span class="va">res</span><span class="op">$</span><span class="va">M</span><span class="op">)</span></span>
 <span><span class="va">res</span><span class="op">$</span><span class="va">in_pow</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">res</span><span class="op">$</span><span class="va">in_fn</span> <span class="op">/</span> <span class="va">res</span><span class="op">$</span><span class="va">M</span><span class="op">)</span></span>
@@ -396,7 +416,7 @@ shared CPD step)</caption>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"q=%.1f, power(ras-ss)=%.2f"</span>, <span class="va">q_rates</span>, <span class="va">pow_ss</span><span class="op">)</span>,</span>
 <span>         pch<span class="op">=</span><span class="va">pch_q</span>, col<span class="op">=</span><span class="st">"red"</span>, bty<span class="op">=</span><span class="st">"n"</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/fig_rel_power-1.png" alt="Fig 2. Power of the individual-level runs relative to ras-ss (dashed line = same as ras-ss). Point shapes are the three causal rates; bars are each method’s 95% CI divided by ras-ss’s power. Per-region power is plotted because ‘all M regions’ is ~0 on these synthetic peaks, so a ratio on it is undefined. Points on the line = ras-ss agrees with the individual-level method."><div class="figcaption">Fig 2. Power of the individual-level runs
 relative to ras-ss (dashed line = same as ras-ss). Point shapes are the
 three causal rates; bars are each method’s 95% CI divided by ras-ss’s
@@ -404,7 +424,9 @@ power. Per-region power is plotted because ‘all M regions’ is ~0 on
 these synthetic peaks, so a ratio on it is undefined. Points on the line
 = ras-ss agrees with the individual-level method.</div>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">tr</span> <span class="kw">in</span> <span class="va">traits</span><span class="op">)</span> <span class="kw">for</span> <span class="op">(</span><span class="va">M</span> <span class="kw">in</span> <span class="va">M_vals</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">a</span>  <span class="op">&lt;-</span> <span class="va">agg</span><span class="op">[</span><span class="va">agg</span><span class="op">$</span><span class="va">trait</span><span class="op">==</span><span class="va">tr</span> <span class="op">&amp;</span> <span class="va">agg</span><span class="op">$</span><span class="va">M</span><span class="op">==</span><span class="va">M</span>,<span class="op">]</span></span>
@@ -420,7 +442,7 @@ these synthetic peaks, so a ratio on it is undefined. Points on the line
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/segments.html" class="external-link">segments</a></span><span class="op">(</span><span class="va">bp</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">ys</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span><span class="op">-</span><span class="fl">1.96</span><span class="op">*</span><span class="va">ses</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span>, <span class="va">bp</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span>, <span class="va">ys</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span><span class="op">+</span><span class="fl">1.96</span><span class="op">*</span><span class="va">ses</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>,<span class="st">"indiv"</span>,<span class="st">"pure ras() (num_rep=5)"</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"grey70"</span>,<span class="st">"purple"</span><span class="op">)</span>, bty<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/fig_fpr-1.png" alt="Fig 3. False regions called per rep (FPR-A) while true signal is present. All three methods sit around 0, meaning every call they make lands on a true region. The false-call rate under the null is the type I error in Table 1 below."><div class="figcaption">Fig 3. False regions called per rep (FPR-A)
 while true signal is present. All three methods sit around 0, meaning
 every call they make lands on a true region. The false-call rate under
@@ -430,13 +452,15 @@ the null is the type I error in Table 1 below.</div>
 <div class="section level2">
 <h2 id="more-visualizations">More visualizations<a class="anchor" aria-label="anchor" href="#more-visualizations"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># type I with exact binomial CIs</span></span>
 <span><span class="va">fmt_ci</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">rate</span>, <span class="va">n</span><span class="op">)</span> <span class="op">{</span> <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/binom.test.html" class="external-link">binom.test</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">rate</span><span class="op">*</span><span class="va">n</span><span class="op">)</span>, <span class="va">n</span><span class="op">)</span><span class="op">$</span><span class="va">conf.int</span>; <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%.2f (%.2f-%.2f)"</span>, <span class="va">rate</span>, <span class="va">b</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">b</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">}</span></span>
 <span><span class="va">t1_tab</span> <span class="op">&lt;-</span> <span class="va">type1</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">type1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">type1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="va">t1_tab</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">fmt_ci</span><span class="op">(</span><span class="va">type1</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span>, <span class="va">n_null</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t1_tab</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"Type I error at calibrated thresholds (exact 95%% CI), %d null reps per trait"</span>, <span class="va">n_null</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>Type I error at calibrated thresholds (exact 95% CI), 500 null
 reps per trait</caption>
 <thead><tr class="header">
@@ -460,7 +484,9 @@ reps per trait</caption>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># per-region detection rate is the metric here, since CPD</span></span>
 <span><span class="co"># usually locks onto 1-2 of the 3 peaks on these synthetic profiles</span></span>
 <span><span class="va">res</span><span class="op">$</span><span class="va">ss_pow</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">res</span><span class="op">$</span><span class="va">ss_fn</span> <span class="op">/</span> <span class="va">res</span><span class="op">$</span><span class="va">M</span></span>
@@ -478,10 +504,12 @@ reps per trait</caption>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">a</span><span class="op">$</span><span class="va">q</span>, <span class="va">a</span><span class="op">$</span><span class="va">in_pow</span>, type<span class="op">=</span><span class="st">"b"</span>, col<span class="op">=</span><span class="st">"red"</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">a</span><span class="op">$</span><span class="va">q</span>, <span class="va">a</span><span class="op">$</span><span class="va">pu_pow</span>, type<span class="op">=</span><span class="st">"b"</span>, col<span class="op">=</span><span class="st">"purple"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>,<span class="st">"indiv"</span>,<span class="st">"pure ras() (num_rep=5)"</span><span class="op">)</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"red"</span>,<span class="st">"purple"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, bty<span class="op">=</span><span class="st">"n"</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/results-1.png" alt="plot of chunk results"><div class="figcaption">plot of chunk results</div>
 </div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ras-ss vs the individual-level run on the same data. if on the dashed line, they agree</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">agg</span><span class="op">$</span><span class="va">in_pow</span>, <span class="va">agg</span><span class="op">$</span><span class="va">ss_pow</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, pch<span class="op">=</span><span class="fl">16</span>, col<span class="op">=</span><span class="st">"blue"</span>,</span>
@@ -490,16 +518,18 @@ reps per trait</caption>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">agg</span><span class="op">$</span><span class="va">pu_pow</span>, <span class="va">agg</span><span class="op">$</span><span class="va">ss_pow</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, pch<span class="op">=</span><span class="fl">16</span>, col<span class="op">=</span><span class="st">"purple"</span>,</span>
 <span>     xlab<span class="op">=</span><span class="st">"pure ras() (num_rep=5) power"</span>, ylab<span class="op">=</span><span class="st">"ras-ss power"</span>, main<span class="op">=</span><span class="st">"ras-ss vs pure RAS run"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<div class="float">
+</details><div class="float">
 <img src="figure/results-2.png" alt="plot of chunk results"><div class="figcaption">plot of chunk results</div>
 </div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># FPR-A, average number of false regions called per rep</span></span>
 <span><span class="va">fpr_tab</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">ss_fpr</span>, <span class="va">in_fpr</span>, <span class="va">pu_fpr</span><span class="op">)</span> <span class="op">~</span> <span class="va">trait</span> <span class="op">+</span> <span class="va">M</span> <span class="op">+</span> <span class="va">q</span>, data<span class="op">=</span><span class="va">res</span>, <span class="va">mean</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">fpr_tab</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>,<span class="st">"indiv"</span>,<span class="st">"pure ras() (num_rep=5)"</span><span class="op">)</span></span>
 <span><span class="va">fpr_tab</span><span class="op">[</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">fpr_tab</span><span class="op">[</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">fpr_tab</span>, caption<span class="op">=</span><span class="st">"FPR-A: average false regions per rep (0 = nothing spurious)"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>FPR-A: average false regions per rep (0 = nothing
 spurious)</caption>
 <thead><tr class="header">
@@ -609,13 +639,15 @@ spurious)</caption>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<details><summary>
+Show code
+</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># the paper's power definition: detected EVERY true region</span></span>
 <span><span class="va">tab</span> <span class="op">&lt;-</span> <span class="va">agg</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"trait"</span>,<span class="st">"M"</span>,<span class="st">"q"</span>,<span class="st">"ss_power"</span>,<span class="st">"in_power"</span>,<span class="st">"pu_power"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tab</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ras-ss"</span>,<span class="st">"indiv"</span>,<span class="st">"pure ras() (num_rep=5)"</span><span class="op">)</span></span>
 <span><span class="va">tab</span><span class="op">[</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tab</span><span class="op">[</span>,<span class="fl">4</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tab</span>, caption<span class="op">=</span><span class="st">"Power = detected ALL M true regions; low for M=3 because the CPD usually catches only 1-2 of the 3 peaks"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+</details><table class="table">
 <caption>Power = detected ALL M true regions; low for M=3 because the
 CPD usually catches only 1-2 of the 3 peaks</caption>
 <thead><tr class="header">
