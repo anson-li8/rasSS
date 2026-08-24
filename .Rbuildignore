@@ -12,3 +12,4 @@
 ^vignettes/articles/code$
 ^vignettes/articles/.*\.rds$
 ^vignettes/precompute\.R$
+^vignettes/articles
