@@ -1,8 +1,0 @@
-config	
-ld-reference	base_seed	n_snps	prune_r2	rho
-core-functions	causal_snps	effect_size	max_window_size	min_window_size	n_disc	n_snps	n_targ	prune_filter	R_emp	R_true	sim_genotypes	skip1	skip2	t
-detect	davies_thresh	skip1	slope_thresh
-sweep	detect_peaks	null_beta	one_rep	signal_beta
-choose-window	sweep_df	ws_candidates
-full-null	best_ws	detect_peaks	null_beta	one_rep
-full-power	best_ws	detect_peaks	one_rep	signal_beta

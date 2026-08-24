@@ -1,5 +1,13 @@
+# R session / project
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-docs
+*.Rproj
+# generated site
+docs/
+pkgdown/
+# knitr cache
+vignettes/articles/cache/
+*.rdb
+*.rdx
