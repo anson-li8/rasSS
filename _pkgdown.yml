@@ -4,7 +4,7 @@ template:
 
 navbar:
   structure:
-    left:  [home, reference, replication]
+    left:  [home, reference, articles]
   components:
     home:
       icon: fas fa-home
@@ -13,14 +13,14 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
-    replication:
-      text: Replication
+    articles:
+      text: Articles
       menu:
         - text: Problem Statement
-          href: replication/00_problem_statement.html
-        - text: Pilot Study (300-SNP)
-          href: replication/01_simulation.html
-        - text: Validation (300-SNP)
-          href: replication/02_simulation.html
-        - text: Paper Replication (1000-SNP)
-          href: replication/03_simulation.html
+          href: articles/problem-statement.html
+        - text: Pilot Study
+          href: articles/pilot-study.html
+        - text: Validation
+          href: articles/validation.html
+        - text: Paper Replication
+          href: articles/paper-replication.html

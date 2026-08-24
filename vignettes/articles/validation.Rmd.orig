@@ -7,7 +7,7 @@ vignette: >
  %\VignetteEncoding{UTF-8}
 ---
 
-*Paired-data validation on the 300-SNP toy. The main paper-style study is [Paper Replication](03_simulation.html).*
+*Paired-data validation on the 300-SNP toy. The main paper-style study is [Paper Replication](paper-replication.html).*
 
 ```{r setup, warning=FALSE, results='hide'}
 knitr::opts_chunk$set(echo = TRUE)
@@ -17,7 +17,7 @@ library(mvtnorm)
 library(RAS)
 library(future.apply)
 plan(multisession)
-source("helpers.R")
+source("code/ras_ss.R")
 start_time <- Sys.time()
 ```
 
