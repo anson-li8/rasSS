@@ -16,7 +16,7 @@ navbar:
     articles:
       text: Articles
       menu:
-        - text: Problem Statement
+        - text: Problem Statement (300-SNP toy)
           href: articles/problem-statement.html
         - text: Pilot Study
           href: articles/pilot-study.html

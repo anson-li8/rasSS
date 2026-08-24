@@ -1,8 +1,14 @@
 Package: rasSS
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
+Authors@R: c(
+    person(given = "Anson", family = "Li",
+           email = "liyuanrui618@gmail.com",
+           role = c("aut", "cre")),
+    person(given = "Shengtong", family = "Han",
+           email = "shengtong.han@marquette.edu",
+           role = "aut")
+    )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
