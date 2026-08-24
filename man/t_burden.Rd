@@ -2,24 +2,27 @@
 % Please edit documentation in R/burden.R
 \name{t_burden}
 \alias{t_burden}
-\title{Summary-statistic weighted burden statistic}
+\title{Summary-Statistic Weighted Burden Statistic}
 \usage{
 t_burden(w, Z, R)
 }
 \arguments{
-\item{w}{Weight vector.}
+\item{w}{Numeric vector. Discovery weights (e.g., marginal effect sizes
+from the discovery cohort) for the SNPs in the window.}
 
-\item{Z}{Marginal Z-score vector.}
+\item{Z}{Numeric vector. Marginal Z-scores from the target cohort for
+the SNPs in the window. Must be the same length as \code{w}.}
 
-\item{R}{LD correlation matrix.}
+\item{R}{Numeric matrix. Linkage Disequilibrium (LD) correlation matrix
+for the SNPs in the window. Dimensions must be \code{length(w)} x \code{length(w)}.}
 }
 \value{
-Numeric burden statistic.
+A single numeric value representing the burden test statistic.
+Returns \code{0} if the variance denominator is non-positive or non-finite.
 }
 \description{
-Summary-statistic weighted burden statistic
-}
-\examples{
-w <- c(1, 1); Z <- c(1, 1); R <- matrix(c(1, 0.5, 0.5, 1), 2, 2)
-t_burden(w, Z, R)
+Calculates the 1-degree-of-freedom weighted burden statistic
+\eqn{T = w'Z / \sqrt{w'Rw}} of a given window of SNPs. Under the null
+hypothesis of no association in the window, \eqn{T} asymptotically follows a
+standard normal distribution \eqn{N(0,1)}.
 }

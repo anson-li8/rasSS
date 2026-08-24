@@ -2,7 +2,7 @@
 % Please edit documentation in R/scan.R
 \name{scan_ss}
 \alias{scan_ss}
-\title{Summary-statistic RAS scan}
+\title{Summary-Statistic RAS Profile Generation}
 \usage{
 scan_ss(
   b_disc,
@@ -16,25 +16,33 @@ scan_ss(
 )
 }
 \arguments{
-\item{b_disc}{Discovery marginal effect-size weights.}
+\item{b_disc}{Numeric vector. Genome-wide discovery marginal effect sizes.}
 
-\item{z_targ}{Target marginal Z-scores.}
+\item{z_targ}{Numeric vector. Genome-wide target marginal Z-scores.}
 
-\item{R}{LD correlation matrix.}
+\item{R}{Numeric matrix. Genome-wide LD correlation matrix (e.g., from an external reference panel).}
 
-\item{mask}{Logical SNP mask.}
+\item{mask}{Logical vector. Indicates which SNPs are retained after LD pruning.}
 
-\item{skip1}{Pivotal SNP step size.}
+\item{skip1}{Integer. Step size for pivotal SNPs (e.g., evaluate every 10th SNP).}
 
-\item{skip2}{Window-size step size.}
+\item{skip2}{Integer. Step size for the adaptive window scan at each SNP.}
 
-\item{min_window_size}{Minimum half-window size.}
+\item{min_window_size}{Integer. Minimum half-window size (in SNPs).}
 
-\item{max_window_size}{Maximum half-window size.}
+\item{max_window_size}{Integer. Maximum half-window size (in SNPs).}
 }
 \value{
-List with \code{x} and \code{y}.
+A list with two elements:
+\itemize{
+\item \code{x}: Integer vector of the genomic indices of the pivotal SNPs evaluated.
+\item \code{y}: Numeric vector of the \eqn{-\log_{10}(p)}-values from the most
+significant adaptive window at each pivotal SNP.
+}
 }
 \description{
-Summary-statistic RAS scan
+Generates a Regional Association Score (RAS) profile using only
+summary statistics. For each pivotal SNP, it runs an adaptive window
+scan, calculates the burden statistic \code{\link{t_burden}},
+and keeps the minimum p-value (highest RAS) across the grid.
 }
