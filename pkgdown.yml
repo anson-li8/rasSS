@@ -1,8 +1,12 @@
 pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
-articles: {}
-last_built: 2026-08-19T01:29Z
+articles:
+  articles/paper-replication: paper-replication.html
+  articles/pilot-study: pilot-study.html
+  articles/problem-statement: problem-statement.html
+  articles/validation: validation.html
+last_built: 2026-08-24T19:07Z
 urls:
   reference: https://anson-li8.github.io/rasSS/reference
   article: https://anson-li8.github.io/rasSS/articles

@@ -1,6 +1,9 @@
-# Summary-statistic weighted burden statistic
+# Summary-Statistic Weighted Burden Statistic
 
-Summary-statistic weighted burden statistic
+Calculates the 1-degree-of-freedom weighted burden statistic \\T = w'Z /
+\sqrt{w'Rw}\\ of a given window of SNPs. Under the null hypothesis of no
+association in the window, \\T\\ asymptotically follows a standard
+normal distribution \\N(0,1)\\.
 
 ## Usage
 
@@ -12,24 +15,20 @@ t_burden(w, Z, R)
 
 - w:
 
-  Weight vector.
+  Numeric vector. Discovery weights (e.g., marginal effect sizes from
+  the discovery cohort) for the SNPs in the window.
 
 - Z:
 
-  Marginal Z-score vector.
+  Numeric vector. Marginal Z-scores from the target cohort for the SNPs
+  in the window. Must be the same length as `w`.
 
 - R:
 
-  LD correlation matrix.
+  Numeric matrix. Linkage Disequilibrium (LD) correlation matrix for the
+  SNPs in the window. Dimensions must be `length(w)` x `length(w)`.
 
 ## Value
 
-Numeric burden statistic.
-
-## Examples
-
-``` r
-w <- c(1, 1); Z <- c(1, 1); R <- matrix(c(1, 0.5, 0.5, 1), 2, 2)
-t_burden(w, Z, R)
-#> [1] 1.154701
-```
+A single numeric value representing the burden test statistic. Returns
+`0` if the variance denominator is non-positive or non-finite.

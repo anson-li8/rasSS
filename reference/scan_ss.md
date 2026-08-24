@@ -1,6 +1,10 @@
-# Summary-statistic RAS scan
+# Summary-Statistic RAS Profile Generation
 
-Summary-statistic RAS scan
+Generates a Regional Association Score (RAS) profile using only summary
+statistics. For each pivotal SNP, it runs an adaptive window scan,
+calculates the burden statistic
+[`t_burden`](https://anson-li8.github.io/rasSS/reference/t_burden.md),
+and keeps the minimum p-value (highest RAS) across the grid.
 
 ## Usage
 
@@ -21,36 +25,43 @@ scan_ss(
 
 - b_disc:
 
-  Discovery marginal effect-size weights.
+  Numeric vector. Genome-wide discovery marginal effect sizes.
 
 - z_targ:
 
-  Target marginal Z-scores.
+  Numeric vector. Genome-wide target marginal Z-scores.
 
 - R:
 
-  LD correlation matrix.
+  Numeric matrix. Genome-wide LD correlation matrix (e.g., from an
+  external reference panel).
 
 - mask:
 
-  Logical SNP mask.
+  Logical vector. Indicates which SNPs are retained after LD pruning.
 
 - skip1:
 
-  Pivotal SNP step size.
+  Integer. Step size for pivotal SNPs (e.g., evaluate every 10th SNP).
 
 - skip2:
 
-  Window-size step size.
+  Integer. Step size for the adaptive window scan at each SNP.
 
 - min_window_size:
 
-  Minimum half-window size.
+  Integer. Minimum half-window size (in SNPs).
 
 - max_window_size:
 
-  Maximum half-window size.
+  Integer. Maximum half-window size (in SNPs).
 
 ## Value
 
-List with `x` and `y`.
+A list with two elements:
+
+- `x`: Integer vector of the genomic indices of the pivotal SNPs
+  evaluated.
+
+- `y`: Numeric vector of the \\-\log\_{10}(p)\\-values from the most
+  significant adaptive window at each pivotal SNP.
