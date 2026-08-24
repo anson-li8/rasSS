@@ -2,7 +2,7 @@
 title: "Pilot Study (300-SNP toy)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Pilot Study}
+ %\VignetteIndexEntry{Pilot Study (300-SNP toy)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -10,7 +10,7 @@ vignette: >
 *Pilot/tuning run. The main paper-style study is [Paper Replication](paper-replication.html).*
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(autodep = TRUE)
 suppressPackageStartupMessages({
   library(mvtnorm)
@@ -73,7 +73,7 @@ prune_filter <- prune_ld(R_emp, prune_r2)
 cat("Surviving SNPs after LD pruning:", sum(prune_filter), "of", n_snps, "\n")
 ```
 
-```{r core-functions, cache=TRUE}
+```{r core-functions, cache=TRUE, echo=TRUE}
 # runs linear regression for every SNP to measure correlation with phenotype y
 get_marginal_stats <- function(X, y) {
   # Vectorized OLS for massive speedup

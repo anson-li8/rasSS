@@ -2,7 +2,7 @@
 title: "Paper Replication (1000-SNP)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Paper Replication}
+ %\VignetteIndexEntry{Paper Replication (1000-SNP)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +14,7 @@ Note: Jiang & Zhang's Simulation Study simulated phenotypes on *real* ABCD chr21
 # Setup and Config
 
 ```{r setup, results='hide', warning=FALSE}
-knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
+knitr::opts_chunk$set(echo = FALSE, autodep = TRUE)
 options(future.rng.onMisuse = "ignore")
 library(rasSS)
 library(mvtnorm)

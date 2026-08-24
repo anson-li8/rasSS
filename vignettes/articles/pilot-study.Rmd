@@ -2,7 +2,7 @@
 title: "Pilot Study (300-SNP toy)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Pilot Study}
+ %\VignetteIndexEntry{Pilot Study (300-SNP toy)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -11,6 +11,9 @@ vignette: >
 
 
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 n_snps    <- 300
@@ -34,6 +37,12 @@ davies_thresh  <- 1e-3
 base_seed      <- 35
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # Autoregressive AR(1) matrix with rho = 0.8
@@ -64,10 +73,16 @@ prune_filter <- prune_ld(R_emp, prune_r2)
 cat("Surviving SNPs after LD pruning:", sum(prune_filter), "of", n_snps, "\n")
 ```
 
+</details>
+
+
 ```
 ## Surviving SNPs after LD pruning: 100 of 300
 ```
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # runs linear regression for every SNP to measure correlation with phenotype y
@@ -134,6 +149,12 @@ signal_beta <- rep(0, n_snps)
 signal_beta[causal_snps] <- effect_size
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # scw=5 (package default) only gave ~17-20% first-pass acceptance on true signal
@@ -174,8 +195,14 @@ detect_peaks <- function(scan, window_size, scw = 8) {
 }
 ```
 
+</details>
+
+
 ## Window-size sweep for CPD: Type I error & power
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 n_sweep <- 100
@@ -204,6 +231,9 @@ for (k in seq_along(ws_candidates)) {
 print(sweep_df)
 ```
 
+</details>
+
+
 ```
 ##   window_size type1 power edge
 ## 1           6  0.02  0.08    0
@@ -215,19 +245,31 @@ print(sweep_df)
 ```
 
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 # choose the window size with the maximum detection power and lowest Type I Error rate
 best_ws <- ws_candidates[which.max(sweep_df$power - sweep_df$type1)]
 cat("Chosen window_size:", best_ws, "(scw = 8)\n")
 ```
 
+</details>
+
+
 ```
 ## Chosen window_size: 12 (scw = 8)
 ```
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 print(sweep_df[sweep_df$window_size == best_ws, ])
 ```
+
+</details>
+
 
 ```
 ##   window_size type1 power edge
@@ -236,6 +278,9 @@ print(sweep_df[sweep_df$window_size == best_ws, ])
 
 ## Full run at the chosen window size
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 n_null <- 500
@@ -246,11 +291,17 @@ null_hits <- unlist(suppressWarnings(future_lapply(seq_len(n_null), function(s) 
 cat(sprintf("\nEmpirical Type I error over %d reps: %.3f\n", n_null, mean(null_hits)))
 ```
 
+</details>
+
+
 ```
 ## 
 ## Empirical Type I error over 500 reps: 0.038
 ```
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # Statistical power test by running signal_beta (patients w/ phenotype at SNPs 150-152)
@@ -266,14 +317,23 @@ hit_edge   <- sapply(power_res, function(x) x["edge"])
 cat(sprintf("\nEmpirical power (centered detections) over %d reps: %.3f\n", n_power, mean(hit_center)))
 ```
 
+</details>
+
+
 ```
 ## 
 ## Empirical power (centered detections) over 200 reps: 0.935
 ```
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 cat(sprintf("Edge-only detections (trailing edge, not center): %.3f\n", mean(hit_edge)))
 ```
+
+</details>
+
 
 ```
 ## Edge-only detections (trailing edge, not center): 0.000
@@ -281,6 +341,9 @@ cat(sprintf("Edge-only detections (trailing edge, not center): %.3f\n", mean(hit
 
 ## Results table/figures
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 results <- data.frame(
@@ -290,6 +353,9 @@ results <- data.frame(
 )
 knitr::kable(results, digits = 3, caption = "Empirical simulation results")
 ```
+
+</details>
+
 
 
 
@@ -301,6 +367,9 @@ Table: Empirical simulation results
 |Power        | 0.935|  200|
 
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 plot(sweep_df$window_size, sweep_df$type1, type = "b", col = "red",
      ylim = c(0, 1), xlab = "window_size", ylab = "Rate",
@@ -311,8 +380,14 @@ legend("left", legend = c("Type I error", "Power", "nominal 0.05"),
        col = c("red", "blue", "gray50"), lty = c(1, 1, 3), pch = c(16, 16, NA))
 ```
 
+</details>
+
+
 ![plot of chunk sweep-plot](figure/sweep-plot-1.png)
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # individual-level RAS for comparison (original method)
@@ -355,7 +430,13 @@ if (length(final$val$tau_hats) > 0) {
 }
 ```
 
+</details>
+
+
 ![plot of chunk illustration](figure/illustration-1.png)
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 end_time <- Sys.time()
@@ -363,10 +444,19 @@ runtime_seconds <- as.numeric(difftime(end_time, start_time, units = "secs"))
 cat(paste0("**Total Knitting Time:** ", round(runtime_seconds, 2), " seconds"))
 ```
 
+</details>
+
+
 ```
 ## **Total Knitting Time:** 1564.93 seconds
 ```
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 # NOTE: time with knitr caching
 ```
+
+</details>
+

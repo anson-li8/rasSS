@@ -2,7 +2,7 @@
 title: "Paper Replication (1000-SNP)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Paper Replication}
+ %\VignetteIndexEntry{Paper Replication (1000-SNP)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -13,6 +13,9 @@ Note: Jiang & Zhang's Simulation Study simulated phenotypes on *real* ABCD chr21
 
 # Setup and Config
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
@@ -25,6 +28,12 @@ plan(multisession)
 source("code/ras_ss.R")
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # simulated chromosome with "LD block structure"
@@ -110,6 +119,12 @@ count_fn <- function(tau, starts) {
 }
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # wrapping original package's two detection functions
@@ -152,6 +167,12 @@ run_rep <- function(beta, trait, seed) {
 }
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # same idea as the paper. pick the thresholds that put null type I near 0.05.
@@ -173,8 +194,14 @@ for (i in 1:nrow(thresh_grid)) {
 print(cal_res)
 ```
 
+</details>
+
+
 # Simulation
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 n_null <- 500; n_pow <- 100
@@ -237,8 +264,14 @@ res$pu_power <- res$pu_fn == 0
 agg <- aggregate(cbind(ss_power, in_power, pu_power, ss_fpr, in_fpr, pu_fpr) ~ trait + M + q, data=res, mean)
 ```
 
+</details>
+
+
 # Benchmark
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # per-rep runtime, single core. cohort simulation once and excluded from ras-ss/indiv so the comparison isolates the scan step
@@ -260,11 +293,20 @@ t_pu <- bench(function(s) { pp <- quiet(native_run_via_ras(bb, 920000+s))
   quiet(run_detect(pp, sl=slope_thresh, sr=slope_thresh, dav=davies_thresh)) })
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 knitr::kable(data.frame(method=c("ras-ss","indiv","pure ras()"), s_per_rep=round(c(t_ss,t_in,t_pu),1)),
              caption="Total runtime seconds per rep, single core (includes CPD step, so see following for more clear difference)")
 ```
+
+</details>
+
 
 
 
@@ -276,6 +318,9 @@ Table: Total runtime seconds per rep, single core (includes CPD step, so see fol
 |indiv      |       6.7|
 |pure ras() |      20.7|
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # isolate algorithmic difference, with profile generation only (no CPD step)
@@ -290,6 +335,9 @@ knitr::kable(data.frame(step=c("ras-ss", "individual-level version"),
              caption="Algorithmic speedup, profile-generation time only (excludes the shared CPD step)")
 ```
 
+</details>
+
+
 
 
 Table: Algorithmic speedup, profile-generation time only (excludes the shared CPD step)
@@ -301,6 +349,9 @@ Table: Algorithmic speedup, profile-generation time only (excludes the shared CP
 
 # Paper-style visualizations
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 set.seed(1)
@@ -332,8 +383,14 @@ for (tr in traits) for (M in M_vals) {
 }
 ```
 
+</details>
+
+
 ![Fig 2. Power of the individual-level runs relative to ras-ss (dashed line = same as ras-ss). Point shapes are the three causal rates; bars are each method's 95% CI divided by ras-ss's power. Per-region power is plotted because 'all M regions' is ~0 on these synthetic peaks, so a ratio on it is undefined. Points on the line = ras-ss agrees with the individual-level method.](figure/fig_rel_power-1.png)
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 par(mfrow=c(2,2), mar=c(4,4,2,1))
@@ -353,10 +410,16 @@ for (tr in traits) for (M in M_vals) {
 }
 ```
 
+</details>
+
+
 ![Fig 3. False regions called per rep (FPR-A) while true signal is present. All three methods sit around 0, meaning every call they make lands on a true region. The false-call rate under the null is the type I error in Table 1 below.](figure/fig_fpr-1.png)
 
 # More visualizations
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # type I with exact binomial CIs
@@ -366,6 +429,9 @@ for (i in seq_len(nrow(type1))) for (j in seq_len(ncol(type1))) t1_tab[i,j] <- f
 knitr::kable(t1_tab, caption=sprintf("Type I error at calibrated thresholds (exact 95%% CI), %d null reps per trait", n_null))
 ```
 
+</details>
+
+
 
 
 Table: Type I error at calibrated thresholds (exact 95% CI), 500 null reps per trait
@@ -374,6 +440,9 @@ Table: Type I error at calibrated thresholds (exact 95% CI), 500 null reps per t
 |:-----------|:----------------|:----------------|:----------------|
 |continuous  |0.05 (0.03-0.07) |0.05 (0.03-0.07) |0.01 (0.00-0.02) |
 |dichotomous |0.05 (0.03-0.07) |0.05 (0.03-0.07) |0.01 (0.00-0.02) |
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # per-region detection rate is the metric here, since CPD
@@ -395,7 +464,13 @@ for (tr in traits) for (M in M_vals) {
 legend("bottomright", legend=c("ras-ss","indiv","pure ras() (num_rep=5)"), col=c("blue","red","purple"), lty=1, bty="n")
 ```
 
+</details>
+
+
 ![plot of chunk results](figure/results-1.png)
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # ras-ss vs the individual-level run on the same data. if on the dashed line, they agree
@@ -408,7 +483,13 @@ plot(agg$pu_pow, agg$ss_pow, xlim=c(0,1), ylim=c(0,1), pch=16, col="purple",
 abline(0,1, lty=2)
 ```
 
+</details>
+
+
 ![plot of chunk results](figure/results-2.png)
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # FPR-A, average number of false regions called per rep
@@ -417,6 +498,9 @@ names(fpr_tab)[4:6] <- c("ras-ss","indiv","pure ras() (num_rep=5)")
 fpr_tab[,4:6] <- round(fpr_tab[,4:6], 2)
 knitr::kable(fpr_tab, caption="FPR-A: average false regions per rep (0 = nothing spurious)")
 ```
+
+</details>
+
 
 
 
@@ -437,6 +521,9 @@ Table: FPR-A: average false regions per rep (0 = nothing spurious)
 |continuous  |  3| 1.0|   0.00|  0.00|                   0.00|
 |dichotomous |  3| 1.0|   0.00|  0.00|                   0.00|
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 # the paper's power definition: detected EVERY true region
 tab <- agg[, c("trait","M","q","ss_power","in_power","pu_power")]
@@ -444,6 +531,9 @@ names(tab)[4:6] <- c("ras-ss","indiv","pure ras() (num_rep=5)")
 tab[,4:6] <- round(tab[,4:6], 2)
 knitr::kable(tab, caption="Power = detected ALL M true regions; low for M=3 because the CPD usually catches only 1-2 of the 3 peaks")
 ```
+
+</details>
+
 
 
 

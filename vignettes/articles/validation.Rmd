@@ -2,13 +2,16 @@
 title: "Validation (300-SNP toy)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Validation}
+ %\VignetteIndexEntry{Validation (300-SNP toy)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
 
 *Paired-data validation on the 300-SNP toy. The main paper-style study is [Paper Replication](paper-replication.html).*
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 knitr::opts_chunk$set(echo = TRUE)
@@ -22,6 +25,12 @@ source("code/ras_ss.R")
 start_time <- Sys.time()
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # run config
@@ -53,6 +62,12 @@ signal_beta[causal_snps] <- effect_size
 in_zone <- function(tau) any(tau >= 130 & tau <= 170)
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # rows 1 & 2 share the same simulated data per rep (paired test);
@@ -96,6 +111,12 @@ pure_p_tau <- future_lapply(seq_len(n_power), function(s)
 pure_p <- sapply(pure_p_tau, in_zone)
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # per-rep runtime, single core, same reps for all three (fair algorithmic cost)
@@ -116,6 +137,12 @@ t_pure_b <- bench(function(s) {
 })
 ```
 
+</details>
+
+
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # format for table
@@ -134,6 +161,9 @@ knitr::kable(data.frame(
 ), caption = "Method comparison -- point estimate (exact binomial 95% CI), single-core sec/rep")
 ```
 
+</details>
+
+
 
 
 Table: Method comparison -- point estimate (exact binomial 95% CI), single-core sec/rep
@@ -144,15 +174,24 @@ Table: Method comparison -- point estimate (exact binomial 95% CI), single-core 
 |indiv (same data, paired)     |0.036 (0.021-0.056) |0.940 (0.898-0.969) |2.11 s/rep |500 / 200 |
 |indiv (pure ras(), num_rep=5) |0.010 (0.003-0.023) |1.000 (0.982-1.000) |4.14 s/rep |500 / 200 |
 
+<details>
+<summary>Show code</summary>
+
 ``` r
 # ras-ss seeds are unchanged, so this must reproduce 0.038 / 0.935
 cat(sprintf("ras-ss repro check: type1 = %.3f (expect 0.038), power = %.3f (expect 0.935)\n",
             mean(ss_n), mean(ss_p)))
 ```
 
+</details>
+
+
 ```
 ## ras-ss repro check: type1 = 0.038 (expect 0.038), power = 0.935 (expect 0.935)
 ```
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # NOTE: time with knitr caching
@@ -160,10 +199,16 @@ cat(sprintf("Total knitting time: %.1f minutes\n",
             as.numeric(difftime(Sys.time(), start_time, units = "mins"))))
 ```
 
+</details>
+
+
 ```
 ## Total knitting time: 47.0 minutes
 ```
 
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # plot 0: the three-run comparison, w/ exact binomial 95% CI error bars
@@ -189,7 +234,13 @@ legend("topright", fill = c("blue", "red", "purple"), border = NA, bty = "n",
        legend = c("ras-ss", "indiv (paired)", "pure ras() (num_rep=5)"))
 ```
 
+</details>
+
+
 ![plot of chunk diagnostics](figure/diagnostics-1.png)
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # plot 1: detection outcome per run
@@ -208,7 +259,13 @@ legend("topright", fill = c("grey70", "steelblue", "tomato"), border = NA,
        legend = c("missed", "in causal zone", "detected but off-target"), bty = "n")
 ```
 
+</details>
+
+
 ![plot of chunk diagnostics](figure/diagnostics-2.png)
+
+<details>
+<summary>Show code</summary>
 
 ``` r
 # plot 2: where the validated peak landed, all three runs
@@ -227,5 +284,8 @@ abline(v = 151, lty = 2, lwd = 2)
 legend("topright", c("ras-ss", "indiv (paired)", "pure ras() (num_rep=5)"),
        col = c("blue", "red", "purple"), lwd = 3, bty = "n")
 ```
+
+</details>
+
 
 ![plot of chunk diagnostics](figure/diagnostics-3.png)

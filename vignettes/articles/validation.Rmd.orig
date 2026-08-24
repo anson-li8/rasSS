@@ -2,7 +2,7 @@
 title: "Validation (300-SNP toy)"
 output: rmarkdown::html_vignette
 vignette: >
- %\VignetteIndexEntry{Validation}
+ %\VignetteIndexEntry{Validation (300-SNP toy)}
  %\VignetteEngine{knitr::rmarkdown}
  %\VignetteEncoding{UTF-8}
 ---
@@ -10,7 +10,7 @@ vignette: >
 *Paired-data validation on the 300-SNP toy. The main paper-style study is [Paper Replication](paper-replication.html).*
 
 ```{r setup, warning=FALSE, results='hide'}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(autodep = TRUE)
 library(rasSS)
 library(mvtnorm)
