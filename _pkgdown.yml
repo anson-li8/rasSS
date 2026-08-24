@@ -16,11 +16,11 @@ navbar:
     articles:
       text: Articles
       menu:
-        - text: Problem Statement (300-SNP toy)
+        - text: Problem Statement
           href: articles/problem-statement.html
-        - text: Pilot Study
+        - text: Pilot Study (300-SNP toy)
           href: articles/pilot-study.html
-        - text: Validation
+        - text: Validation (300-SNP toy)
           href: articles/validation.html
-        - text: Paper Replication
+        - text: Paper Replication (1000-SNP)
           href: articles/paper-replication.html
