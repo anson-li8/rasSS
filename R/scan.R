@@ -8,9 +8,10 @@
 #' @param skip2 Window-size step size.
 #' @param min_window_size Minimum half-window size.
 #' @param max_window_size Maximum half-window size.
-#' @return List with `x` and `y`.
+#' @return List with `x` pivotal SNP positions and `y` -log10 p-values.
 #' @export
-scan_ss <- function(b_disc, z_targ, R, mask, skip1 = 10, skip2 = 3, min_window_size = 3, max_window_size = 30) {
+scan_ss <- function(b_disc, z_targ, R, mask, skip1 = 10, skip2 = 3, 
+                    min_window_size = 3, max_window_size = 30) {
   n_snps <- length(b_disc)
   sites <- seq(1, n_snps, by = skip1)
   sub_windows <- c(0, seq(min_window_size, max_window_size, by = skip2))
