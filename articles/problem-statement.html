@@ -262,7 +262,7 @@ each (Method A), LD pruned at
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&lt;</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">r^2 &lt; 0.2</annotation></semantics></math>
 (300 -&gt; 100 SNPs survived). The validated workflow is LD pruning +
 <code>T_burden</code> + the package’s own unmodified
-<code>ras_detect()</code> / <code>ras_validate()</code> changepoint
+<code><a href="https://rdrr.io/pkg/RAS/man/ras_detect.html" class="external-link">ras_detect()</a></code> / <code><a href="https://rdrr.io/pkg/RAS/man/ras_validate.html" class="external-link">ras_validate()</a></code> changepoint
 detection.</p>
 <p>Tuning: At package default of 5, the local slope re-check window is
 located on the flat top of the signal’s plateau, so the slope looks weak
@@ -312,7 +312,7 @@ profile).</p>
 <td>500 / 200</td>
 </tr>
 <tr class="odd">
-<td>Individual-level, pure <code>ras()</code>
+<td>Individual-level, pure <code><a href="https://rdrr.io/pkg/RAS/man/ras.html" class="external-link">ras()</a></code>
 (<code>num_rep = 5</code>)</td>
 <td>0.010 (0.003–0.023)</td>
 <td>1.000 (0.982–1.000)</td>
@@ -325,7 +325,7 @@ simulated data per rep (same seed -&gt; same genotypes, phenotypes,
 discovery weights, pruned windows, and CPD parameters), differing only
 in the per-window statistic (summary-stat <code>T_burden</code> vs. the
 individual-level <code>lm(phenotype ~ LPRS)</code> regression). Row 3
-runs the package’s shipped <code>ras()</code> with its published default
+runs the package’s shipped <code><a href="https://rdrr.io/pkg/RAS/man/ras.html" class="external-link">ras()</a></code> with its published default
 <code>num_rep = 5</code>, exactly as a user would.</p>
 <p>Reading the table by rows:</p>
 <ul>
@@ -361,7 +361,7 @@ This is listed under Open items as the planned next experiment.</li>
 <li>
 <strong>Type I error:</strong> ras-ss at 0.038 is within the
 original paper’s own Table 1 range (0.042–0.050), so it is the
-well-calibrated row. Pure <code>ras()</code> at 0.010 is actually
+well-calibrated row. Pure <code><a href="https://rdrr.io/pkg/RAS/man/ras.html" class="external-link">ras()</a></code> at 0.010 is actually
 <em>over-conservative</em> (below nominal 0.05 and below the paper’s
 range). Its lower false-positive rate also gives it perfect power, on
 the null side. All three rows are at or below the acceptable 0.05.</li>

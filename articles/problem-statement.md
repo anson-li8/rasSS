@@ -135,8 +135,10 @@ Setup: 300-SNP toy chromosome, AR(1) LD at $`\rho = 0.8`$, true signal
 at 3 consecutive causal SNPs (150–152, effect size 0.5). Discovery and
 target cohorts of $`n = 1000`$ each (Method A), LD pruned at
 $`r^2 < 0.2`$ (300 -\> 100 SNPs survived). The validated workflow is LD
-pruning + `T_burden` + the package’s own unmodified `ras_detect()` /
-`ras_validate()` changepoint detection.
+pruning + `T_burden` + the package’s own unmodified
+[`ras_detect()`](https://rdrr.io/pkg/RAS/man/ras_detect.html) /
+[`ras_validate()`](https://rdrr.io/pkg/RAS/man/ras_validate.html)
+changepoint detection.
 
 Tuning: At package default of 5, the local slope re-check window is
 located on the flat top of the signal’s plateau, so the slope looks weak
@@ -160,15 +162,15 @@ Results at these parameters (three-run validation, see `02_simulation`):
 |----|----|----|----|
 | ras-ss (this work) | 0.038 (0.023–0.059) | 0.935 (0.891–0.965) | 500 / 200 |
 | Individual-level, same data (paired) | 0.036 (0.021–0.056) | 0.940 (0.898–0.969) | 500 / 200 |
-| Individual-level, pure `ras()` (`num_rep = 5`) | 0.010 (0.003–0.023) | 1.000 (0.982–1.000) | 500 / 200 |
+| Individual-level, pure [`ras()`](https://rdrr.io/pkg/RAS/man/ras.html) (`num_rep = 5`) | 0.010 (0.003–0.023) | 1.000 (0.982–1.000) | 500 / 200 |
 
 CIs are exact binomial 95% intervals. Rows 1 and 2 share the same
 simulated data per rep (same seed -\> same genotypes, phenotypes,
 discovery weights, pruned windows, and CPD parameters), differing only
 in the per-window statistic (summary-stat `T_burden` vs. the
 individual-level `lm(phenotype ~ LPRS)` regression). Row 3 runs the
-package’s shipped `ras()` with its published default `num_rep = 5`,
-exactly as a user would.
+package’s shipped [`ras()`](https://rdrr.io/pkg/RAS/man/ras.html) with
+its published default `num_rep = 5`, exactly as a user would.
 
 Reading the table by rows:
 
@@ -201,10 +203,10 @@ Reading the table by rows:
   items as the planned next experiment.
 - **Type I error:** ras-ss at 0.038 is within the original paper’s own
   Table 1 range (0.042–0.050), so it is the well-calibrated row. Pure
-  `ras()` at 0.010 is actually *over-conservative* (below nominal 0.05
-  and below the paper’s range). Its lower false-positive rate also gives
-  it perfect power, on the null side. All three rows are at or below the
-  acceptable 0.05.
+  [`ras()`](https://rdrr.io/pkg/RAS/man/ras.html) at 0.010 is actually
+  *over-conservative* (below nominal 0.05 and below the paper’s range).
+  Its lower false-positive rate also gives it perfect power, on the null
+  side. All three rows are at or below the acceptable 0.05.
 - **Peak location (the density plot in `02_simulation`):** All three
   runs center on the true causal center (151). The single-pass runs (1
   and 2) show small side-bumps at neighboring points where a noisier
