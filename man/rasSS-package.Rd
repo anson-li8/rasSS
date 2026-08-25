@@ -2,11 +2,11 @@
 % Please edit documentation in R/rasSS-package.R
 \docType{package}
 \name{rasSS-package}
-\alias{rasSS}
 \alias{rasSS-package}
-\title{rasSS: What the Package Does (One Line, Title Case)}
+\alias{rasSS}
+\title{rasSS: Summary-Statistic Extension of the Regional Association Score Method}
 \description{
-What the package does (one paragraph).
+Extends the Regional Association Score (RAS) method of Jiang and Zhang (2025) to accept GWAS summary statistics. Replaces per-window individual-level regression with a 1-df weighted burden statistic derived from marginal Z-scores and an external LD reference, then runs the profile through the original change-point detection algorithm.
 }
 \seealso{
 Useful links:
@@ -18,11 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com}
+\strong{Maintainer}: Anson Li \email{liyuanrui618@gmail.com}
 
 Authors:
 \itemize{
-  \item First Last \email{first.last@example.com}
+  \item Anson Li \email{liyuanrui618@gmail.com}
+  \item Shengtong Han \email{shengtong.han@marquette.edu}
 }
 
 }
