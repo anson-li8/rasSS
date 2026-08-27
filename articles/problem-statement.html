@@ -283,8 +283,7 @@ Type I) thus picks <code>window_size = 12</code>.</p>
 <code>p.value.threshold = 1e-3</code> (the two thresholds taken from the
 package’s own <code>@examples</code> for a similarly-sized toy
 profile).</p>
-<p>Results at these parameters (three-run validation, see
-<code>02_simulation</code>):</p>
+<p>Results at these parameters (three-run validation, see <a href="validation.html">Validation</a>):</p>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -366,14 +365,13 @@ well-calibrated row. Pure <code><a href="https://rdrr.io/pkg/RAS/man/ras.html" c
 range). Its lower false-positive rate also gives it perfect power, on
 the null side. All three rows are at or below the acceptable 0.05.</li>
 <li>
-<strong>Peak location (the density plot in
-<code>02_simulation</code>):</strong> All three runs center on the true
-causal center (151). The single-pass runs (1 and 2) show small
-side-bumps at neighboring points where a noisier single-pass profile
-brought the validated peak one step off, a visual representation of the
-same averaging benefit, and the same open item. Edge-anchoring for
-ras-ss over the 200 power reps: 187 centered, 0 landed on the trailing
-plateau edge without also hitting center, 13 missed/snapped
+<strong>Peak location (the density plot in <a href="validation.html">Validation</a>):</strong> All three runs center
+on the true causal center (151). The single-pass runs (1 and 2) show
+small side-bumps at neighboring points where a noisier single-pass
+profile brought the validated peak one step off, a visual representation
+of the same averaging benefit, and the same open item. Edge-anchoring
+for ras-ss over the 200 power reps: 187 centered, 0 landed on the
+trailing plateau edge without also hitting center, 13 missed/snapped
 off-center.</li>
 </ul>
 <p>Takeaway: ras-ss is not a replacement for the original method when
@@ -397,13 +395,13 @@ reference panel vs. true cohort LD) has not yet been stress-tested.</li>
 has not been re-verified at other chromosome sizes or LD structures.
 (Done in simulation 3)</li>
 <li>Summary-stat resampling analog of <code>num_rep</code>: The
-three-run validation (<code>02_simulation</code>) measures the cost of
-being single-pass at ~6 power points vs. the 5-averaged original, all of
-it due to the resampling average. A reference-panel resampling analog is
-the planned way to recover the LD-noise portion of that gap on real data
-(negligible on this toy, where reference is large). Unfortunately, the
-target-resplit portion is unrecoverable from summary statistics without
-significant change of the method.</li>
+three-run validation (<a href="validation.html">Validation</a>) measures
+the cost of being single-pass at ~6 power points vs. the 5-averaged
+original, all of it due to the resampling average. A reference-panel
+resampling analog is the planned way to recover the LD-noise portion of
+that gap on real data (negligible on this toy, where reference is
+large). Unfortunately, the target-resplit portion is unrecoverable from
+summary statistics without significant change of the method.</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

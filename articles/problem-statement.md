@@ -156,7 +156,8 @@ Final parameters: `window_size = 12`, `slope_check_window_size = 8`,
 (the two thresholds taken from the package’s own `@examples` for a
 similarly-sized toy profile).
 
-Results at these parameters (three-run validation, see `02_simulation`):
+Results at these parameters (three-run validation, see
+[Validation](https://anson-li8.github.io/rasSS/articles/validation.md)):
 
 | Run | Type I error (95% CI) | Power (95% CI) | Reps |
 |----|----|----|----|
@@ -207,13 +208,14 @@ Reading the table by rows:
   *over-conservative* (below nominal 0.05 and below the paper’s range).
   Its lower false-positive rate also gives it perfect power, on the null
   side. All three rows are at or below the acceptable 0.05.
-- **Peak location (the density plot in `02_simulation`):** All three
-  runs center on the true causal center (151). The single-pass runs (1
-  and 2) show small side-bumps at neighboring points where a noisier
-  single-pass profile brought the validated peak one step off, a visual
-  representation of the same averaging benefit, and the same open item.
-  Edge-anchoring for ras-ss over the 200 power reps: 187 centered, 0
-  landed on the trailing plateau edge without also hitting center, 13
+- **Peak location (the density plot in
+  [Validation](https://anson-li8.github.io/rasSS/articles/validation.md)):**
+  All three runs center on the true causal center (151). The single-pass
+  runs (1 and 2) show small side-bumps at neighboring points where a
+  noisier single-pass profile brought the validated peak one step off, a
+  visual representation of the same averaging benefit, and the same open
+  item. Edge-anchoring for ras-ss over the 200 power reps: 187 centered,
+  0 landed on the trailing plateau edge without also hitting center, 13
   missed/snapped off-center.
 
 Takeaway: ras-ss is not a replacement for the original method when
@@ -236,10 +238,11 @@ only environment.
   $`\rho=0.8`$); has not been re-verified at other chromosome sizes or
   LD structures. (Done in simulation 3)
 - Summary-stat resampling analog of `num_rep`: The three-run validation
-  (`02_simulation`) measures the cost of being single-pass at ~6 power
-  points vs. the 5-averaged original, all of it due to the resampling
-  average. A reference-panel resampling analog is the planned way to
-  recover the LD-noise portion of that gap on real data (negligible on
-  this toy, where reference is large). Unfortunately, the target-resplit
-  portion is unrecoverable from summary statistics without significant
-  change of the method.
+  ([Validation](https://anson-li8.github.io/rasSS/articles/validation.md))
+  measures the cost of being single-pass at ~6 power points vs. the
+  5-averaged original, all of it due to the resampling average. A
+  reference-panel resampling analog is the planned way to recover the
+  LD-noise portion of that gap on real data (negligible on this toy,
+  where reference is large). Unfortunately, the target-resplit portion
+  is unrecoverable from summary statistics without significant change of
+  the method.
