@@ -14,7 +14,10 @@ Note: Jiang & Zhang's Simulation Study simulated phenotypes on *real* ABCD chr21
 # Setup and Config
 
 ```{r setup, results='hide', warning=FALSE}
-knitr::opts_chunk$set(echo = FALSE, autodep = TRUE)
+knitr::opts_chunk$set(echo = TRUE, autodep = TRUE)
+knitr::knit_hooks$set(source = function(x, options) {
+  paste0("<details>\n<summary>Show code</summary>\n\n", x, "\n</details>\n")
+})
 options(future.rng.onMisuse = "ignore")
 library(rasSS)
 library(mvtnorm)

@@ -10,7 +10,10 @@ vignette: >
 *Pilot/tuning run. The main paper-style study is [Paper Replication](paper-replication.html).*
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::knit_hooks$set(source = function(x, options) {
+  paste0("<details>\n<summary>Show code</summary>\n\n", x, "\n</details>\n")
+})
 knitr::opts_chunk$set(autodep = TRUE)
 suppressPackageStartupMessages({
   library(mvtnorm)
