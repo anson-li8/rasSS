@@ -2,22 +2,23 @@
 % Please edit documentation in R/simulate.R
 \name{make_pheno}
 \alias{make_pheno}
-\title{Simulate phenotype}
+\title{Simulate phenotype from causal effects}
 \usage{
 make_pheno(X, beta, trait, seed)
 }
 \arguments{
-\item{X}{Genotype matrix.}
+\item{X}{Numeric matrix. Genotype dosage matrix (individuals x SNPs).}
 
-\item{beta}{True effect-size vector.}
+\item{beta}{Numeric vector. True effect sizes (0 for non-causal SNPs).}
 
-\item{trait}{Either \code{"continuous"} or \code{"binary"}.}
+\item{trait}{Character. Either \code{"continuous"} or \code{"binary"}.}
 
-\item{seed}{Random seed.}
+\item{seed}{Integer. Random seed for reproducibility.}
 }
 \value{
-Phenotype vector.
+Phenotype vector. (numeric liability for continuous, 0/1 status for binary).
 }
 \description{
-Simulate phenotype
+Generates phenotype based on linear combination of genotypes and true effect,
+with added Gaussian noise.
 }

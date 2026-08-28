@@ -2,18 +2,22 @@
 % Please edit documentation in R/simulate.R
 \name{get_marginal_stats}
 \alias{get_marginal_stats}
-\title{Marginal statistics for continuous trait}
+\title{Marginal GWAS statistics for continuous trait}
 \usage{
 get_marginal_stats(X, y)
 }
 \arguments{
-\item{X}{Genotype matrix.}
+\item{X}{Numeric matrix. Genotypic dosage matrix (individuals x SNPs).}
 
-\item{y}{Phenotype vector.}
+\item{y}{Numeric vector. Continuous phenotype vector.}
 }
 \value{
-List with \code{beta} and \code{z}.
+List with two elements:
+\itemize{
+\item \code{beta}: Marginal effect sizes.
+\item \code{z}: Marginal Z-scores (non-finite values set to 0).
+}
 }
 \description{
-Marginal statistics for continuous trait
+Calculates per-SNP marginal effect sizes and Z-scores via ordinary least squares (OLS).
 }

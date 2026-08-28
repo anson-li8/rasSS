@@ -10,7 +10,7 @@ quiet(expr)
 \item{expr}{Expression to evaluate.}
 }
 \value{
-The value of \code{expr}.
+The result of evaluating \code{expr}.
 }
 \description{
 Evaluates an expression while suppressing both stdout and message output.

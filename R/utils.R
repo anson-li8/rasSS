@@ -3,7 +3,7 @@
 #' Evaluates an expression while suppressing both stdout and message output.
 #'
 #' @param expr Expression to evaluate.
-#' @return The value of `expr`.
+#' @return The result of evaluating `expr`.
 #' @export
 quiet <- function(expr) {
   nc <- file(nullfile(), open = "wt")

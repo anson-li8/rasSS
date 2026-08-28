@@ -2,18 +2,22 @@
 % Please edit documentation in R/simulate.R
 \name{get_marginal_stats_bin}
 \alias{get_marginal_stats_bin}
-\title{Rao score marginal statistics for binary trait}
+\title{Marginal GWAS statistics for binary trait}
 \usage{
 get_marginal_stats_bin(X, y)
 }
 \arguments{
-\item{X}{Genotype matrix.}
+\item{X}{Numeric matrix. Genotype dosage matrix (individuals x SNPs).}
 
-\item{y}{Binary phenotype vector.}
+\item{y}{Numeric vector. Binary phenotype vector (0/1).}
 }
 \value{
-List with \code{beta} and \code{z}.
+List with two elements:
+\itemize{
+\item \code{beta}: Score-based effect sizes (\eqn{U/V}).
+\item \code{z}: Rao score Z-scores (non-finite values set to 0).
+}
 }
 \description{
-Rao score marginal statistics for binary trait
+Calculates per-SNP Rao score test statistics for case/control phenotypes.
 }

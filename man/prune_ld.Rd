@@ -7,13 +7,16 @@
 prune_ld(R, thresh)
 }
 \arguments{
-\item{R}{LD correlation matrix.}
+\item{R}{Numeric matrix. LD correlation matrix.}
 
-\item{thresh}{r-squared pruning threshold.}
+\item{thresh}{Numeric. Squared correlation threshold (e.g., 0.2). SNPs with
+\eqn{r^2 > thresh} compared to a retained SNP are eliminated.}
 }
 \value{
-Logical vector indicating retained SNPs.
+Logical vector of length \code{nrow(R)}; retained SNPs are indicated by \code{TRUE}.
 }
 \description{
-Greedy LD pruning
+Removes redundant SNPs based on the criterion of squared correlation (\eqn{r^2})
+exceeding a specified threshold. Traverses SNPs in order and drops any
+following SNPs that are redundant with a retained one.
 }
