@@ -1,10 +1,11 @@
-# Summary-Statistic RAS Profile Generation
+# Summary-Statistic RAS Profile Generation.
 
 Generates a Regional Association Score (RAS) profile using only summary
-statistics. For each pivotal SNP, it runs an adaptive window scan,
-calculates the burden statistic
+statistics. For each pivotal SNP, the function scans windows at adaptive
+sizes, calculates the burden statistic
 [`t_burden`](https://anson-li8.github.io/rasSS/reference/t_burden.md),
-and keeps the minimum p-value (highest RAS) across the grid.
+and retains the minimum p-value (highest RAS) across window sizes to
+build the profile.
 
 ## Usage
 
@@ -25,11 +26,12 @@ scan_ss(
 
 - b_disc:
 
-  Numeric vector. Genome-wide discovery marginal effect sizes.
+  Numeric vector. Genome-wide discovery marginal effect sizes (used as
+  weights \\w\\).
 
 - z_targ:
 
-  Numeric vector. Genome-wide target marginal Z-scores.
+  Numeric vector. Genome-wide target marginal Z-scores (vector \\Z\\).
 
 - R:
 
@@ -38,30 +40,32 @@ scan_ss(
 
 - mask:
 
-  Logical vector. Indicates which SNPs are retained after LD pruning.
+  Logical vector. Indicates which SNPs are retained after LD pruning
+  (e.g., from
+  [`prune_ld()`](https://anson-li8.github.io/rasSS/reference/prune_ld.md)).
 
 - skip1:
 
-  Integer. Step size for pivotal SNPs (e.g., evaluate every 10th SNP).
+  Integer. Step size for pivotal SNPs (default: 10).
 
 - skip2:
 
-  Integer. Step size for the adaptive window scan at each SNP.
+  Integer. Step size for adaptive window size increment (default: 3).
 
 - min_window_size:
 
-  Integer. Minimum half-window size (in SNPs).
+  Integer. Minimum half-window size in SNPs (default: 3).
 
 - max_window_size:
 
-  Integer. Maximum half-window size (in SNPs).
+  Integer. Maximum half-window size in SNPs (default: 30).
 
 ## Value
 
 A list with two elements:
 
-- `x`: Integer vector of the genomic indices of the pivotal SNPs
-  evaluated.
+- `x`: Integer vector of the genomic indices of the evaluated pivotal
+  SNPs .
 
 - `y`: Numeric vector of the \\-\log\_{10}(p)\\-values from the most
-  significant adaptive window at each pivotal SNP.
+  significant window at each pivotal SNP.

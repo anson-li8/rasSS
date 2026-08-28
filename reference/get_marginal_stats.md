@@ -1,6 +1,7 @@
-# Marginal statistics for continuous trait
+# Marginal GWAS statistics for continuous trait
 
-Marginal statistics for continuous trait
+Calculates per-SNP marginal effect sizes and Z-scores via ordinary least
+squares (OLS).
 
 ## Usage
 
@@ -12,12 +13,16 @@ get_marginal_stats(X, y)
 
 - X:
 
-  Genotype matrix.
+  Numeric matrix. Genotypic dosage matrix (individuals x SNPs).
 
 - y:
 
-  Phenotype vector.
+  Numeric vector. Continuous phenotype vector.
 
 ## Value
 
-List with `beta` and `z`.
+List with two elements:
+
+- `beta`: Marginal effect sizes.
+
+- `z`: Marginal Z-scores (non-finite values set to 0).

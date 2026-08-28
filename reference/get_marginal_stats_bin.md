@@ -1,6 +1,7 @@
-# Rao score marginal statistics for binary trait
+# Marginal GWAS statistics for binary trait
 
-Rao score marginal statistics for binary trait
+Calculates per-SNP Rao score test statistics for case/control
+phenotypes.
 
 ## Usage
 
@@ -12,12 +13,16 @@ get_marginal_stats_bin(X, y)
 
 - X:
 
-  Genotype matrix.
+  Numeric matrix. Genotype dosage matrix (individuals x SNPs).
 
 - y:
 
-  Binary phenotype vector.
+  Numeric vector. Binary phenotype vector (0/1).
 
 ## Value
 
-List with `beta` and `z`.
+List with two elements:
+
+- `beta`: Score-based effect sizes (\\U/V\\).
+
+- `z`: Rao score Z-scores (non-finite values set to 0).

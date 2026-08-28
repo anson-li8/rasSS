@@ -1,6 +1,8 @@
 # Simulate genotypes from an LD matrix
 
-Simulate genotypes from an LD matrix
+Using a multivariate normal distribution constructed by the provided LD
+correlation matrix, this function simulates genotypes in a population,
+then rounds and clips to integer genotypic dosages (0, 1, 2).
 
 ## Usage
 
@@ -12,12 +14,13 @@ sim_genotypes(n, R)
 
 - n:
 
-  Number of individuals.
+  Integer. Number of individuals to simulate.
 
 - R:
 
-  LD correlation matrix.
+  Numeric matrix. LD correlation matrix.
 
 ## Value
 
-Integer genotype matrix with values 0, 1, or 2.
+An `n` x `ncol(R)` integer matrix of simulated genotype dosages (values
+0, 1, or 2).

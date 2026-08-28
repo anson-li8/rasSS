@@ -17,4 +17,4 @@ quiet(expr)
 
 ## Value
 
-The value of `expr`.
+The result of evaluating `expr`.

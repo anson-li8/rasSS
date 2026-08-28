@@ -1,6 +1,7 @@
-# Simulate phenotype
+# Simulate phenotype from causal effects
 
-Simulate phenotype
+Generates phenotype based on linear combination of genotypes and true
+effect, with added Gaussian noise.
 
 ## Usage
 
@@ -12,20 +13,21 @@ make_pheno(X, beta, trait, seed)
 
 - X:
 
-  Genotype matrix.
+  Numeric matrix. Genotype dosage matrix (individuals x SNPs).
 
 - beta:
 
-  True effect-size vector.
+  Numeric vector. True effect sizes (0 for non-causal SNPs).
 
 - trait:
 
-  Either `"continuous"` or `"binary"`.
+  Character. Either `"continuous"` or `"binary"`.
 
 - seed:
 
-  Random seed.
+  Integer. Random seed for reproducibility.
 
 ## Value
 
-Phenotype vector.
+Phenotype vector. (numeric liability for continuous, 0/1 status for
+binary).
