@@ -1,24 +1,25 @@
-#' Summary-Statistic RAS Profile Generation
+#' Summary-Statistic RAS Profile Generation.
 #'
 #' Generates a Regional Association Score (RAS) profile using only 
-#' summary statistics. For each pivotal SNP, it runs an adaptive window 
-#' scan, calculates the burden statistic \code{\link{t_burden}}, 
-#' and keeps the minimum p-value (highest RAS) across the grid.
+#' summary statistics. For each pivotal SNP, the function scans windows 
+#' at adaptive sizes, calculates the burden statistic \code{\link{t_burden}}, 
+#' and retains the minimum p-value (highest RAS) across window sizes to build the profile.
 #'
-#' @param b_disc Numeric vector. Genome-wide discovery marginal effect sizes.
-#' @param z_targ Numeric vector. Genome-wide target marginal Z-scores.
+#' @param b_disc Numeric vector. Genome-wide discovery marginal effect sizes (used
+#'   as weights \eqn{w}).
+#' @param z_targ Numeric vector. Genome-wide target marginal Z-scores (vector \eqn{Z}).
 #' @param R Numeric matrix. Genome-wide LD correlation matrix (e.g., from an external reference panel).
-#' @param mask Logical vector. Indicates which SNPs are retained after LD pruning.
-#' @param skip1 Integer. Step size for pivotal SNPs (e.g., evaluate every 10th SNP).
-#' @param skip2 Integer. Step size for the adaptive window scan at each SNP.
-#' @param min_window_size Integer. Minimum half-window size (in SNPs).
-#' @param max_window_size Integer. Maximum half-window size (in SNPs).
+#' @param mask Logical vector. Indicates which SNPs are retained after LD pruning (e.g., from [prune_ld()]). 
+#' @param skip1 Integer. Step size for pivotal SNPs (default: 10).
+#' @param skip2 Integer. Step size for adaptive window size increment (default: 3).
+#' @param min_window_size Integer. Minimum half-window size in SNPs (default: 3).
+#' @param max_window_size Integer. Maximum half-window size in SNPs (default: 30).
 #'
 #' @return A list with two elements:
 #'   \itemize{
-#'     \item `x`: Integer vector of the genomic indices of the pivotal SNPs evaluated.
+#'     \item `x`: Integer vector of the genomic indices of the evaluated pivotal SNPs .
 #'     \item `y`: Numeric vector of the \eqn{-\log_{10}(p)}-values from the most 
-#'       significant adaptive window at each pivotal SNP.
+#'       significant window at each pivotal SNP.
 #'   }
 #' @export
 scan_ss <- function(b_disc, z_targ, R, mask, skip1 = 10, skip2 = 3, 
