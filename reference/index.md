@@ -11,7 +11,7 @@
 - [`prune_ld()`](https://anson-li8.github.io/rasSS/reference/prune_ld.md)
   : Greedy LD pruning
 - [`quiet()`](https://anson-li8.github.io/rasSS/reference/quiet.md) :
-  Suppress stdout and messages
+  Suppress stdout, messages, and warnings
 - [`scan_ss()`](https://anson-li8.github.io/rasSS/reference/scan_ss.md)
   : Summary-Statistic RAS Profile Generation.
 - [`sim_genotypes()`](https://anson-li8.github.io/rasSS/reference/sim_genotypes.md)
