@@ -21,3 +21,16 @@ test_that("scan_ss follows the LD-pruning mask", {
   # expect a shrunken window statistic after pruning
   expect_gt(full$y[2], masked$y[2])
 })
+
+test_that("scan_ss appends max_window_size manually when step-size seq() skips it", {
+  n <- 10
+  b <- rep(1, n)
+  z <- rep(3, n)
+  # min=3, max=10, skip2=4 -> seq(3, 10, 4) yields c(3, 7). 
+  # 7 != 10, so fallback appends 10 to the window grid.
+  out <- scan_ss(b, z, diag(n), rep(TRUE, n),
+                 skip1 = 1, skip2 = 4, 
+                 min_window_size = 3, max_window_size = 10)
+  expect_true(is.list(out))
+  expect_length(out$x, n)
+})
