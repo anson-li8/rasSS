@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{quiet}
 \alias{quiet}
-\title{Suppress stdout and messages}
+\title{Suppress stdout, messages, and warnings}
 \usage{
 quiet(expr)
 }
@@ -14,4 +14,6 @@ The result of evaluating \code{expr}.
 }
 \description{
 Evaluates an expression while suppressing both stdout and message output.
+This is necessary because some dependencies (like RAS) emit verbose output
+directly to stderr or through R's message system.
 }
