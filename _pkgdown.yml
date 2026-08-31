@@ -1,6 +1,7 @@
 url: https://anson-li8.github.io/rasSS/
 template:
   bootstrap: 5
+  math-rendering: mathjax
 
 navbar:
   structure:
