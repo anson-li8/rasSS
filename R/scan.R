@@ -6,8 +6,8 @@
 #' and retains the minimum p-value (highest RAS) across window sizes to build the profile.
 #'
 #' @param b_disc Numeric vector. Genome-wide discovery marginal effect sizes (used
-#'   as weights \eqn{w}).
-#' @param z_targ Numeric vector. Genome-wide target marginal Z-scores (vector \eqn{Z}).
+#'   as weights \eqn{w}{w}).
+#' @param z_targ Numeric vector. Genome-wide target marginal Z-scores (vector \eqn{Z}{Z}).
 #' @param R Numeric matrix. Genome-wide LD correlation matrix (e.g., from an external reference panel).
 #' @param mask Logical vector. Indicates which SNPs are retained after LD pruning (e.g., from [prune_ld()]). 
 #' @param skip1 Integer. Step size for pivotal SNPs (default: 10).
@@ -18,7 +18,7 @@
 #' @return A list with two elements:
 #'   \itemize{
 #'     \item `x`: Integer vector of the genomic indices of the evaluated pivotal SNPs .
-#'     \item `y`: Numeric vector of the \eqn{-\log_{10}(p)}-values from the most 
+#'     \item `y`: Numeric vector of the \eqn{-\log_{10}(p)}{-\log_{10}(p)}-values from the most 
 #'       significant window at each pivotal SNP.
 #'   }
 #' @export

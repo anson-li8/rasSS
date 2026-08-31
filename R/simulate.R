@@ -16,13 +16,13 @@ sim_genotypes <- function(n, R) {
 
 #' Greedy LD pruning
 #'
-#' Removes redundant SNPs based on the criterion of squared correlation (\eqn{r^2})
+#' Removes redundant SNPs based on the criterion of squared correlation (\eqn{r^2}{r^2})
 #' exceeding a specified threshold. Traverses SNPs in order and drops any
 #' following SNPs that are redundant with a retained one.
 #'
 #' @param R Numeric matrix. LD correlation matrix.
 #' @param thresh Numeric. Squared correlation threshold (e.g., 0.2). SNPs with
-#'   \eqn{r^2 > thresh} compared to a retained SNP are eliminated.
+#'   \eqn{r^2 > thresh}{r^2 > thresh} compared to a retained SNP are eliminated.
 #' @return Logical vector of length `nrow(R)`; retained SNPs are indicated by `TRUE`.
 #' @export
 prune_ld <- function(R, thresh) {
@@ -72,7 +72,7 @@ get_marginal_stats <- function(X, y) {
 #' 
 #' @return List with two elements:
 #'   \itemize{
-#'     \item `beta`: Score-based effect sizes (\eqn{U/V}).
+#'     \item `beta`: Score-based effect sizes (\eqn{U/V}{U/V}).
 #'     \item `z`: Rao score Z-scores (non-finite values set to 0).
 #'   }
 #' @export

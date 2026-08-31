@@ -13,3 +13,4 @@
 ^vignettes/articles/.*\.rds$
 ^vignettes/precompute\.R$
 ^vignettes/articles
+^codecov\.yml$

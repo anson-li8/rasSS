@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/anson-li8/rasSS/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/anson-li8/rasSS/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/anson-li8/rasSS/graph/badge.svg)](https://app.codecov.io/gh/anson-li8/rasSS)
 <!-- badges: end -->
 
 rasSS ([R]{.underline}egional [A]{.underline}ssociation [S]{.underline}core [S]{.underline}ummary [S]{.underline}tatistic extension) is an R-package that extends the functionality of RAS to accept summary statistics with a comparable power and Type I error rate as the original method. The original method is described in [Jiang et al. (2025)](https://doi.org/10.1073/pnas.2419721122) and found to have significant advantages over other GWAS algorithms, such as SKAT, CauchyGM, and Burden. In search of a faithful summary-statistic analog to the regional association scores derived from regressions on the individual genotypic and phenotypic data, rasSS implements a one degree-of-freedom weighted burden test statistic, evaluating the association of the adaptive genomic windows from typical GWAS summary statistics. The algorithm takes these evaluated association scores and runs the same workflow of Change Point Detection (CPD) to find the significant genomic regions. The package's main contribution is access, allowing the RAS algorithm to be used on studies that only publish summary statistics, and avoiding the restrictions of privacy and data storage.

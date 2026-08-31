@@ -22,7 +22,7 @@ Returns \code{0} if the variance denominator is non-positive or non-finite.
 }
 \description{
 Calculates the 1-degree-of-freedom weighted burden statistic
-\eqn{T = w'Z / \sqrt{w'Rw}} of a given window of SNPs. Under the null
-hypothesis of no association in the window, \eqn{T} asymptotically follows a
-standard normal distribution \eqn{N(0,1)}.
+\eqn{T_\text{burden} = w^T Z / \sqrt{w^T Rw}}{T_\text{burden} = w^T Z / \sqrt{w'Rw}} of a given window of SNPs. Under the null
+hypothesis of no association in the window, \eqn{T}{T} asymptotically follows a
+standard normal distribution \eqn{N(0,1)}{N(0,1)}.
 }

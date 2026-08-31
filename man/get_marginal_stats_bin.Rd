@@ -14,7 +14,7 @@ get_marginal_stats_bin(X, y)
 \value{
 List with two elements:
 \itemize{
-\item \code{beta}: Score-based effect sizes (\eqn{U/V}).
+\item \code{beta}: Score-based effect sizes (\eqn{U/V}{U/V}).
 \item \code{z}: Rao score Z-scores (non-finite values set to 0).
 }
 }

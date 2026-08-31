@@ -17,9 +17,9 @@ scan_ss(
 }
 \arguments{
 \item{b_disc}{Numeric vector. Genome-wide discovery marginal effect sizes (used
-as weights \eqn{w}).}
+as weights \eqn{w}{w}).}
 
-\item{z_targ}{Numeric vector. Genome-wide target marginal Z-scores (vector \eqn{Z}).}
+\item{z_targ}{Numeric vector. Genome-wide target marginal Z-scores (vector \eqn{Z}{Z}).}
 
 \item{R}{Numeric matrix. Genome-wide LD correlation matrix (e.g., from an external reference panel).}
 
@@ -37,7 +37,7 @@ as weights \eqn{w}).}
 A list with two elements:
 \itemize{
 \item \code{x}: Integer vector of the genomic indices of the evaluated pivotal SNPs .
-\item \code{y}: Numeric vector of the \eqn{-\log_{10}(p)}-values from the most
+\item \code{y}: Numeric vector of the \eqn{-\log_{10}(p)}{-\log_{10}(p)}-values from the most
 significant window at each pivotal SNP.
 }
 }
