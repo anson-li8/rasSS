@@ -1,9 +1,9 @@
 # Summary-Statistic Weighted Burden Statistic
 
-Calculates the 1-degree-of-freedom weighted burden statistic \\T = w'Z /
-\sqrt{w'Rw}\\ of a given window of SNPs. Under the null hypothesis of no
-association in the window, \\T\\ asymptotically follows a standard
-normal distribution \\N(0,1)\\.
+Calculates the 1-degree-of-freedom weighted burden statistic
+\\T\_\text{burden} = w^T Z / \sqrt{w^T Rw}\\ of a given window of SNPs.
+Under the null hypothesis of no association in the window, \\T\\
+asymptotically follows a standard normal distribution \\N(0,1)\\.
 
 ## Usage
 
