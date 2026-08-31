@@ -6,7 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Problem Statement • rasSS</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -77,22 +83,12 @@
 <div class="section level2">
 <h2 id="current-ras-algorithm">Current RAS algorithm:<a class="anchor" aria-label="anchor" href="#current-ras-algorithm"></a>
 </h2>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>P</mi><mi>R</mi><msub><mi>S</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mi>X</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">LPRS_i = \sum_{j=1}^{m} X_{ij} \hat{\beta}_j</annotation></semantics></math>
-Where in a specific window of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
-SNPs, it calculates a Localized Polygenic Risk Score (LPRS) for each
-individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>X</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><annotation encoding="application/x-tex">X_{ij}</annotation></semantics></math>
-is the genotype dosage of individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-at SNP
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>,
-and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><annotation encoding="application/x-tex">\hat{\beta}_j</annotation></semantics></math>
-is the marginal effect size of SNP
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>j</mi><annotation encoding="application/x-tex">j</annotation></semantics></math>
-estimated from the training split.</p>
+<p><span class="math display">\[LPRS_i = \sum_{j=1}^{m} X_{ij}
+\hat{\beta}_j\]</span> Where in a specific window of <span class="math inline">\(m\)</span> SNPs, it calculates a Localized
+Polygenic Risk Score (LPRS) for each individual <span class="math inline">\(i\)</span>. <span class="math inline">\(X_{ij}\)</span> is the genotype dosage of
+individual <span class="math inline">\(i\)</span> at SNP <span class="math inline">\(j\)</span>, and <span class="math inline">\(\hat{\beta}_j\)</span> is the marginal effect size
+of SNP <span class="math inline">\(j\)</span> estimated from the
+training split.</p>
 <p>It then tests the joint significance by taking the vector of LPRS
 values outputted and runs a regression against the vector of actual
 phenotypes. The p-value is calculated to determine if the slope of this
@@ -101,41 +97,25 @@ regression line is statistically significant.</p>
 <div class="section level2">
 <h2 id="summary-statistic-equivalent">Summary Statistic Equivalent:<a class="anchor" aria-label="anchor" href="#summary-statistic-equivalent"></a>
 </h2>
-<p>Given vector of marginal Z-scores for the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
-SNPs in the window:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>Z</mi><mn>1</mn></msub><mo>,</mo><msub><mi>Z</mi><mn>2</mn></msub><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><msub><mi>Z</mi><mi>m</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">Z = (Z_1, Z_2, ..., Z_m)^T</annotation></semantics></math></p>
-<p>To make sure
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>Z</mi><annotation encoding="application/x-tex">Z</annotation></semantics></math>
-is a valid replacement for the original individual data, summary
-statistics must be generated from target-cohort GWAS that was adjusted
-for the same set of covariates (age, sex, etc.) used in the original
-model
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∼</mo><mtext mathvariant="normal">LPRS</mtext><mo>+</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">y \sim \text{LPRS} + X</annotation></semantics></math>).</p>
-<p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
-be the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">m \times m</annotation></semantics></math>
-Linkage Disequilibrium (LD) correlation matrix of these SNPs, which can
-be estimated from an external reference (e.g., 1000 Genomes).
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
-must be ancestry-matched.</p>
-<p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mn>1</mn></msub><mo>,</mo><msub><mi>w</mi><mn>2</mn></msub><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><msub><mi>w</mi><mi>m</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">w = (w_1, w_2, ..., w_m)^T</annotation></semantics></math>
+<p>Given vector of marginal Z-scores for the <span class="math inline">\(m\)</span> SNPs in the window: <span class="math display">\[Z = (Z_1, Z_2, ..., Z_m)^T\]</span></p>
+<p>To make sure <span class="math inline">\(Z\)</span> is a valid
+replacement for the original individual data, summary statistics must be
+generated from target-cohort GWAS that was adjusted for the same set of
+covariates (age, sex, etc.) used in the original model (<span class="math inline">\(y \sim \text{LPRS} + X\)</span>).</p>
+<p>Let <span class="math inline">\(R\)</span> be the <span class="math inline">\(m \times m\)</span> Linkage Disequilibrium (LD)
+correlation matrix of these SNPs, which can be estimated from an
+external reference (e.g., 1000 Genomes). <span class="math inline">\(R\)</span> must be ancestry-matched.</p>
+<p>Let <span class="math inline">\(w = (w_1, w_2, ..., w_m)^T\)</span>
 be vector of weights derived from training data. Similar to original
-algorithm,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>
-contains the SNP marginal effect sizes
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>β</mi><mo accent="true">̂</mo></mover><annotation encoding="application/x-tex">\hat{\beta}</annotation></semantics></math>)
+algorithm, <span class="math inline">\(w\)</span> contains the SNP
+marginal effect sizes (<span class="math inline">\(\hat{\beta}\)</span>)
 from standard GWAS procedures ran on the training split.</p>
-<p>Under null hypothesis
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math>)
-of the SNP window having absolutely no effect on phenotype, a
-multivariate normal distribution can be created from this Z-score vector
-(assuming large enough target-cohort
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
-for this approximation to hold).
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>∼</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>R</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Z \sim N(0, R)</annotation></semantics></math></p>
+<p>Under null hypothesis (<span class="math inline">\(H_0\)</span>) of
+the SNP window having absolutely no effect on phenotype, a multivariate
+normal distribution can be created from this Z-score vector (assuming
+large enough target-cohort <span class="math inline">\(N\)</span> for
+this approximation to hold). <span class="math display">\[Z \sim N(0,
+R)\]</span></p>
 </div>
 <div class="section level2">
 <h2 id="the-test-statistic">The Test Statistic:<a class="anchor" aria-label="anchor" href="#the-test-statistic"></a>
@@ -145,43 +125,35 @@ whole window, not <code>m</code> different Z-scores, so these
 <code>m</code> dimensions have to be compressed down to a single
 number.</p>
 <p>Instead of a multi-degree-of-freedom test, the marginal Z-scores are
-projected onto the weight vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>
+projected onto the weight vector <span class="math inline">\(w\)</span>
 to form a 1 degree-of-freedom localized weighted burden statistic.
-Instead of estimating joint effects (already in
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>),
-the correlation matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
-is used only to account for linkage disequilibrium (LD) when evaluating
-the null distribution of the weighted burden statistic.</p>
-<p>Equation:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext mathvariant="normal">burden</mtext></msub><mo>=</mo><mfrac><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>Z</mi></mrow><msqrt><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>R</mi><mi>w</mi></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">T_{\text{burden}} = \frac{w^T Z}{\sqrt{w^T R w}}</annotation></semantics></math></p>
+Instead of estimating joint effects (already in <span class="math inline">\(w\)</span>), the correlation matrix <span class="math inline">\(R\)</span> is used only to account for linkage
+disequilibrium (LD) when evaluating the null distribution of the
+weighted burden statistic.</p>
+<p>Equation: <span class="math display">\[T_{\text{burden}} = \frac{w^T
+Z}{\sqrt{w^T R w}}\]</span></p>
 <ul>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mtext mathvariant="normal">burden</mtext></msub><annotation encoding="application/x-tex">T_{\text{burden}}</annotation></semantics></math>
-is the calculated 1 d.f. burden test statistic</li>
+<span class="math inline">\(T_{\text{burden}}\)</span> is the
+calculated 1 d.f. burden test statistic</li>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>Z</mi></mrow><annotation encoding="application/x-tex">w^T Z</annotation></semantics></math>
-is the dot product of the weights and the marginal Z-scores (the
-summary-stat version of the LPRS calculation)</li>
+<span class="math inline">\(w^T Z\)</span> is the dot product of the
+weights and the marginal Z-scores (the summary-stat version of the LPRS
+calculation)</li>
 <li>
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>R</mi><mi>w</mi></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{w^T R w}</annotation></semantics></math>
-is the std deviation (sqrt of the Quadratic Form) of this weighted sum,
-adjusting for correlation structure defined by the LD matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
+<span class="math inline">\(\sqrt{w^T R w}\)</span> is the std
+deviation (sqrt of the Quadratic Form) of this weighted sum, adjusting
+for correlation structure defined by the LD matrix <span class="math inline">\(R\)</span>
 </li>
 </ul>
-<p>With
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mtext mathvariant="normal">burden</mtext></msub><annotation encoding="application/x-tex">T_{\text{burden}}</annotation></semantics></math>
+<p>With <span class="math inline">\(T_{\text{burden}}\)</span>
 calculated, under the null hypothesis it follows a standard normal
-distribution:
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mtext mathvariant="normal">burden</mtext></msub><mo>∼</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">T_{\text{burden}} \sim N(0, 1)</annotation></semantics></math></p>
+distribution: <span class="math display">\[T_{\text{burden}} \sim N(0,
+1)\]</span></p>
 <p>The two-tailed window p-value can be calculated analytically with the
-standard normal cumulative distribution function
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi mathvariant="normal">Φ</mi><annotation encoding="application/x-tex">\Phi</annotation></semantics></math>):
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>T</mi><mtext mathvariant="normal">burden</mtext></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p = 2(1 - \Phi(|T_{\text{burden}}|))</annotation></semantics></math></p>
-<p>The RAS is simply
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>10</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>−</mo><mi>v</mi><mi>a</mi><mi>l</mi><mi>u</mi><mi>e</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">-log_{10}(p-value)</annotation></semantics></math>.</p>
+standard normal cumulative distribution function (<span class="math inline">\(\Phi\)</span>): <span class="math display">\[p =
+2(1 - \Phi(|T_{\text{burden}}|))\]</span></p>
+<p>The RAS is simply <span class="math inline">\(-log_{10}(p-value)\)</span>.</p>
 </div>
 <div class="section level2">
 <h2 id="quality-controlregularization">Quality Control/Regularization:<a class="anchor" aria-label="anchor" href="#quality-controlregularization"></a>
@@ -189,19 +161,15 @@ standard normal cumulative distribution function
 <ol style="list-style-type: decimal">
 <li>
 <strong>Quadratic Form Stability:</strong> Unlike methods that
-require matrix inversion, the denominator
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>w</mi><mi>T</mi></msup><mi>R</mi><mi>w</mi></mrow><annotation encoding="application/x-tex">w^T R w</annotation></semantics></math>
-is a quadratic form. It is numerically stable even if the LD matrix
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>R</mi><annotation encoding="application/x-tex">R</annotation></semantics></math>
-is singular or near-singular. Therefore, no ridge regularization is
-required.</li>
+require matrix inversion, the denominator <span class="math inline">\(w^T R w\)</span> is a quadratic form. It is
+numerically stable even if the LD matrix <span class="math inline">\(R\)</span> is singular or near-singular.
+Therefore, no ridge regularization is required.</li>
 <li>
 <strong>LD Pruning (Optional):</strong> While not required for
-numerical stability, LD pruning at
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&lt;</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">r^2 &lt; 0.2</annotation></semantics></math>
-can optionally be applied to prevent highly redundant variants from
-over-weighting the burden statistic, replicating the original RAS
-design.</li>
+numerical stability, LD pruning at <span class="math inline">\(r^2 &lt;
+0.2\)</span> can optionally be applied to prevent highly redundant
+variants from over-weighting the burden statistic, replicating the
+original RAS design.</li>
 </ol>
 </div>
 <div class="section level2">
@@ -211,25 +179,20 @@ design.</li>
 provides an independent training set to fit weights and a testing set to
 evaluate them, eliminating overfitting. Since summary-statistic
 algorithms don’t have those individual-level splits, must choose between
-two methods for defining
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>:</p>
+two methods for defining <span class="math inline">\(w\)</span>:</p>
 <ul>
 <li>
-<strong>Method A:</strong> Derive the weight vector
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>
-from an independent, external discovery summary-statistic dataset (e.g.,
-a large public study) and test it against the target cohort’s Z-scores.
-This is statistically rigorous because it avoids overfitting winner’s
-curse bias.</li>
+<strong>Method A:</strong> Derive the weight vector <span class="math inline">\(w\)</span> from an independent, external discovery
+summary-statistic dataset (e.g., a large public study) and test it
+against the target cohort’s Z-scores. This is statistically rigorous
+because it avoids overfitting winner’s curse bias.</li>
 <li>
 <strong>Method B:</strong> If only a single summary-statistic
-dataset is available, deriving
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>
-from the same marginal effects we are testing
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mover><mi>β</mi><mo accent="true">̂</mo></mover></mrow><annotation encoding="application/x-tex">w = \hat{\beta}</annotation></semantics></math>)
-introduces severe winner’s curse bias, inflating the burden statistic.
-More practical for rarer diseases/phenotypes which don’t have much data
-available publicly.</li>
+dataset is available, deriving <span class="math inline">\(w\)</span>
+from the same marginal effects we are testing (<span class="math inline">\(w = \hat{\beta}\)</span>) introduces severe
+winner’s curse bias, inflating the burden statistic. More practical for
+rarer diseases/phenotypes which don’t have much data available
+publicly.</li>
 </ul>
 <p>While a joint-effect approach with LD reconstruction (e.g.,
 SuSiE-RSS) is a possible alternative, implementing it goes beyond the
@@ -241,8 +204,7 @@ scope of replicating the original methodology</p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>Type I error test:</strong> null simulation of the full
-algorithm (pruning and
-max-over-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>
+algorithm (pruning and max-over-<span class="math inline">\(t\)</span>
 window selection), reporting empirical type I error, similar to Table 1
 of the original paper.</li>
 <li>
@@ -251,25 +213,20 @@ reporting statistical power for comparison</li>
 <li>
 <strong>Convergence validation:</strong> compare summary-stat RAS
 output against individual-data RAS on the same simulated data (completed
-below), varying
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
-and LD-panel quality (yet to be done)</li>
+below), varying <span class="math inline">\(N\)</span> and LD-panel
+quality (yet to be done)</li>
 </ol>
 </div>
 <div class="section level2">
 <h2 id="validation-results">Validation Results<a class="anchor" aria-label="anchor" href="#validation-results"></a>
 </h2>
-<p>Setup: 300-SNP toy chromosome, AR(1) LD at
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">\rho = 0.8</annotation></semantics></math>,
-true signal at 3 consecutive causal SNPs (150–152, effect size 0.5).
-Discovery and target cohorts of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">n = 1000</annotation></semantics></math>
-each (Method A), LD pruned at
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mn>2</mn></msup><mo>&lt;</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">r^2 &lt; 0.2</annotation></semantics></math>
-(300 -&gt; 100 SNPs survived). The validated workflow is LD pruning +
-<code>T_burden</code> + the package’s own unmodified
-<code><a href="https://rdrr.io/pkg/RAS/man/ras_detect.html" class="external-link">ras_detect()</a></code> / <code><a href="https://rdrr.io/pkg/RAS/man/ras_validate.html" class="external-link">ras_validate()</a></code> changepoint
-detection.</p>
+<p>Setup: 300-SNP toy chromosome, AR(1) LD at <span class="math inline">\(\rho = 0.8\)</span>, true signal at 3 consecutive
+causal SNPs (150–152, effect size 0.5). Discovery and target cohorts of
+<span class="math inline">\(n = 1000\)</span> each (Method A), LD pruned
+at <span class="math inline">\(r^2 &lt; 0.2\)</span> (300 -&gt; 100 SNPs
+survived). The validated workflow is LD pruning + <code>T_burden</code>
++ the package’s own unmodified <code><a href="https://rdrr.io/pkg/RAS/man/ras_detect.html" class="external-link">ras_detect()</a></code> /
+<code><a href="https://rdrr.io/pkg/RAS/man/ras_validate.html" class="external-link">ras_validate()</a></code> changepoint detection.</p>
 <p>Tuning: At package default of 5, the local slope re-check window is
 located on the flat top of the signal’s plateau, so the slope looks weak
 even when the global changepoint test runs correctly. Increasing it to 8
@@ -280,9 +237,8 @@ test can’t see the full causal cluster. Power increases steeply through
 8 and 10, then plateaus around 0.93–0.97 from
 <code>window_size = 12</code> on, while Type I error stays around the
 nominal 0.05 line the whole way (never above 0.07). The sweep metric
-(power
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>−</mi><annotation encoding="application/x-tex">-</annotation></semantics></math>
-Type I) thus picks <code>window_size = 12</code>.</p>
+(power <span class="math inline">\(-\)</span> Type I) thus picks
+<code>window_size = 12</code>.</p>
 <p>Final parameters: <code>window_size = 12</code>,
 <code>slope_check_window_size = 8</code>,
 <code>slope.p.values.threshold.left/right = 1e-3</code>,
@@ -395,11 +351,8 @@ summary-stat only environment.</p>
 <li>Reference-panel LD is drawn from the same simulated population as
 the discovery/target cohorts here; ancestry-mismatch sensitivity (real
 reference panel vs. true cohort LD) has not yet been stress-tested.</li>
-<li>Calibration performed on a single toy configuration
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>300</mn></mrow><annotation encoding="application/x-tex">n=300</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">\rho=0.8</annotation></semantics></math>);
-has not been re-verified at other chromosome sizes or LD structures.
-(Done in simulation 3)</li>
+<li>Calibration performed on a single toy configuration (<span class="math inline">\(n=300\)</span>, <span class="math inline">\(\rho=0.8\)</span>); has not been re-verified at
+other chromosome sizes or LD structures. (Done in simulation 3)</li>
 <li>Summary-stat resampling analog of <code>num_rep</code>: The
 three-run validation (<a href="validation.html">Validation</a>) measures
 the cost of being single-pass at ~6 power points vs. the 5-averaged

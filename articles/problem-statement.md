@@ -2,14 +2,11 @@
 
 ## Current RAS algorithm:
 
-``` math
-LPRS_i = \sum_{j=1}^{m} X_{ij} \hat{\beta}_j
-```
-Where in a specific window of $`m`$ SNPs, it calculates a Localized
-Polygenic Risk Score (LPRS) for each individual $`i`$. $`X_{ij}`$ is the
-genotype dosage of individual $`i`$ at SNP $`j`$, and $`\hat{\beta}_j`$
-is the marginal effect size of SNP $`j`$ estimated from the training
-split.
+\\LPRS_i = \sum\_{j=1}^{m} X\_{ij} \hat{\beta}\_j\\ Where in a specific
+window of \\m\\ SNPs, it calculates a Localized Polygenic Risk Score
+(LPRS) for each individual \\i\\. \\X\_{ij}\\ is the genotype dosage of
+individual \\i\\ at SNP \\j\\, and \\\hat{\beta}\_j\\ is the marginal
+effect size of SNP \\j\\ estimated from the training split.
 
 It then tests the joint significance by taking the vector of LPRS values
 outputted and runs a regression against the vector of actual phenotypes.
@@ -18,32 +15,27 @@ line is statistically significant.
 
 ## Summary Statistic Equivalent:
 
-Given vector of marginal Z-scores for the $`m`$ SNPs in the window:
-``` math
-Z = (Z_1, Z_2, ..., Z_m)^T
-```
+Given vector of marginal Z-scores for the \\m\\ SNPs in the window: \\Z
+= (Z_1, Z_2, ..., Z_m)^T\\
 
-To make sure $`Z`$ is a valid replacement for the original individual
+To make sure \\Z\\ is a valid replacement for the original individual
 data, summary statistics must be generated from target-cohort GWAS that
 was adjusted for the same set of covariates (age, sex, etc.) used in the
-original model ($`y \sim \text{LPRS} + X`$).
+original model (\\y \sim \text{LPRS} + X\\).
 
-Let $`R`$ be the $`m \times m`$ Linkage Disequilibrium (LD) correlation
+Let \\R\\ be the \\m \times m\\ Linkage Disequilibrium (LD) correlation
 matrix of these SNPs, which can be estimated from an external reference
-(e.g., 1000 Genomes). $`R`$ must be ancestry-matched.
+(e.g., 1000 Genomes). \\R\\ must be ancestry-matched.
 
-Let $`w = (w_1, w_2, ..., w_m)^T`$ be vector of weights derived from
-training data. Similar to original algorithm, $`w`$ contains the SNP
-marginal effect sizes ($`\hat{\beta}`$) from standard GWAS procedures
+Let \\w = (w_1, w_2, ..., w_m)^T\\ be vector of weights derived from
+training data. Similar to original algorithm, \\w\\ contains the SNP
+marginal effect sizes (\\\hat{\beta}\\) from standard GWAS procedures
 ran on the training split.
 
-Under null hypothesis ($`H_0`$) of the SNP window having absolutely no
+Under null hypothesis (\\H_0\\) of the SNP window having absolutely no
 effect on phenotype, a multivariate normal distribution can be created
-from this Z-score vector (assuming large enough target-cohort $`N`$ for
-this approximation to hold).
-``` math
-Z \sim N(0, R)
-```
+from this Z-score vector (assuming large enough target-cohort \\N\\ for
+this approximation to hold). \\Z \sim N(0, R)\\
 
 ## The Test Statistic:
 
@@ -52,46 +44,39 @@ Current `ras_scan` algorithm needs single p-value for whole window, not
 down to a single number.
 
 Instead of a multi-degree-of-freedom test, the marginal Z-scores are
-projected onto the weight vector $`w`$ to form a 1 degree-of-freedom
+projected onto the weight vector \\w\\ to form a 1 degree-of-freedom
 localized weighted burden statistic. Instead of estimating joint effects
-(already in $`w`$), the correlation matrix $`R`$ is used only to account
+(already in \\w\\), the correlation matrix \\R\\ is used only to account
 for linkage disequilibrium (LD) when evaluating the null distribution of
 the weighted burden statistic.
 
-Equation:
-``` math
-T_{\text{burden}} = \frac{w^T Z}{\sqrt{w^T R w}}
-```
+Equation: \\T\_{\text{burden}} = \frac{w^T Z}{\sqrt{w^T R w}}\\
 
-- $`T_{\text{burden}}`$ is the calculated 1 d.f. burden test statistic
-- $`w^T Z`$ is the dot product of the weights and the marginal Z-scores
+- \\T\_{\text{burden}}\\ is the calculated 1 d.f. burden test statistic
+- \\w^T Z\\ is the dot product of the weights and the marginal Z-scores
   (the summary-stat version of the LPRS calculation)
-- $`\sqrt{w^T R w}`$ is the std deviation (sqrt of the Quadratic Form)
+- \\\sqrt{w^T R w}\\ is the std deviation (sqrt of the Quadratic Form)
   of this weighted sum, adjusting for correlation structure defined by
-  the LD matrix $`R`$
+  the LD matrix \\R\\
 
-With $`T_{\text{burden}}`$ calculated, under the null hypothesis it
-follows a standard normal distribution:
-``` math
-T_{\text{burden}} \sim N(0, 1)
-```
+With \\T\_{\text{burden}}\\ calculated, under the null hypothesis it
+follows a standard normal distribution: \\T\_{\text{burden}} \sim N(0,
+1)\\
 
 The two-tailed window p-value can be calculated analytically with the
-standard normal cumulative distribution function ($`\Phi`$):
-``` math
-p = 2(1 - \Phi(|T_{\text{burden}}|))
-```
+standard normal cumulative distribution function (\\\Phi\\): \\p = 2(1 -
+\Phi(\|T\_{\text{burden}}\|))\\
 
-The RAS is simply $`-log_{10}(p-value)`$.
+The RAS is simply \\-log\_{10}(p-value)\\.
 
 ## Quality Control/Regularization:
 
 1.  **Quadratic Form Stability:** Unlike methods that require matrix
-    inversion, the denominator $`w^T R w`$ is a quadratic form. It is
-    numerically stable even if the LD matrix $`R`$ is singular or
+    inversion, the denominator \\w^T R w\\ is a quadratic form. It is
+    numerically stable even if the LD matrix \\R\\ is singular or
     near-singular. Therefore, no ridge regularization is required.
 2.  **LD Pruning (Optional):** While not required for numerical
-    stability, LD pruning at $`r^2 < 0.2`$ can optionally be applied to
+    stability, LD pruning at \\r^2 \< 0.2\\ can optionally be applied to
     prevent highly redundant variants from over-weighting the burden
     statistic, replicating the original RAS design.
 
@@ -101,18 +86,18 @@ In the original individual algorithm, a 50/50 data-splitting protocol
 provides an independent training set to fit weights and a testing set to
 evaluate them, eliminating overfitting. Since summary-statistic
 algorithms don’t have those individual-level splits, must choose between
-two methods for defining $`w`$:
+two methods for defining \\w\\:
 
-- **Method A:** Derive the weight vector $`w`$ from an independent,
+- **Method A:** Derive the weight vector \\w\\ from an independent,
   external discovery summary-statistic dataset (e.g., a large public
   study) and test it against the target cohort’s Z-scores. This is
   statistically rigorous because it avoids overfitting winner’s curse
   bias.
 - **Method B:** If only a single summary-statistic dataset is available,
-  deriving $`w`$ from the same marginal effects we are testing
-  ($`w = \hat{\beta}`$) introduces severe winner’s curse bias, inflating
-  the burden statistic. More practical for rarer diseases/phenotypes
-  which don’t have much data available publicly.
+  deriving \\w\\ from the same marginal effects we are testing (\\w =
+  \hat{\beta}\\) introduces severe winner’s curse bias, inflating the
+  burden statistic. More practical for rarer diseases/phenotypes which
+  don’t have much data available publicly.
 
 While a joint-effect approach with LD reconstruction (e.g., SuSiE-RSS)
 is a possible alternative, implementing it goes beyond the scope of
@@ -121,20 +106,20 @@ replicating the original methodology
 ## Validation:
 
 1.  **Type I error test:** null simulation of the full algorithm
-    (pruning and max-over-$`t`$ window selection), reporting empirical
+    (pruning and max-over-\\t\\ window selection), reporting empirical
     type I error, similar to Table 1 of the original paper.
 2.  **Power test:** power simulation of full algorithm, reporting
     statistical power for comparison
 3.  **Convergence validation:** compare summary-stat RAS output against
     individual-data RAS on the same simulated data (completed below),
-    varying $`N`$ and LD-panel quality (yet to be done)
+    varying \\N\\ and LD-panel quality (yet to be done)
 
 ## Validation Results
 
-Setup: 300-SNP toy chromosome, AR(1) LD at $`\rho = 0.8`$, true signal
+Setup: 300-SNP toy chromosome, AR(1) LD at \\\rho = 0.8\\, true signal
 at 3 consecutive causal SNPs (150–152, effect size 0.5). Discovery and
-target cohorts of $`n = 1000`$ each (Method A), LD pruned at
-$`r^2 < 0.2`$ (300 -\> 100 SNPs survived). The validated workflow is LD
+target cohorts of \\n = 1000\\ each (Method A), LD pruned at \\r^2 \<
+0.2\\ (300 -\> 100 SNPs survived). The validated workflow is LD
 pruning + `T_burden` + the package’s own unmodified
 [`ras_detect()`](https://rdrr.io/pkg/RAS/man/ras_detect.html) /
 [`ras_validate()`](https://rdrr.io/pkg/RAS/man/ras_validate.html)
@@ -149,7 +134,7 @@ size. Small windows are with low power because the test can’t see the
 full causal cluster. Power increases steeply through 8 and 10, then
 plateaus around 0.93–0.97 from `window_size = 12` on, while Type I error
 stays around the nominal 0.05 line the whole way (never above 0.07). The
-sweep metric (power $`-`$ Type I) thus picks `window_size = 12`.
+sweep metric (power \\-\\ Type I) thus picks `window_size = 12`.
 
 Final parameters: `window_size = 12`, `slope_check_window_size = 8`,
 `slope.p.values.threshold.left/right = 1e-3`, `p.value.threshold = 1e-3`
@@ -234,8 +219,8 @@ only environment.
 - Reference-panel LD is drawn from the same simulated population as the
   discovery/target cohorts here; ancestry-mismatch sensitivity (real
   reference panel vs. true cohort LD) has not yet been stress-tested.
-- Calibration performed on a single toy configuration ($`n=300`$,
-  $`\rho=0.8`$); has not been re-verified at other chromosome sizes or
+- Calibration performed on a single toy configuration (\\n=300\\,
+  \\\rho=0.8\\); has not been re-verified at other chromosome sizes or
   LD structures. (Done in simulation 3)
 - Summary-stat resampling analog of `num_rep`: The three-run validation
   ([Validation](https://anson-li8.github.io/rasSS/articles/validation.md))
