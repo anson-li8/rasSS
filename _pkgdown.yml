@@ -4,7 +4,7 @@ template:
 
 navbar:
   structure:
-    left:  [home, reference, articles]
+    left:  [home, reference, articles, simulations]
   components:
     home:
       icon: fas fa-home
@@ -16,8 +16,13 @@ navbar:
     articles:
       text: Articles
       menu:
+        - text: Get Started
+          href: articles/get-started.html
         - text: Problem Statement
           href: articles/problem-statement.html
+    simulations:
+      text: Simulations
+      menu:
         - text: Pilot Study (300-SNP toy)
           href: articles/pilot-study.html
         - text: Validation (300-SNP toy)

@@ -98,6 +98,5 @@ stat_b <- get_marginal_stats_bin(X_t, y_b)
 head(stat_b$z, 3)
 ```
 
-The validation studies (paired comparison against the individual-level method,
-type I calibration, and the paper replication) can be found on the pkgdown website
-under Articles.
+The simulation studies (small toy chromosome pilot study, paired comparison with individual-level data method, and paper-replication study) can be found on the pkgdown website
+under Simulations.
