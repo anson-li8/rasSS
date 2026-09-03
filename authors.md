@@ -9,7 +9,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/anson-li8/rasSS/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/anson-li8/rasSS/blob/v0.1.0/inst/CITATION)
 
 Li A, Han S (2026). *rasSS: Summary-Statistic Extension of the Regional
 Association Score*. R package, <https://github.com/anson-li8/rasSS>.
