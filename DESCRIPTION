@@ -28,6 +28,6 @@ Suggests:
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.1.1
-URL: https://github.com/shan-team/RAS_GWAS_Summary, https://shan-team.github.io/RAS_GWAS_Summary/
-BugReports: https://github.com/shan-team/RAS_GWAS_Summary/issues
+URL: https://github.com/anson-li8/RAS_GWAS_Summary, https://anson-li8.github.io/RAS_GWAS_Summary/
+BugReports: https://github.com/anson-li8/RAS_GWAS_Summary/issues
 Config/testthat/edition: 3

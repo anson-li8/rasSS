@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/shan-team/RAS_GWAS_Summary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/shan-team/RAS_GWAS_Summary/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/anson-li8/RAS_GWAS_Summary/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/anson-li8/RAS_GWAS_Summary/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/anson-li8/rasSS/graph/badge.svg)](https://app.codecov.io/gh/anson-li8/rasSS)
 <!-- badges: end -->
