@@ -10,11 +10,11 @@ the profile through the original change-point detection algorithm.
 
 Useful links:
 
-- <https://github.com/anson-li8/rasSS>
+- <https://github.com/shan-team/RAS_GWAS_Summary>
 
-- <https://anson-li8.github.io/rasSS>
+- <https://shan-team.github.io/RAS_GWAS_Summary/>
 
-- Report bugs at <https://github.com/anson-li8/rasSS/issues>
+- Report bugs at <https://github.com/shan-team/RAS_GWAS_Summary/issues>
 
 ## Author
 

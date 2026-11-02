@@ -3,8 +3,8 @@
 *The main simulation study, replicating the design of Jiang & Zhang
 (2025) on a simulated 1,000-SNP chromosome. Pilot and validation on the
 300-SNP toy: [Pilot
-Study](https://anson-li8.github.io/rasSS/articles/pilot-study.md),
-[Validation](https://anson-li8.github.io/rasSS/articles/validation.md).*
+Study](https://shan-team.github.io/RAS_GWAS_Summary/articles/pilot-study.md),
+[Validation](https://shan-team.github.io/RAS_GWAS_Summary/articles/validation.md).*
 
 Note: Jiang & Zhang’s Simulation Study simulated phenotypes on *real*
 ABCD chr21 genotypes. Until those can be accessed, this page uses a

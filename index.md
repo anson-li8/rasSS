@@ -25,7 +25,7 @@ You can install the development version of rasSS from Github with:
 ``` r
 
 # install.packages("pak")
-pak::pak("anson-li8/rasSS")
+pak::pak("shan-team/RAS_GWAS_Summary")
 ```
 
 ## Example
