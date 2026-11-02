@@ -104,6 +104,59 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
   dt
 }
 
+#' Run one genomic block end-to-end
+#'
+#' Intersects discovery/target sumstats with the reference, extracts and exports
+#' dosages via PLINK2, harmonizes, scans, and calls peaks. Idempotent when
+#' \code{out_rds} exists.
+#' @export
+scan_block <- function(disc_path, targ_path, chr, start_bp, end_bp, ref_prefix,
+                       plink2 = "plink2", out_rds = NULL,
+                       skip1 = 10, skip2 = 5, min_window_size = 5, max_window_size = 20,
+                       window_size = 20, slope_check_window_size = 8,
+                       slope_threshold = 1e-4, davies_threshold = 1e-5,
+                       max_snps = 25000) {
+  if (!is.null(out_rds) && file.exists(out_rds)) {
+    cat("skip: exists", out_rds, "\n"); return(invisible(readRDS(out_rds)))
+  }
+  disc <- read_sumstats(disc_path, chr = chr, start_bp = start_bp, end_bp = end_bp)
+  targ <- read_sumstats(targ_path, chr = chr, start_bp = start_bp, end_bp = end_bp)
+  bim  <- read_bim(paste0(ref_prefix, ".bim"))
+  keep <- Reduce(intersect, list(disc$snp, targ$snp, bim$id))
+  cat("intersect:", length(keep), "\n")
+  stopifnot(length(keep) >= 500, length(keep) <= max_snps)
+  
+  snplist <- tempfile(fileext = ".txt"); writeLines(keep, snplist)
+  blk <- tempfile("block")
+  run <- function(...) {
+    r <- system2(plink2, c(...), stdout = TRUE, stderr = TRUE)
+    if (!is.null(attr(r, "status")) && attr(r, "status") != 0)
+      stop("plink2 failed:\n", paste(tail(r, 20), collapse = "\n"))
+    invisible(r)
+  }
+  run("--bfile", ref_prefix, "--extract", snplist, "--make-bed", "--out", blk)
+  run("--bfile", blk, "--export", "A", "--out", blk)
+  
+  ld    <- ld_matrix(paste0(blk, ".raw"))
+  bim_b <- read_bim(paste0(blk, ".bim"))
+  h     <- harmonize_two(disc, targ, bim_b, ld)
+  cat("kept:", h$n_kept, "of", h$n_in, "\n")
+  stopifnot(h$n_kept / h$n_in >= 0.6)
+  
+  scan <- scan_ss(h$w, h$Z, h$R, mask = rep(TRUE, length(h$w)),
+                  skip1 = skip1, skip2 = skip2,
+                  min_window_size = min_window_size, max_window_size = max_window_size)
+  pk   <- call_peaks(scan, h$bp, window_size = window_size,
+                     slope_check_window_size = slope_check_window_size,
+                     slope_threshold = slope_threshold,
+                     davies_threshold = davies_threshold, skip = skip1)
+  res  <- list(disc = disc_path, targ = targ_path, chr = chr,
+               start = start_bp, end = end_bp, n_intersect = length(keep),
+               n_kept = h$n_kept, n_in = h$n_in, scan = scan, peaks = pk)
+  if (!is.null(out_rds)) saveRDS(res, out_rds)
+  res
+}
+
 #' Read a PLINK .bim file into a standardized table
 #'
 #' @param path Path to a PLINK .bim file.
