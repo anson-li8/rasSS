@@ -33,23 +33,24 @@ pak::pak("shan-team/RAS_GWAS_Summary")
 
 ## Example
 
-This is a basic example demonstrating the core 1-df burden statistic calculation:
+The core of `rasSS` is the `scan_block()` function, which ingests discovery and target GWAS summary statistics, extracts the corresponding LD matrix from a PLINK reference panel, harmonizes the alleles, and runs the regional association scan.
 
-```{r example}
+```{r example, eval=FALSE}
 library(rasSS)
 
-# Create dummy LD correlation matrix (e.g., 5 SNPs)
-R <- matrix(c(1.0, 0.8, 0.6, 0.4, 0.2,
-              0.8, 1.0, 0.8, 0.6, 0.4,
-              0.6, 0.8, 1.0, 0.8, 0.6,
-              0.4, 0.6, 0.8, 1.0, 0.8,
-              0.2, 0.4, 0.6, 0.8, 1.0), nrow = 5)
+# Run a full end-to-end scan on a genomic block
+res <- scan_block(
+  disc_path   = "data/sumstats/discovery_gwas.tsv.gz",
+  targ_path   = "data/sumstats/target_gwas.tsv.gz",
+  chr         = 6,
+  start_bp    = 29000000,
+  end_bp      = 34000000,
+  ref_prefix  = "data/1000G/chr6_eur",
+  out_rds     = "data/results/chr6_mhc.rds"
+)
 
-# Define discovery weights (effect sizes) and target Z-scores
-w <- c(0.1, 0.2, 0.5, 0.2, 0.1)
-Z <- c(1.2, 2.5, 4.1, 2.8, 1.5)
-
-# Compute the summary-statistic burden test statistic
-T_val <- t_burden(w, Z, R)
-print(T_val)
+# View validated peaks mapped to base-pair positions
+print(res$peaks)
 ```
+
+For a complete walkthrough using real Schizophrenia GWAS data and the 1000 Genomes LD reference, see the **[Real-Data Analysis](articles/real-data.html)** vignette.

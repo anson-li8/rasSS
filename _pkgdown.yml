@@ -19,6 +19,8 @@ navbar:
       menu:
         - text: Get Started
           href: articles/get-started.html
+        - text: Real-Data Analysis
+          href: articles/real-data.html
         - text: Problem Statement
           href: articles/problem-statement.html
     simulations:
