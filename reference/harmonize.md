@@ -16,17 +16,17 @@ harmonize(sumstats, bim, ld, freq_tol = 0.15)
 - sumstats:
 
   Output of
-  [`read_sumstats`](https://shan-team.github.io/RAS_GWAS_Summary/reference/read_sumstats.md).
+  [`read_sumstats`](https://anson-li8.github.io/rasSS/reference/read_sumstats.md).
 
 - bim:
 
   Output of
-  [`read_bim`](https://shan-team.github.io/RAS_GWAS_Summary/reference/read_bim.md).
+  [`read_bim`](https://anson-li8.github.io/rasSS/reference/read_bim.md).
 
 - ld:
 
   Output of
-  [`ld_matrix`](https://shan-team.github.io/RAS_GWAS_Summary/reference/ld_matrix.md).
+  [`ld_matrix`](https://anson-li8.github.io/rasSS/reference/ld_matrix.md).
 
 - freq_tol:
 

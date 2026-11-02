@@ -26,7 +26,7 @@ call_peaks(
 - scan:
 
   Output of
-  [`scan_ss`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_ss.md).
+  [`scan_ss`](https://anson-li8.github.io/rasSS/reference/scan_ss.md).
 
 - bp_per_snp:
 

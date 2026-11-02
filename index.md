@@ -31,7 +31,7 @@ pak::pak("shan-team/RAS_GWAS_Summary")
 ## Example
 
 The core of `rasSS` is the
-[`scan_block()`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_block.md)
+[`scan_block()`](https://anson-li8.github.io/rasSS/reference/scan_block.md)
 function, which ingests discovery and target GWAS summary statistics,
 extracts the corresponding LD matrix from a PLINK reference panel,
 harmonizes the alleles, and runs the regional association scan.
@@ -57,5 +57,5 @@ print(res$peaks)
 
 For a complete walkthrough using real Schizophrenia GWAS data and the
 1000 Genomes LD reference, see the **[Real-Data
-Analysis](https://shan-team.github.io/RAS_GWAS_Summary/articles/real-data.md)**
+Analysis](https://anson-li8.github.io/rasSS/articles/real-data.md)**
 vignette.

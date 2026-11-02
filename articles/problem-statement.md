@@ -142,7 +142,7 @@ Final parameters: `window_size = 12`, `slope_check_window_size = 8`,
 similarly-sized toy profile).
 
 Results at these parameters (three-run validation, see
-[Validation](https://shan-team.github.io/RAS_GWAS_Summary/articles/validation.md)):
+[Validation](https://anson-li8.github.io/rasSS/articles/validation.md)):
 
 | Run | Type I error (95% CI) | Power (95% CI) | Reps |
 |----|----|----|----|
@@ -194,7 +194,7 @@ Reading the table by rows:
   Its lower false-positive rate also gives it perfect power, on the null
   side. All three rows are at or below the acceptable 0.05.
 - **Peak location (the density plot in
-  [Validation](https://shan-team.github.io/RAS_GWAS_Summary/articles/validation.md)):**
+  [Validation](https://anson-li8.github.io/rasSS/articles/validation.md)):**
   All three runs center on the true causal center (151). The single-pass
   runs (1 and 2) show small side-bumps at neighboring points where a
   noisier single-pass profile brought the validated peak one step off, a
@@ -223,7 +223,7 @@ only environment.
   \\\rho=0.8\\); has not been re-verified at other chromosome sizes or
   LD structures. (Done in simulation 3)
 - Summary-stat resampling analog of `num_rep`: The three-run validation
-  ([Validation](https://shan-team.github.io/RAS_GWAS_Summary/articles/validation.md))
+  ([Validation](https://anson-li8.github.io/rasSS/articles/validation.md))
   measures the cost of being single-pass at ~6 power points vs. the
   5-averaged original, all of it due to the resampling average. A
   reference-panel resampling analog is the planned way to recover the

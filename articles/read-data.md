@@ -8,7 +8,7 @@ Major Histocompatibility Complex (MHC) region on Chromosome 6, a
 well-known locus for Schizophrenia risk.
 
 We use the
-[`scan_block()`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_block.md)
+[`scan_block()`](https://anson-li8.github.io/rasSS/reference/scan_block.md)
 function, which handles: 1. Ingesting and standardizing discovery and
 target summary statistics. 2. Intersecting them with a PLINK binary
 reference panel. 3. Extracting dosages and computing the empirical LD
@@ -27,7 +27,7 @@ SNPs). 5. Running the summary-statistic RAS scan and calling peaks.
 Assuming you have the summary statistics and the PLINK reference files
 (`chr6_eur.bed`, `.bim`, `.fam`) in your `data/` directory, the entire
 pipeline is executed via a single idempotent call to
-[`scan_block()`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_block.md).
+[`scan_block()`](https://anson-li8.github.io/rasSS/reference/scan_block.md).
 
 ``` r
 
@@ -55,7 +55,7 @@ res <- scan_block(
 ```
 
 Because
-[`scan_block()`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_block.md)
+[`scan_block()`](https://anson-li8.github.io/rasSS/reference/scan_block.md)
 is idempotent, if the `out_rds` file already exists, it will instantly
 load and return the cached results without re-running PLINK or the scan.
 
@@ -130,7 +130,7 @@ plot of chunk load-and-plot
 ## Interpreting the Output
 
 The
-[`scan_block()`](https://shan-team.github.io/RAS_GWAS_Summary/reference/scan_block.md)
+[`scan_block()`](https://anson-li8.github.io/rasSS/reference/scan_block.md)
 function returns a list containing: \* `scan`: The RAS profile (`x` =
 SNP indices, `y` = \\-\log\_{10}(p)\\). \* `peaks`: A data frame of
 validated changepoints mapped to SNP indices, grid indices, and exact

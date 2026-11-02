@@ -2,7 +2,7 @@
 
 *Paired-data validation on the 300-SNP toy. The main paper-style study
 is [Paper
-Replication](https://shan-team.github.io/RAS_GWAS_Summary/articles/paper-replication.md).*
+Replication](https://anson-li8.github.io/rasSS/articles/paper-replication.md).*
 
 Show code
 
