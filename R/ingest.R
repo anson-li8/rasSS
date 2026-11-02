@@ -255,8 +255,8 @@ harmonize_two <- function(disc, targ, bim, ld, freq_tol = 0.15) {
 #' @param skip The \code{skip1} parameter used in \code{scan_ss}.
 #' @return List with snp_index, grid_index, and bp.
 #' @export
-call_peaks <- function(scan, bp_per_snp, window_size = 100,
-                       slope_check_window_size = 40, slope_threshold = 1e-4,
+call_peaks <- function(scan, bp_per_snp, window_size = 20,
+                       slope_check_window_size = 8, slope_threshold = 1e-4,
                        davies_threshold = 1e-5, min_signal = 2.5, skip = 10) {
   x <- seq_along(scan$y)
   cp <- quiet(RAS::ras_detect(x = x, y = scan$y, window_size = window_size,
