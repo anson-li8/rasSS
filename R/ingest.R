@@ -109,6 +109,26 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
 #' Intersects discovery/target sumstats with the reference, extracts and exports
 #' dosages via PLINK2, harmonizes, scans, and calls peaks. Idempotent when
 #' \code{out_rds} exists.
+#'
+#' @param disc_path Path to discovery GWAS summary statistics.
+#' @param targ_path Path to target GWAS summary statistics.
+#' @param chr Chromosome number.
+#' @param start_bp Block start position (base pairs).
+#' @param end_bp Block end position (base pairs).
+#' @param ref_prefix Prefix of the PLINK binary reference panel (bfile stem).
+#' @param plink2 Path to the plink2 executable.
+#' @param out_rds Output \code{.rds} path; if it exists, the call is skipped.
+#' @param skip1 Number of leading SNPs skipped during the scan (discovery side).
+#' @param skip2 Number of leading SNPs skipped during the scan (target side).
+#' @param min_window_size Minimum CPD window size in SNPs.
+#' @param max_window_size Maximum CPD window size in SNPs.
+#' @param window_size CPD window size used for peak calling.
+#' @param slope_check_window_size CPD slope-check window size.
+#' @param slope_threshold CPD slope p-value threshold.
+#' @param davies_threshold CPD Davies p-value threshold.
+#' @param max_snps Maximum allowed SNPs after intersection.
+#' @return A list with \code{peaks}, \code{scan}, \code{n_intersect}, \code{n_kept},
+#'   \code{n_in}.
 #' @export
 scan_block <- function(disc_path, targ_path, chr, start_bp, end_bp, ref_prefix,
                        plink2 = "plink2", out_rds = NULL,
@@ -131,7 +151,7 @@ scan_block <- function(disc_path, targ_path, chr, start_bp, end_bp, ref_prefix,
   run <- function(...) {
     r <- system2(plink2, c(...), stdout = TRUE, stderr = TRUE)
     if (!is.null(attr(r, "status")) && attr(r, "status") != 0)
-      stop("plink2 failed:\n", paste(tail(r, 20), collapse = "\n"))
+      stop("plink2 failed:\n", paste(utils::tail(r, 20), collapse = "\n"))
     invisible(r)
   }
   run("--bfile", ref_prefix, "--extract", snplist, "--make-bed", "--out", blk)

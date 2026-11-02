@@ -24,6 +24,45 @@ scan_block(
   max_snps = 25000
 )
 }
+\arguments{
+\item{disc_path}{Path to discovery GWAS summary statistics.}
+
+\item{targ_path}{Path to target GWAS summary statistics.}
+
+\item{chr}{Chromosome number.}
+
+\item{start_bp}{Block start position (base pairs).}
+
+\item{end_bp}{Block end position (base pairs).}
+
+\item{ref_prefix}{Prefix of the PLINK binary reference panel (bfile stem).}
+
+\item{plink2}{Path to the plink2 executable.}
+
+\item{out_rds}{Output \code{.rds} path; if it exists, the call is skipped.}
+
+\item{skip1}{Number of leading SNPs skipped during the scan (discovery side).}
+
+\item{skip2}{Number of leading SNPs skipped during the scan (target side).}
+
+\item{min_window_size}{Minimum CPD window size in SNPs.}
+
+\item{max_window_size}{Maximum CPD window size in SNPs.}
+
+\item{window_size}{CPD window size used for peak calling.}
+
+\item{slope_check_window_size}{CPD slope-check window size.}
+
+\item{slope_threshold}{CPD slope p-value threshold.}
+
+\item{davies_threshold}{CPD Davies p-value threshold.}
+
+\item{max_snps}{Maximum allowed SNPs after intersection.}
+}
+\value{
+A list with \code{peaks}, \code{scan}, \code{n_intersect}, \code{n_kept},
+\code{n_in}.
+}
 \description{
 Intersects discovery/target sumstats with the reference, extracts and exports
 dosages via PLINK2, harmonizes, scans, and calls peaks. Idempotent when
