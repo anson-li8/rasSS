@@ -100,4 +100,4 @@ scan_block(
 
 ## Value
 
-A list with `peaks`, `scan`, `n_intersect`, `n_kept`, `n_in`.
+A list with `peaks`, `scan`, `bp`, `n_intersect`, `n_kept`, `n_in`.

@@ -42,6 +42,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="articles/get-started.html">Get Started</a></li>
+    <li><a class="dropdown-item" href="articles/real-data.html">Real-Data Analysis</a></li>
     <li><a class="dropdown-item" href="articles/problem-statement.html">Problem Statement</a></li>
   </ul>
 </li>
@@ -84,25 +85,24 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example demonstrating the core 1-df burden statistic calculation:</p>
+<p>The core of <code>rasSS</code> is the <code><a href="reference/scan_block.html">scan_block()</a></code> function, which ingests discovery and target GWAS summary statistics, extracts the corresponding LD matrix from a PLINK reference panel, harmonizes the alleles, and runs the regional association scan.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shan-team/RAS_GWAS_Summary" class="external-link">rasSS</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Create dummy LD correlation matrix (e.g., 5 SNPs)</span></span>
-<span><span class="va">R</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.2</span>,</span>
-<span>              <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>,</span>
-<span>              <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>,</span>
-<span>              <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>,</span>
-<span>              <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co"># Run a full end-to-end scan on a genomic block</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/scan_block.html">scan_block</a></span><span class="op">(</span></span>
+<span>  disc_path   <span class="op">=</span> <span class="st">"data/sumstats/discovery_gwas.tsv.gz"</span>,</span>
+<span>  targ_path   <span class="op">=</span> <span class="st">"data/sumstats/target_gwas.tsv.gz"</span>,</span>
+<span>  chr         <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  start_bp    <span class="op">=</span> <span class="fl">29000000</span>,</span>
+<span>  end_bp      <span class="op">=</span> <span class="fl">34000000</span>,</span>
+<span>  ref_prefix  <span class="op">=</span> <span class="st">"data/1000G/chr6_eur"</span>,</span>
+<span>  out_rds     <span class="op">=</span> <span class="st">"data/results/chr6_mhc.rds"</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Define discovery weights (effect sizes) and target Z-scores</span></span>
-<span><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span><span class="op">)</span></span>
-<span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">2.5</span>, <span class="fl">4.1</span>, <span class="fl">2.8</span>, <span class="fl">1.5</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Compute the summary-statistic burden test statistic</span></span>
-<span><span class="va">T_val</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/t_burden.html">t_burden</a></span><span class="op">(</span><span class="va">w</span>, <span class="va">Z</span>, <span class="va">R</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">T_val</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 3.489918</span></span></code></pre></div>
+<span><span class="co"># View validated peaks mapped to base-pair positions</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">peaks</span><span class="op">)</span></span></code></pre></div>
+<p>For a complete walkthrough using real Schizophrenia GWAS data and the 1000 Genomes LD reference, see the <strong><a href="articles/real-data.html">Real-Data Analysis</a></strong> vignette.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

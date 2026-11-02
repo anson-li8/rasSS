@@ -10,5 +10,7 @@
   toy)](https://shan-team.github.io/RAS_GWAS_Summary/articles/pilot-study.md):
 - [Problem
   Statement](https://shan-team.github.io/RAS_GWAS_Summary/articles/problem-statement.md):
+- [Real-Data Analysis: Schizophrenia MHC
+  Region](https://shan-team.github.io/RAS_GWAS_Summary/articles/read-data.md):
 - [Validation (300-SNP
   toy)](https://shan-team.github.io/RAS_GWAS_Summary/articles/validation.md):
