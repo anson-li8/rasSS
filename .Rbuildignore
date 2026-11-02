@@ -13,3 +13,5 @@
 ^vignettes/articles/.*\.rds$
 ^vignettes/precompute\.R$
 ^vignettes/articles
+^data$
+^scripts$

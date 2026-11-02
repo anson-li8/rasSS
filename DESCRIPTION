@@ -18,7 +18,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: 
     mvtnorm,
-    stats
+    stats,
+    data.table
 Suggests: 
     knitr,
     rmarkdown,
@@ -26,7 +27,7 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1
 URL: https://github.com/shan-team/RAS_GWAS_Summary, https://shan-team.github.io/RAS_GWAS_Summary/
 BugReports: https://github.com/shan-team/RAS_GWAS_Summary/issues
 Config/testthat/edition: 3
