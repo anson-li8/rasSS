@@ -11,6 +11,6 @@
 - [Problem
   Statement](https://anson-li8.github.io/rasSS/articles/problem-statement.md):
 - [Real-Data Analysis: Schizophrenia MHC
-  Region](https://anson-li8.github.io/rasSS/articles/read-data.md):
+  Region](https://anson-li8.github.io/rasSS/articles/real-data.md):
 - [Validation (300-SNP
   toy)](https://anson-li8.github.io/rasSS/articles/validation.md):
