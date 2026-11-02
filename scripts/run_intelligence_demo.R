@@ -1,3 +1,6 @@
+# NOTE: Significant cohort overlap btw Sniekers 2017 and Savage 2018 -> winner's curse bias
+# only used to demonstrate portability and continuous-trait support
+
 library(rasSS)
 dir.create("data/results", showWarnings = FALSE, recursive = TRUE)
 
@@ -6,7 +9,7 @@ targ_path <- "data/sumstats/SavageJansen_2018_intelligence_metaanalysis.txt"
 
 r <- scan_block(disc_path, targ_path, chr = 21, start_bp = 15e6, end_bp = 20e6,
                 ref_prefix = "data/1000G/chr21_eur",
-                plink2 = "data/1000G/plink2.exe",
+                plink2 = "plink2.exe",
                 out_rds = "data/results/blk_int_chr21_15_20.rds")
 
 targ <- read_sumstats(targ_path, chr = 21, start_bp = 15e6, end_bp = 20e6)
