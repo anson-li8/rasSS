@@ -127,7 +127,7 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
 #' @param slope_threshold CPD slope p-value threshold.
 #' @param davies_threshold CPD Davies p-value threshold.
 #' @param max_snps Maximum allowed SNPs after intersection.
-#' @return A list with \code{peaks}, \code{scan}, \code{n_intersect}, \code{n_kept},
+#' @return A list with \code{peaks}, \code{scan}, \code{bp}, \code{n_intersect}, \code{n_kept},
 #'   \code{n_in}.
 #' @export
 scan_block <- function(disc_path, targ_path, chr, start_bp, end_bp, ref_prefix,
@@ -171,7 +171,7 @@ scan_block <- function(disc_path, targ_path, chr, start_bp, end_bp, ref_prefix,
                      slope_threshold = slope_threshold,
                      davies_threshold = davies_threshold, skip = skip1)
   res  <- list(disc = disc_path, targ = targ_path, chr = chr,
-               start = start_bp, end = end_bp, n_intersect = length(keep),
+               start = start_bp, end = end_bp, bp = h$bp, n_intersect = length(keep),
                n_kept = h$n_kept, n_in = h$n_in, scan = scan, peaks = pk)
   if (!is.null(out_rds)) saveRDS(res, out_rds)
   res

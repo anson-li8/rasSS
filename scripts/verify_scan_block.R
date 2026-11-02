@@ -1,4 +1,4 @@
-# Rscript scripts/verify_scan_block.R   (from C:/Users/Anson/Documents/Coding/rasSS)
+# Rscript scripts/verify_scan_block.R
 library(rasSS)
 ok_all <- TRUE
 check <- function(label, cond) {
@@ -8,7 +8,7 @@ check <- function(label, cond) {
 plink2 <- if (Sys.info()[["sysname"]] == "Windows") "data/1000G/plink2.exe" else "plink2"
 dir.create("data/results", showWarnings = FALSE, recursive = TRUE)
 
-# --- A: SCZ MHC positive control, fresh run (re-anchors the baseline) ---
+# A: SCZ MHC positive control, fresh run (re-anchors the baseline)
 f <- "data/results/verify_scz_mhc.rds"; if (file.exists(f)) file.remove(f)
 r <- scan_block("data/sumstats/scz2018_clozuk.tsv.gz", "data/sumstats/scz2022.tsv.gz",
                 6, 29e6, 34e6, "data/1000G/chr6_eur", plink2 = plink2, out_rds = f)
@@ -17,14 +17,14 @@ check("A2 kept == 18720 of 21816",        r$n_kept == 18720 && r$n_in == 21816)
 check("A3 MHC class II peak 32.0-33.0Mb", any(r$peaks$bp >= 32e6 & r$peaks$bp <= 33e6))
 check("A4 all peaks inside block",        all(r$peaks$bp >= 29e6 & r$peaks$bp <= 34e6))
 
-# --- A5: idempotency (second call must skip, not recompute) ---
+# A5: idempotency (second call must skip, not recompute)
 out2 <- capture.output(r2 <- scan_block(
   "data/sumstats/scz2018_clozuk.tsv.gz", "data/sumstats/scz2022.tsv.gz",
   6, 29e6, 34e6, "data/1000G/chr6_eur", plink2 = plink2, out_rds = f))
 check("A5 idempotent skip + same peaks", any(grepl("skip: exists", out2)) &&
         identical(r2$peaks$bp, r$peaks$bp))
 
-# --- B: chr21 mechanics parity vs the validated pilot fingerprint ---
+# B: chr21 mechanics parity vs validated pilot fingerprint
 f21 <- "data/results/verify_chr21_pilot.rds"; if (file.exists(f21)) file.remove(f21)
 sv  <- "data/sumstats/SavageJansen_2018_intelligence_metaanalysis.txt"
 p <- scan_block(sv, sv, 21, 15e6, 20e6, "data/1000G/chr21_eur",
@@ -34,7 +34,7 @@ check("B2 kept == 10747",      p$n_kept == 10747)
 check("B3 pilot peaks reproduced exactly",
       identical(as.integer(p$peaks$snp_index), c(981L, 5901L, 8511L, 8791L, 9461L)))
 
-# --- C: CLI parity and failure semantics (HPC contract) ---
+# C: CLI parity and failure semantics
 fc <- "data/results/verify_cli.rds"; if (file.exists(fc)) file.remove(fc)
 rc <- system2("Rscript", c("scripts/run_block.R",
                            "data/sumstats/scz2018_clozuk.tsv.gz", "data/sumstats/scz2022.tsv.gz",

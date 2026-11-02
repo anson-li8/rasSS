@@ -60,7 +60,7 @@ scan_block(
 \item{max_snps}{Maximum allowed SNPs after intersection.}
 }
 \value{
-A list with \code{peaks}, \code{scan}, \code{n_intersect}, \code{n_kept},
+A list with \code{peaks}, \code{scan}, \code{bp}, \code{n_intersect}, \code{n_kept},
 \code{n_in}.
 }
 \description{
