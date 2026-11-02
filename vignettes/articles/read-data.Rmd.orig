@@ -89,20 +89,39 @@ if (file.exists(rds_path)) {
   marg <- -log10(2 * pnorm(-abs(targ$z)))     # target marginal signal from Z
   px   <- res$bp[res$scan$x] / 1e6
 
+  # Extra room at the top so the title and axis don't crash
+  par(mar = c(4.5, 4.5, 6, 1.5)) 
+
+  # Plot code
   plot(targ$bp / 1e6, marg, type = "p", pch = 16, cex = 0.25, col = "grey70",
        xlab = "Chr6 position (Mb, GRCh37)", ylab = expression(-log[10](p)),
-       main = "SCZ MHC: marginal GWAS signal vs rasSS regional profile",
+       main = "", # Remove main here, we'll place it higher manually
        ylim = c(0, max(marg, res$scan$y) * 1.05))
+  
   lines(px, res$scan$y, col = "darkblue", lwd = 1)
   abline(v = res$peaks$bp / 1e6, col = "red", lty = 2, lwd = 1.5)
-  axis(3, at = c(29.94, 31.35, 32.00, 32.65, 32.79),
-       labels = c("HLA-A", "HLA-B", "C4", "HLA-DRB1", "HLA-DQB2"),
-       tick = TRUE, cex.axis = 0.7)
+
+  # Add the title higher up so it doesn't overlap the axis
+  title(main = "SCZ MHC: marginal GWAS signal vs rasSS regional profile", line = 4)
+
+  # Fix the top axis by splitting it into two rows (line=0 and line=1.5)
+  axis(3, at = c(29.94, 31.35, 32.00), 
+       labels = c("HLA-A", "HLA-B", "C4"),
+       tick = TRUE, cex.axis = 0.7, line = 0)
+       
+  axis(3, at = c(32.65, 32.79), 
+       labels = c("HLA-DRB1", "HLA-DQB2"),
+       tick = TRUE, cex.axis = 0.7, line = 1.5)
+
+  # Legend moved down and given a white box so it hides the dots
   legend("topright",
          legend = c("rasSS regional profile", "target marginal -log10(p)",
                     "validated changepoint"),
          col = c("darkblue", "grey70", "red"), lty = c(1, NA, 2),
-         pch = c(NA, 16, NA), lwd = c(1, NA, 1.5), bty = "n", cex = 0.8)
+         pch = c(NA, 16, NA), lwd = c(1, NA, 1.5), 
+         bty = "o", bg = "white", box.col = "black", # Added solid box
+         cex = 0.8)
+         
   cat(sprintf("Intersected: %d | Kept: %d (%.1f%%) | Peaks: %s\n",
               res$n_intersect, res$n_kept, 100 * res$n_kept / res$n_in,
               paste(format(res$peaks$bp, big.mark = ","), collapse = " ; ")))
