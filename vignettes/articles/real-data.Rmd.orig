@@ -8,12 +8,6 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.width = 7,
-  fig.height = 4
-)
 knitr::opts_knit$set(
   root.dir = rprojroot::find_root(rprojroot::is_rstudio_project)
 )
@@ -32,6 +26,7 @@ library(rasSS)
 This vignette demonstrates the `rasSS` workflow on real GWAS summary statistics and a real 1000 Genomes LD reference panel. We analyze the Major Histocompatibility Complex (MHC) region on Chromosome 6, a well-known locus for Schizophrenia risk. 
 
 We use the `scan_block()` function, which handles:
+
 1. Ingesting and standardizing discovery and target summary statistics.
 2. Intersecting them with a PLINK binary reference panel.
 3. Extracting dosages and computing the empirical LD matrix.
@@ -133,6 +128,7 @@ if (file.exists(rds_path)) {
 ## Interpreting the Output
 
 The `scan_block()` function returns a list containing:
+
 * `scan`: The RAS profile (`x` = SNP indices, `y` = $-\log_{10}(p)$).
 * `peaks`: A data frame of validated changepoints mapped to SNP indices, grid indices, and exact base-pair positions.
 * `bp`: The base-pair positions of all SNPs that passed harmonization.
