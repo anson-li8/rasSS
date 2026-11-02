@@ -95,6 +95,11 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
   dt <- dt[which(!is.na(dt$z) & !is.na(dt$a1) & !is.na(dt$a2)), ]
   dt$a1 <- toupper(dt$a1)
   dt$a2 <- toupper(dt$a2)
+  
+  # Enforce canonical column order
+  canonical <- c("snp", "chr", "bp", "a1", "a2", "eaf", "z", "beta", "se", "p")
+  data.table::setcolorder(dt, intersect(canonical, names(dt)))
+  
   cat("[read_sumstats] final:", nrow(dt), "\n")
   dt
 }
