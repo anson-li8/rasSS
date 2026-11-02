@@ -37,18 +37,43 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
     for (p in pats) { i <- grep(p, nms, ignore.case = TRUE); if (length(i)) return(nms[i[1]]) }
     NA_character_
   }
+
+  # Column detection. Names normalized (lowercase, non-alphanumerics stripped) 
+  norm <- function(x) gsub("[^a-z0-9]", "", tolower(x))
+  nnms <- norm(nms)
+  pick <- function(pats) {
+    for (p in pats) {
+      i <- grep(p, nnms)
+      if (length(i)) return(nms[i[1]])
+    }
+    NA_character_
+  }
+  
   found <- c(
-    snp  = pick(c("^snp$", "^rsid", "^markername$", "^variantid$", "^id$")),
-    chr  = pick(c("^chr$", "^chrom$", "^chromosome$")),
-    bp   = pick(c("^pos$", "^bp$", "^base_pair", "^position$")),
-    a1   = pick(c("^a1$", "^effect_allele$", "^ea$", "^allele1$")),
-    a2   = pick(c("^a2$", "^other_allele$", "^oa$", "^allele2$")),
-    z    = pick(c("^z$", "^zscore", "^z_score$")),
-    beta = pick(c("^stdbeta$", "^beta$", "^effect$", "^b$")),
-    or   = pick(c("^or$", "^odds_ratio$")),
-    se   = pick(c("^se$", "^stderr", "^standard_error$")),
-    p    = pick(c("^p$", "^pvalue", "^p_value$")),
-    eaf  = pick(c("^eaf", "^effect_allele_freq", "^fcon$", "^fcas$", "^freq", "^maf$", "^frq"))
+    snp  = pick(c("^snp$", "^snpid$", "^rsid", "^rs$", "^markername$",
+                  "^marker$", "^variantid$", "^variant$", "^id$")),
+    chr  = pick(c("^chr$", "^chrom$", "^chromosome$", "^chrname$")),
+    bp   = pick(c("^pos$", "^bp$", "^basepair", "^position$",
+                  "^baseposition$", "^physicalposition$")),
+    # NOTE on ref/alt: mapping ref/alt -> a1/a2 is dataset-specific.
+    # Verify against the file's README
+    a1   = pick(c("^a1$", "^effectallele$", "^ea$", "^allele1$",
+                  "^effallele$", "^testedallele$", "^codedallele$",
+                  "^ref$", "^reference$", "^refallele$")),
+    a2   = pick(c("^a2$", "^otherallele$", "^oa$", "^allele2$",
+                  "^noneffectallele$", "^noneffect$", "^noncodedallele$",
+                  "^alt$", "^alternate$", "^altallele$")),
+    z    = pick(c("^z$", "^zscore", "^zstat")),
+    beta = pick(c("^stdbeta$", "^beta$", "^effect$", "^b$", "^estimate$",
+                  "^logor$", "^logodds$")),
+    or   = pick(c("^or$", "^oddsratio$")),
+    se   = pick(c("^se$", "^stderr", "^sebeta$", "^standarderror$")),
+    p    = pick(c("^p$", "^pvalue", "^pval")),
+    # MAF is deliberately NOT mapped to eaf. MAF is the minor-allele
+    # frequency, but eaf must be the frequency of the effect allele (a1).
+    # They differ if the effect allele is the major allele.
+    eaf  = pick(c("^eaf", "^effectallelefreq", "^effectallelefrequency",
+                  "^fcon$", "^fcas$", "^freq", "^frq", "^a1freq$"))
   )
   
   # EAF is optional (some PGC files lack it), but snp, a1, a2 are mandatory

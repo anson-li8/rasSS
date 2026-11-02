@@ -4,5 +4,5 @@ bibentry(
   author   = c(person("Anson", "Li"), person("Shengtong", "Han")),
   year     = "2026",
   note     = "R package",
-  url      = "https://github.com/shan-team/RAS_GWAS_Summary"
+  url      = "https://github.com/anson-li8/rasSS"
 )
