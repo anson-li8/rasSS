@@ -58,7 +58,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/anson-li8/RAS_GWAS_Summary/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/anson-li8/rasSS/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -75,7 +75,7 @@
       <h1>Real-Data Analysis: Schizophrenia MHC Region</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/anson-li8/RAS_GWAS_Summary/blob/main/vignettes/articles/real-data.Rmd" class="external-link"><code>vignettes/articles/real-data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/anson-li8/rasSS/blob/main/vignettes/articles/real-data.Rmd" class="external-link"><code>vignettes/articles/real-data.Rmd</code></a></small>
       <div class="d-none name"><code>real-data.Rmd</code></div>
     </div>
 
@@ -88,12 +88,16 @@
 GWAS summary statistics and a real 1000 Genomes LD reference panel. We
 analyze the Major Histocompatibility Complex (MHC) region on Chromosome
 6, a well-known locus for Schizophrenia risk.</p>
-<p>We use the <code><a href="../reference/scan_block.html">scan_block()</a></code> function, which handles: 1.
-Ingesting and standardizing discovery and target summary statistics. 2.
-Intersecting them with a PLINK binary reference panel. 3. Extracting
-dosages and computing the empirical LD matrix. 4. Harmonizing alleles
-(flipping strands, dropping palindromic SNPs). 5. Running the
-summary-statistic RAS scan and calling peaks.</p>
+<p>We use the <code><a href="../reference/scan_block.html">scan_block()</a></code> function, which handles:</p>
+<ol style="list-style-type: decimal">
+<li>Ingesting and standardizing discovery and target summary
+statistics.</li>
+<li>Intersecting them with a PLINK binary reference panel.</li>
+<li>Extracting dosages and computing the empirical LD matrix.</li>
+<li>Harmonizing alleles (flipping strands, dropping palindromic
+SNPs).</li>
+<li>Running the summary-statistic RAS scan and calling peaks.</li>
+</ol>
 </div>
 <div class="section level2">
 <h2 id="data-sources">Data Sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
@@ -211,15 +215,22 @@ return the cached results without re-running PLINK or the scan.</p>
 <div class="section level2">
 <h2 id="interpreting-the-output">Interpreting the Output<a class="anchor" aria-label="anchor" href="#interpreting-the-output"></a>
 </h2>
-<p>The <code><a href="../reference/scan_block.html">scan_block()</a></code> function returns a list containing: *
+<p>The <code><a href="../reference/scan_block.html">scan_block()</a></code> function returns a list containing:</p>
+<ul>
+<li>
 <code>scan</code>: The RAS profile (<code>x</code> = SNP indices,
-<code>y</code> = <span class="math inline">\(-\log_{10}(p)\)</span>). *
-<code>peaks</code>: A data frame of validated changepoints mapped to SNP
-indices, grid indices, and exact base-pair positions. * <code>bp</code>:
-The base-pair positions of all SNPs that passed harmonization. *
+<code>y</code> = <span class="math inline">\(-\log_{10}(p)\)</span>).</li>
+<li>
+<code>peaks</code>: A data frame of validated changepoints mapped to
+SNP indices, grid indices, and exact base-pair positions.</li>
+<li>
+<code>bp</code>: The base-pair positions of all SNPs that passed
+harmonization.</li>
+<li>
 <code>n_intersect</code>, <code>n_kept</code>, <code>n_in</code>:
 Quality control metrics showing how many SNPs survived the intersection
-with the LD reference and the allele harmonization step.</p>
+with the LD reference and the allele harmonization step.</li>
+</ul>
 <p>By relying on external LD reference panels and summary statistics,
 <code>rasSS</code> bypasses the need for individual-level genotype data
 while maintaining the rigorous regional change-point detection of the
