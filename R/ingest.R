@@ -67,7 +67,7 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
     beta = pick(c("^stdbeta$", "^beta$", "^effect$", "^b$", "^estimate$",
                   "^logor$", "^logodds$")),
     or   = pick(c("^or$", "^oddsratio$")),
-    se   = pick(c("^se$", "^stderr", "^sebeta$", "^standarderror$")),
+    se   = pick(c("^se$", "^stderr", "^sebeta$", "^standarderror$", "^logorse$", "^logor_se$")),
     p    = pick(c("^p$", "^pvalue", "^pval")),
     # MAF is deliberately NOT mapped to eaf. MAF is the minor-allele
     # frequency, but eaf must be the frequency of the effect allele (a1).
@@ -120,6 +120,9 @@ read_sumstats <- function(path, chr = NULL, start_bp = NULL, end_bp = NULL) {
   dt <- dt[which(!is.na(dt$z) & !is.na(dt$a1) & !is.na(dt$a2)), ]
   dt$a1 <- toupper(dt$a1)
   dt$a2 <- toupper(dt$a2)
+  
+  # Extract standard rsIDs from composite IDs
+  dt$snp <- sub("^.*_(rs[0-9]+)$", "\\1", dt$snp)
   
   # Enforce canonical column order
   canonical <- c("snp", "chr", "bp", "a1", "a2", "eaf", "z", "beta", "se", "p")
