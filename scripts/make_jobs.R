@@ -38,3 +38,8 @@ if (length(rows) == 0) {
 }
 jobs <- rbindlist(rows); setkey(jobs, chr, core_start)
 fwrite(jobs, a[4]); cat("jobs:", nrow(jobs), "\n")
+
+# results 725 blocks, skipping excessively dense regions due to compute restrictions
+# skip MHC (chr 7 30Mb-34Mb)
+# skip ch8 2Mb-6Mb (8p23.1)
+# skip ch16 6Mb-8Mb (16p13.11/16p12.3 region)
