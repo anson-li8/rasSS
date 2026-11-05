@@ -11,5 +11,7 @@ pkgdown/
 vignettes/articles/cache/
 *.rdb
 *.rdx
-data/
+data/1000G
+data/results
+data/sumstats
 .RDataTmp
