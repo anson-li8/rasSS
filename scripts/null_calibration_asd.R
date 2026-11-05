@@ -1,11 +1,14 @@
+# didn't properly reflect the null hypothesis
+# ended up with low threshold (2.55)
+
 library(data.table); library(rasSS)
 jobs <- fread("data/jobs.csv")
 brk <- quantile(jobs$n_snp, probs = 0:4/4)
 jobs[, stratum := cut(n_snp, brk, include.lowest = TRUE)]
 saveRDS(brk, "data/results/asd_null_strata.rds")
 set.seed(42)
-sel <- jobs[, .SD[sample(.N, min(.N, 10))], by = stratum]   # 40 blocks
-B <- 40                                                     # sims per block -> 1600 block-sims
+sel <- jobs[, .SD[sample(.N, min(.N, 10))], by = stratum] # 40 blocks
+B <- 40 # sims per block -> 1600 block-sims
 out <- list(); sims_done <- 0L
 for (i in seq_len(nrow(sel))) {
   j <- sel[i]; chr <- j$chr; start <- j$core_start; end <- j$core_end
@@ -25,7 +28,7 @@ for (i in seq_len(nrow(sel))) {
   ld <- ld_matrix(paste0(blk, ".raw")); bimb <- read_bim(paste0(blk, ".bim"))
   h  <- harmonize_two(disc[snp %in% keep], targ[snp %in% keep], bimb, ld)
   Gk <- ld$G[, match(h$ids, ld$ids), drop = FALSE]
-  Gc <- sweep(Gk, 2, colMeans(Gk), "-")                  # exact null draws, no chol
+  Gc <- sweep(Gk, 2, colMeans(Gk), "-") # exact null draws
   heights <- list()
   for (b in seq_len(B)) {
     set.seed(1000 * i + b)
